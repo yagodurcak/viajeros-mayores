@@ -69,9 +69,11 @@ export async function searchLocations(
  * @param params Hotel search parameters
  * @returns Hotel search results
  */
-export async function searchHotels(params: any): Promise<any> {
+export async function searchHotels(
+  params: Record<string, string | number | boolean>
+): Promise<Record<string, unknown>> {
   // Will be implemented when we get the response structure
-  return fetchFromBookingAPI<any>('/hotels/search', {
+  return fetchFromBookingAPI<Record<string, unknown>>('/hotels/search', {
     params,
   });
 }

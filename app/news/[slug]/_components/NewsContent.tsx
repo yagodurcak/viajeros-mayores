@@ -3,7 +3,6 @@
 import React from 'react';
 import Image from 'next/image';
 import ArticleShare from '@/app/blog/[slug]/_components/ArticleShare';
-import ArticleComments from '@/app/blog/[slug]/_components/ArticleComments';
 
 interface NewsContentProps {
   content: string;
