@@ -22,8 +22,8 @@ const Pagination: React.FC<PaginationProps> = ({
   onLoadMore,
   maxVisiblePages = 5,
   showPageInfo = true,
-  loadMoreText = 'Load more',
-  ariaLabel = 'Pagination',
+  loadMoreText = 'Cargar más',
+  ariaLabel = 'Paginación',
   className = '',
   primaryColor = 'bg-[#FF6F61]',
 }) => {
@@ -84,7 +84,7 @@ const Pagination: React.FC<PaginationProps> = ({
                 ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
                 : `bg-white text-gray-700 ${hoverColor} hover:text-white shadow-sm`
             }`}
-            aria-label="Previous page"
+            aria-label="Página anterior"
           >
             <svg
               className="w-5 h-5"
@@ -124,7 +124,7 @@ const Pagination: React.FC<PaginationProps> = ({
                       ? `${primaryColor} text-white shadow-md`
                       : 'bg-white text-gray-700 hover:bg-gray-100 shadow-sm'
                   }`}
-                  aria-label={`Go to page ${page}`}
+                  aria-label={`Ir a la página ${page}`}
                   aria-current={currentPage === page ? 'page' : undefined}
                 >
                   {page}
@@ -142,7 +142,7 @@ const Pagination: React.FC<PaginationProps> = ({
                 ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
                 : `bg-white text-gray-700 ${hoverColor} hover:text-white shadow-sm`
             }`}
-            aria-label="Next page"
+            aria-label="Página siguiente"
           >
             <svg
               className="w-5 h-5"
@@ -175,7 +175,7 @@ const Pagination: React.FC<PaginationProps> = ({
         {/* Page information */}
         {showPageInfo && (
           <div className="mt-4 text-center text-sm text-gray-600">
-            Page {currentPage} of {totalPages}
+            Página {currentPage} de {totalPages}
           </div>
         )}
       </div>

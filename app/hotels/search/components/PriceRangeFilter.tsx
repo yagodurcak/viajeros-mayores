@@ -13,11 +13,11 @@ export default function PriceRangeFilter({
 
   return (
     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
-      <h3 className="font-bold text-gray-900 mb-4">Your budget (per night)</h3>
+      <h3 className="font-bold text-gray-900 mb-4">Tu presupuesto (por noche)</h3>
       <div className="space-y-4">
         <div className="flex items-center justify-between text-sm text-gray-600">
           <span>
-            From {formatPrice(range[0])} to {formatPrice(range[1])}+
+            Desde {formatPrice(range[0])} hasta {formatPrice(range[1])}+
           </span>
         </div>
         <div className="relative">

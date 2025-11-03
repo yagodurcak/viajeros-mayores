@@ -31,7 +31,7 @@ const Home = () => {
         <div className="relative">
           <FeaturedNews
             articles={featuredNewsArticles}
-            title="Featured News"
+            title="Noticias Destacadas"
             backgroundColor="bg-gray-50"
           />
 
@@ -41,7 +41,7 @@ const Home = () => {
               href="/news"
               className="px-8 py-3 bg-[#FF6F61] hover:bg-[#FF5A4A] text-white rounded-lg font-semibold text-lg transition-colors shadow-lg hover:shadow-xl"
             >
-              View All News →
+              Ver Todas las Noticias →
             </Link>
           </div>
         </div>
@@ -52,7 +52,7 @@ const Home = () => {
         <div className="relative">
           <FeaturedArticles
             articles={featuredPosts}
-            title="Featured Articles"
+            title="Artículos Destacados"
             backgroundColor="bg-gray-50"
           />
 
@@ -62,7 +62,7 @@ const Home = () => {
               href="/blog"
               className="px-8 py-3 bg-[#FF6F61] hover:bg-[#FF5A4A] text-white rounded-lg font-semibold text-lg transition-colors shadow-lg hover:shadow-xl"
             >
-              View All Blog Articles →
+              Ver Todos los Artículos →
             </Link>
           </div>
         </div>

@@ -7,7 +7,7 @@ const Hero: React.FC = () => {
       <div className="absolute inset-0">
         <Image
           src="/images/hero.jpg"
-          alt="Accessible travel for everyone"
+          alt="Viajes accesibles para todos"
           fill
           priority
           className="object-cover"
@@ -17,13 +17,13 @@ const Hero: React.FC = () => {
 
       <div className="relative z-10 max-w-4xl mx-auto text-center mt-24">
         <h2 className="text-5xl font-bold mb-4 opacity-70 font-alata">
-          Explore Without Limits
+          Explora Sin Límites
         </h2>
         <p className="text-xl mb-12 opacity-70 font-light">
-          Don&apos;t let long walks or stairs catch you off guard or stop you
-          from traveling. Our community helps you with the best information to
-          be prepared for your trip and enjoy any destination. Your next
-          adventure awaits.
+          No dejes que las largas caminatas o las escaleras te tomen por sorpresa 
+          o te impidan viajar. Nuestra comunidad te ayuda con la mejor información para 
+          estar preparado en tu viaje y disfrutar de cualquier destino. Tu próxima 
+          aventura te espera.
         </p>
       </div>
     </section>

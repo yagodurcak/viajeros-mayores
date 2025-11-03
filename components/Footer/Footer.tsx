@@ -1,6 +1,8 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 
 const Footer: React.FC = () => {
   return (
@@ -15,7 +17,7 @@ const Footer: React.FC = () => {
               Making tourism accessible for everyone
             </p>
 
-            <div
+            {/* <div
               className="flex space-x-4"
               role="navigation"
               aria-label="Social media"
@@ -44,60 +46,43 @@ const Footer: React.FC = () => {
                 <i className="fab fa-instagram" />
                 <span className="sr-only">Instagram</span>
               </a>
-            </div>
+            </div> */}
           </div>
 
           <div>
-            <h5 className="font-semibold text-gray-800 mb-4">
-              Accessible Support
-            </h5>
+            <h5 className="font-semibold text-gray-800 mb-4">Quick Links</h5>
             <ul className="space-y-2 text-gray-600">
               <li>
-                <button className="hover:text-[#FF6F61] transition-colors">
-                  24/7 accessible chat
-                </button>
+                <Link
+                  href="/"
+                  className="hover:text-[#FF6F61] transition-colors"
+                >
+                  Home
+                </Link>
               </li>
               <li>
-                <button className="hover:text-[#FF6F61] transition-colors">
-                  TTY/TDD line
-                </button>
+                <Link
+                  href="/news"
+                  className="hover:text-[#FF6F61] transition-colors"
+                >
+                  News
+                </Link>
               </li>
               <li>
-                <button className="hover:text-[#FF6F61] transition-colors">
-                  Sign language video call
-                </button>
+                <Link
+                  href="/blog"
+                  className="hover:text-[#FF6F61] transition-colors"
+                >
+                  Blog
+                </Link>
               </li>
               <li>
-                <button className="hover:text-[#FF6F61] transition-colors">
-                  Accessibility guide
-                </button>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h5 className="font-semibold text-gray-800 mb-4">Certifications</h5>
-            <ul className="space-y-2 text-gray-600">
-              <li className="flex items-center">
-                <i
-                  className="fas fa-certificate text-green-500 mr-2"
-                  aria-hidden="true"
-                />
-                <span>WCAG 2.1 AA</span>
-              </li>
-              <li className="flex items-center">
-                <i
-                  className="fas fa-universal-access text-blue-500 mr-2"
-                  aria-hidden="true"
-                />
-                <span>Inclusive Tourism</span>
-              </li>
-              <li className="flex items-center">
-                <i
-                  className="fas fa-award text-yellow-500 mr-2"
-                  aria-hidden="true"
-                />
-                <span>Certified Accessibility</span>
+                <Link
+                  href="/about"
+                  className="hover:text-[#FF6F61] transition-colors"
+                >
+                  About Us
+                </Link>
               </li>
             </ul>
           </div>
@@ -106,26 +91,53 @@ const Footer: React.FC = () => {
             <h5 className="font-semibold text-gray-800 mb-4">Resources</h5>
             <ul className="space-y-2 text-gray-600">
               <li>
-                <button className="hover:text-[#FF6F61] transition-colors">
-                  Inclusion policy
-                </button>
+                <Link
+                  href="https://europa.eu/youreurope/citizens/travel/transport-disability/reduced-mobility/index_en.htm"
+                  target="_blank"
+                  className="hover:text-[#FF6F61] transition-colors"
+                >
+                  European Commission
+                </Link>
               </li>
               <li>
-                <button className="hover:text-[#FF6F61] transition-colors">
-                  Accessibility reviews
-                </button>
+                <Link
+                  href="https://www.untourism.int/accessibility"
+                  target="_blank"
+                  className="hover:text-[#FF6F61] transition-colors"
+                >
+                  UN Tourism – Accessible tourism
+                </Link>
               </li>
               <li>
-                <button className="hover:text-[#FF6F61] transition-colors">
-                  Travel tips
-                </button>
+                <Link
+                  href="https://www.accessibletourism.org"
+                  target="_blank"
+                  className="hover:text-[#FF6F61] transition-colors"
+                >
+                  ENAT – Accessible Tourism
+                </Link>
               </li>
               <li>
-                <button className="hover:text-[#FF6F61] transition-colors">
-                  AccesiTravel Community
-                </button>
+                <Link
+                  href="https://travel.state.gov/en/international-travel/planning/personal-needs/accessibility.html"
+                  target="_blank"
+                  className="hover:text-[#FF6F61] transition-colors"
+                >
+                  Accessibility Needs – Travel.State.gov
+                </Link>
               </li>
             </ul>
+          </div>
+
+          <div className="flex justify-center items-start">
+            <div className="relative w-44 h-32">
+              <Image
+                src="/images/logo.png"
+                alt="Explore4All Logo"
+                fill
+                className="object-contain"
+              />
+            </div>
           </div>
         </div>
 

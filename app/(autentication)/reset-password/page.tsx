@@ -35,13 +35,13 @@ export default function ResetPasswordPage() {
 
     // Validations
     if (password !== confirmPassword) {
-      setError('Passwords do not match');
+      setError('Las contraseñas no coinciden');
       setLoading(false);
       return;
     }
 
     if (password.length < 6) {
-      setError('Password must be at least 6 characters');
+      setError('La contraseña debe tener al menos 6 caracteres');
       setLoading(false);
       return;
     }
@@ -64,7 +64,7 @@ export default function ResetPasswordPage() {
         router.push('/login');
       }, 3000);
     } catch (err) {
-      setError('Error resetting password. Please try again.');
+      setError('Error al restablecer la contraseña. Por favor, inténtalo de nuevo.');
       console.error(err);
       setLoading(false);
     }
@@ -92,17 +92,17 @@ export default function ResetPasswordPage() {
             </div>
           </div>
           <h2 className="text-2xl font-bold text-gray-800 mb-2">
-            Invalid or expired link
+            Enlace inválido o expirado
           </h2>
           <p className="text-gray-600 mb-6">
-            This password recovery link is invalid or has expired. Please
-            request a new recovery link.
+            Este enlace de recuperación de contraseña es inválido o ha expirado. Por favor,
+            solicita un nuevo enlace de recuperación.
           </p>
           <button
             onClick={() => router.push('/forgot-password')}
             className="px-6 py-3 bg-[#FF6F61] text-white rounded-lg font-medium hover:bg-[#FF5A4A] transition-colors"
           >
-            Request new link
+            Solicitar nuevo enlace
           </button>
         </div>
       </div>
@@ -131,13 +131,13 @@ export default function ResetPasswordPage() {
             </div>
           </div>
           <h2 className="text-2xl font-bold text-gray-800 mb-2">
-            Password updated!
+            ¡Contraseña actualizada!
           </h2>
           <p className="text-gray-600 mb-4">
-            Your password has been reset successfully.
+            Tu contraseña ha sido restablecida exitosamente.
           </p>
           <p className="text-sm text-gray-500">
-            You will be redirected to the sign in page...
+            Serás redirigido a la página de inicio de sesión...
           </p>
         </div>
       </div>
@@ -164,9 +164,9 @@ export default function ResetPasswordPage() {
             </svg>
           </div>
           <h1 className="text-3xl font-bold text-[#FF6F61] mb-2">
-            Reset Password
+            Restablecer Contraseña
           </h1>
-          <p className="text-gray-600">Enter your new password</p>
+          <p className="text-gray-600">Ingresa tu nueva contraseña</p>
         </div>
 
         {error && (
@@ -181,7 +181,7 @@ export default function ResetPasswordPage() {
               htmlFor="password"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              New Password
+              Nueva Contraseña
             </label>
             <div className="relative">
               <input
@@ -236,7 +236,7 @@ export default function ResetPasswordPage() {
                 )}
               </button>
             </div>
-            <p className="mt-1 text-sm text-gray-500">Minimum 6 characters</p>
+            <p className="mt-1 text-sm text-gray-500">Mínimo 6 caracteres</p>
           </div>
 
           <div>
@@ -244,7 +244,7 @@ export default function ResetPasswordPage() {
               htmlFor="confirmPassword"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              Confirm New Password
+              Confirmar Nueva Contraseña
             </label>
             <div className="relative">
               <input
@@ -306,7 +306,7 @@ export default function ResetPasswordPage() {
             disabled={loading}
             className="w-full py-3 bg-[#FF6F61] text-white rounded-lg font-medium hover:bg-[#FF5A4A] transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
           >
-            {loading ? 'Updating...' : 'Reset Password'}
+            {loading ? 'Actualizando...' : 'Restablecer Contraseña'}
           </button>
         </form>
       </div>
