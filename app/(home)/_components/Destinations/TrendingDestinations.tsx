@@ -14,10 +14,10 @@ const TrendingDestinations: React.FC = () => {
     <section className="py-16 px-6 bg-gray-50">
       <div className="max-w-6xl mx-auto">
         <h3 className="text-3xl font-bold text-gray-800 mb-2 font-alata">
-          Trending accessible destinations
+          Destinos accesibles en tendencia
         </h3>
         <p className="text-gray-600 mb-8 font-light">
-          Most popular options among the accessible travel community
+          Opciones más populares entre la comunidad de viajeros accesibles
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">

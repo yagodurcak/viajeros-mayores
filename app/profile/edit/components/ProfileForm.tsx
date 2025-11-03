@@ -32,33 +32,33 @@ export default function ProfileForm({
       <form onSubmit={onSubmit} className="space-y-6">
         <FormInput
           id="username"
-          label="Username"
+          label="Nombre de usuario"
           name="username"
           value={formData.username}
           onChange={onChange}
-          placeholder="Enter your username"
+          placeholder="Ingresa tu nombre de usuario"
           disabled={saving}
         />
 
         <FormInput
           id="fullName"
-          label="Public Full Name"
+          label="Nombre completo público"
           name="fullName"
           value={formData.fullName}
           onChange={onChange}
-          placeholder="Enter your full name"
+          placeholder="Ingresa tu nombre completo"
           disabled={saving}
         />
 
         <FormTextarea
           id="bio"
-          label="Bio"
+          label="Biografía"
           name="bio"
           value={formData.bio}
           onChange={onChange}
-          placeholder="Tell us about yourself..."
+          placeholder="Cuéntanos sobre ti..."
           rows={4}
-          helperText="Brief description for your profile. Max 200 characters."
+          helperText="Breve descripción para tu perfil. Máximo 200 caracteres."
           disabled={saving}
         />
 
@@ -77,10 +77,10 @@ export default function ProfileForm({
             {saving ? (
               <span className="flex items-center justify-center gap-2">
                 <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                Saving...
+                Guardando...
               </span>
             ) : (
-              'Save Changes'
+              'Guardar Cambios'
             )}
           </button>
           <button
@@ -89,7 +89,7 @@ export default function ProfileForm({
             disabled={saving}
             className="flex-1 px-6 py-3 border border-gray-300 rounded-lg font-semibold text-gray-700 hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Cancel
+            Cancelar
           </button>
         </div>
       </form>

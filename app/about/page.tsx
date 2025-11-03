@@ -12,10 +12,10 @@ const AboutPage = () => {
         <div className="absolute inset-0 bg-black/20" />
         <div className="relative h-full max-w-6xl mx-auto px-6 flex flex-col justify-center items-center text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 font-alata">
-            About Travel4All
+            Acerca de Travel4All
           </h1>
           <p className="text-xl md:text-2xl text-white/95 max-w-3xl font-light leading-relaxed">
-            Making travel accessible for everyone, one journey at a time
+            Haciendo los viajes accesibles para todos, un viaje a la vez
           </p>
         </div>
       </section>
@@ -26,46 +26,46 @@ const AboutPage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-4xl font-bold text-gray-800 mb-6 font-alata">
-                Our Story
+                Nuestra Historia
               </h2>
               <div className="space-y-4 text-lg text-gray-700 leading-relaxed">
                 <p>
-                  Explore4All was born from a deeply personal experience. The
-                  idea came from the countless trips I&apos;ve shared with my
-                  mother. She was the one who taught me how beautiful it is to
-                  travel, experience new cultures, and marvel at the world.
-                  However, with each passing year, I watched the simple act of
-                  traveling become more complicated for her. Stretches that were
-                  once just a simple walk turned into challenges: long treks,
-                  unexpected stairs, or steep paths started to become obstacles.
+                  Explore4All nació de una experiencia profundamente personal. La
+                  idea surgió de los innumerables viajes que he compartido con mi
+                  madre. Ella fue quien me enseñó lo hermoso que es
+                  viajar, experimentar nuevas culturas y maravillarse con el mundo.
+                  Sin embargo, con cada año que pasaba, vi cómo el simple acto de
+                  viajar se volvía más complicado para ella. Trayectos que antes
+                  eran solo una simple caminata se convirtieron en desafíos: largas
+                  caminatas, escaleras inesperadas o caminos empinados comenzaron a
+                  convertirse en obstáculos.
                 </p>
                 <p>
-                  Every new trip turned into an exhaustive research mission. We
-                  spent hours digging for honest opinions about the cost (in
-                  effort) of getting to a tourist spot. We faced hotels that
-                  lied in their accessibility descriptions and, unfortunately,
-                  we endured several disappointments upon arriving at a
-                  destination that wasn&apos;t prepared for us.
+                  Cada nuevo viaje se convertía en una misión de investigación exhaustiva.
+                  Pasábamos horas buscando opiniones honestas sobre el costo (en
+                  esfuerzo) de llegar a un lugar turístico. Nos enfrentamos a hoteles que
+                  mentían en sus descripciones de accesibilidad y, desafortunadamente,
+                  sufrimos varias decepciones al llegar a un destino que no estaba
+                  preparado para nosotros.
                 </p>
                 <p>
-                  I realized our problem wasn&apos;t unique. Millions of people
-                  with reduced mobility, and their families, face this same
-                  uncertainty and frustration. That is why I created this
-                  platform. The idea behind Explore4All is simple: to build the
-                  community my mother and I always needed. A place to provide
-                  people with reduced mobility with the honest information,
-                  practical advice, and real-world experiences from fellow
-                  travelers. We want to eliminate the disappointment and anxiety
-                  from planning, so that your next trip can be exactly what
-                  it&apos;s meant to be: a prepared, joyful, and limitless
-                  experience.
+                  Me di cuenta de que nuestro problema no era único. Millones de personas
+                  con movilidad reducida, y sus familias, enfrentan esta misma
+                  incertidumbre y frustración. Por eso creé esta plataforma. La idea
+                  detrás de Explore4All es simple: construir la comunidad que mi madre y yo
+                  siempre necesitamos. Un lugar para proporcionar a las personas con
+                  movilidad reducida la información honesta, el consejo práctico y las
+                  experiencias del mundo real de otros viajeros. Queremos eliminar la
+                  decepción y la ansiedad de la planificación, para que tu próximo viaje
+                  pueda ser exactamente lo que debe ser: una experiencia preparada, alegre
+                  y sin límites.
                 </p>
               </div>
             </div>
             <div className="relative h-full min-h-[600px] rounded-2xl overflow-hidden shadow-2xl">
               <Image
                 src="/images/mama.jpg"
-                alt="Travel4All community"
+                alt="Comunidad Travel4All"
                 fill
                 className="object-cover object-top"
               />
@@ -79,11 +79,11 @@ const AboutPage = () => {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-800 mb-4 font-alata">
-              Our Mission & Values
+              Nuestra Misión y Valores
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We&apos;re committed to breaking down barriers and opening up the
-              world of travel to everyone
+              Estamos comprometidos a derribar barreras y abrir el mundo de los
+              viajes para todos
             </p>
           </div>
 
@@ -94,12 +94,12 @@ const AboutPage = () => {
                 <span className="text-4xl">🤝</span>
               </div>
               <h3 className="text-2xl font-bold text-gray-800 mb-4 font-alata">
-                Community
+                Comunidad
               </h3>
               <p className="text-gray-600 leading-relaxed">
-                We are a support network where travelers come together to help
-                one another. By sharing our real experiences and solutions, we
-                empower everyone to keep traveling and enjoying the world.
+                Somos una red de apoyo donde los viajeros se unen para ayudarse
+                mutuamente. Al compartir nuestras experiencias reales y soluciones,
+                empoderamos a todos para seguir viajando y disfrutando del mundo.
               </p>
             </div>
             {/* Empowerment */}
@@ -108,12 +108,12 @@ const AboutPage = () => {
                 <span className="text-4xl">🚀</span>
               </div>
               <h3 className="text-2xl font-bold text-gray-800 mb-4 font-alata">
-                Empowerment
+                Empoderamiento
               </h3>
               <p className="text-gray-600 leading-relaxed">
-                We give you the tools, information, and confidence you need to
-                plan your perfect trip, knowing that every detail has been
-                considered with your needs in mind.
+                Te damos las herramientas, la información y la confianza que necesitas
+                para planificar tu viaje perfecto, sabiendo que cada detalle ha sido
+                considerado con tus necesidades en mente.
               </p>
             </div>
             {/* Innovation */}
@@ -122,12 +122,12 @@ const AboutPage = () => {
                 <span className="text-4xl">💡</span>
               </div>
               <h3 className="text-2xl font-bold text-gray-800 mb-4 font-alata">
-                Innovation
+                Innovación
               </h3>
               <p className="text-gray-600 leading-relaxed">
-                We continuously improve our platform with cutting-edge
-                technology to make accessible travel planning easier, faster,
-                and more reliable than ever before.
+                Mejoramos continuamente nuestra plataforma con tecnología de vanguardia
+                para hacer que la planificación de viajes accesibles sea más fácil, rápida
+                y confiable que nunca.
               </p>
             </div>
           </div>
@@ -138,18 +138,18 @@ const AboutPage = () => {
       <section className="py-20 px-6 bg-gradient-to-r from-[#FF6F61] to-[#FF8A80]">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold text-white mb-6 font-alata">
-            Ready to Start Your Journey?
+            ¿Listo para Comenzar tu Viaje?
           </h2>
           <p className="text-xl text-white/95 mb-8 leading-relaxed">
-            Join thousands of travelers who trust Travel4All to help them
-            explore the world with confidence and comfort.
+            Únete a miles de viajeros que confían en Travel4All para ayudarles a
+            explorar el mundo con confianza y comodidad.
           </p>
           <div className="flex justify-center">
             <Link
               href="/signup"
               className="px-12 py-4 bg-white text-[#FF6F61] rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors shadow-lg"
             >
-              Create Account
+              Crear Cuenta
             </Link>
           </div>
         </div>

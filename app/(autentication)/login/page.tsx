@@ -50,8 +50,8 @@ export default function LoginPage() {
       }
 
       // Redirect is handled in useEffect with onAuthStateChange
-    } catch (err) {
-      setError('Error signing in. Please try again.');
+      } catch (err) {
+      setError('Error al iniciar sesión. Por favor, inténtalo de nuevo.');
       console.error(err);
       setLoading(false);
     }
@@ -71,7 +71,7 @@ export default function LoginPage() {
         setError(error.message);
       }
     } catch (err) {
-      setError('Error connecting with Google');
+      setError('Error al conectar con Google');
       console.error(err);
     }
   };
@@ -80,8 +80,8 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
       <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-[#FF6F61] mb-2">Sign In</h1>
-          <p className="text-gray-600">Welcome back to Explore4All</p>
+          <h1 className="text-3xl font-bold text-[#FF6F61] mb-2">Iniciar Sesión</h1>
+          <p className="text-gray-600">Bienvenido de vuelta a Explore4All</p>
         </div>
 
         {error && (
@@ -105,7 +105,7 @@ export default function LoginPage() {
               onChange={(e) => setEmail(e.target.value)}
               required
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6F61] focus:border-transparent outline-none transition-all"
-              placeholder="your@email.com"
+              placeholder="tu@email.com"
             />
           </div>
 
@@ -114,7 +114,7 @@ export default function LoginPage() {
               htmlFor="password"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              Password
+              Contraseña
             </label>
             <div className="relative">
               <input
@@ -181,7 +181,7 @@ export default function LoginPage() {
                 htmlFor="remember"
                 className="ml-2 block text-sm text-gray-700"
               >
-                Remember me
+                Recuérdame
               </label>
             </div>
             <button
@@ -189,7 +189,7 @@ export default function LoginPage() {
               onClick={() => router.push('/forgot-password')}
               className="text-sm text-[#FF6F61] hover:text-[#FF5A4A]"
             >
-              Forgot your password?
+              ¿Olvidaste tu contraseña?
             </button>
           </div>
 
@@ -198,7 +198,7 @@ export default function LoginPage() {
             disabled={loading}
             className="w-full py-3 bg-[#FF6F61] text-white rounded-lg font-medium hover:bg-[#FF5A4A] transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
           >
-            {loading ? 'Signing in...' : 'Sign In'}
+            {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
           </button>
         </form>
 
@@ -209,7 +209,7 @@ export default function LoginPage() {
             </div>
             <div className="relative flex justify-center text-sm">
               <span className="px-2 bg-white text-gray-500">
-                Or continue with
+                O continúa con
               </span>
             </div>
           </div>
@@ -243,12 +243,12 @@ export default function LoginPage() {
 
         <div className="mt-6 text-center">
           <p className="text-gray-600 text-sm">
-            Don&apos;t have an account?{' '}
+            ¿No tienes una cuenta?{' '}
             <button
               onClick={() => router.push('/signup')}
               className="text-[#FF6F61] hover:text-[#FF5A4A] font-medium"
             >
-              Sign up
+              Regístrate
             </button>
           </p>
         </div>

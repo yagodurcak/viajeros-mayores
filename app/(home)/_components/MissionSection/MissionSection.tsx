@@ -11,15 +11,15 @@ const MissionSection: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
           <div className="flex flex-col justify-center">
             <h3 className="text-4xl font-bold text-gray-800 mb-6 font-alata">
-              Our Mission & Values
+              Nuestra Misión y Valores
             </h3>
             <p className="text-lg text-gray-700 mb-8 font-light leading-relaxed">
-              We understand that for many people, traveling long or short
-              distances, climbing stairs, or walking uphill can be a significant
-              challenge. Our goal is to provide practical and accessible
-              information and create a supportive community where we can share
-              experiences and solutions. We want you to continue enjoying what
-              you love: traveling, exploring, and living life to the fullest.
+              Entendemos que para muchas personas, recorrer largas o cortas
+              distancias, subir escaleras o caminar cuesta arriba puede ser un
+              desafío significativo. Nuestro objetivo es proporcionar información
+              práctica y accesible, y crear una comunidad de apoyo donde podamos
+              compartir experiencias y soluciones. Queremos que sigas disfrutando
+              de lo que amas: viajar, explorar y vivir la vida al máximo.
             </p>
             <div className="space-y-6">
               {missionValues.map((value) => (
@@ -44,7 +44,7 @@ const MissionSection: React.FC = () => {
             <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-100 h-full">
               <Image
                 src="/images/women.png"
-                alt="Our accessible tourism mission"
+                alt="Nuestra misión de turismo accesible"
                 fill
                 className="object-cover object-center"
                 priority={false}

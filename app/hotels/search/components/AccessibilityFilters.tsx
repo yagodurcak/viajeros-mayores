@@ -23,7 +23,7 @@ export default function AccessibilityFilters({
         >
           <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" />
         </svg>
-        Accessibility Filters
+        Filtros de Accesibilidad
       </h3>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {filters.map((filter) => (
@@ -102,7 +102,7 @@ export default function AccessibilityFilters({
                         : 'text-gray-500'
                     }`}
                   >
-                    {filter.count} properties
+                    {filter.count} propiedades
                   </span>
                   <div
                     className={`px-2 py-1 rounded-full text-xs font-medium`}

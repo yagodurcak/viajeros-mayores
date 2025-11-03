@@ -33,7 +33,7 @@ export default function ForgotPasswordPage() {
 
       setSuccess(true);
     } catch (err) {
-      setError('Error sending recovery email. Please try again.');
+      setError('Error al enviar el correo de recuperación. Por favor, inténtalo de nuevo.');
       console.error(err);
     } finally {
       setLoading(false);
@@ -61,17 +61,17 @@ export default function ForgotPasswordPage() {
               </svg>
             </div>
           </div>
-          <h2 className="text-2xl font-bold text-gray-800 mb-2">Email sent!</h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-2">¡Correo enviado!</h2>
           <p className="text-gray-600 mb-6">
-            We&apos;ve sent a recovery link to <strong>{email}</strong>. Please
-            check your email (including spam folder) and follow the instructions
-            to reset your password.
+            Hemos enviado un enlace de recuperación a <strong>{email}</strong>. Por favor,
+            revisa tu correo electrónico (incluyendo la carpeta de spam) y sigue las instrucciones
+            para restablecer tu contraseña.
           </p>
           <button
             onClick={() => router.push('/login')}
             className="px-6 py-3 bg-[#FF6F61] text-white rounded-lg font-medium hover:bg-[#FF5A4A] transition-colors"
           >
-            Back to sign in
+            Volver a iniciar sesión
           </button>
         </div>
       </div>
@@ -98,10 +98,10 @@ export default function ForgotPasswordPage() {
             </svg>
           </div>
           <h1 className="text-3xl font-bold text-[#FF6F61] mb-2">
-            Forgot your password?
+            ¿Olvidaste tu contraseña?
           </h1>
           <p className="text-gray-600">
-            Don&apos;t worry, we&apos;ll send you instructions to reset it
+            No te preocupes, te enviaremos instrucciones para restablecerla
           </p>
         </div>
 
@@ -117,7 +117,7 @@ export default function ForgotPasswordPage() {
               htmlFor="email"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              Email Address
+              Dirección de correo electrónico
             </label>
             <input
               id="email"
@@ -126,10 +126,10 @@ export default function ForgotPasswordPage() {
               onChange={(e) => setEmail(e.target.value)}
               required
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6F61] focus:border-transparent outline-none transition-all"
-              placeholder="your@email.com"
+              placeholder="tu@email.com"
             />
             <p className="mt-2 text-sm text-gray-500">
-              Enter the email address associated with your account
+              Ingresa la dirección de correo electrónico asociada con tu cuenta
             </p>
           </div>
 
@@ -138,7 +138,7 @@ export default function ForgotPasswordPage() {
             disabled={loading}
             className="w-full py-3 bg-[#FF6F61] text-white rounded-lg font-medium hover:bg-[#FF5A4A] transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
           >
-            {loading ? 'Sending...' : 'Send recovery link'}
+            {loading ? 'Enviando...' : 'Enviar enlace de recuperación'}
           </button>
         </form>
 
@@ -147,7 +147,7 @@ export default function ForgotPasswordPage() {
             onClick={() => router.push('/login')}
             className="text-gray-600 text-sm hover:text-[#FF6F61] transition-colors"
           >
-            ← Back to sign in
+            ← Volver a iniciar sesión
           </button>
         </div>
       </div>

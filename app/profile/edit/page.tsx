@@ -16,16 +16,16 @@ export default function EditProfile() {
   } = useProfileForm();
 
   if (loading) {
-    return <LoadingSpinner message="Loading profile..." />;
+    return <LoadingSpinner message="Cargando perfil..." />;
   }
 
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-6">
       <div className="max-w-2xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Edit Profile</h1>
+          <h1 className="text-3xl font-bold text-gray-900">Editar Perfil</h1>
           <p className="mt-2 text-gray-600">
-            Update your personal information and profile settings
+            Actualiza tu información personal y configuración de perfil
           </p>
         </div>
 

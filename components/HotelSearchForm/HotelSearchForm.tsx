@@ -90,12 +90,12 @@ const HotelSearchForm: React.FC<HotelSearchFormProps> = ({
 
   const handleSearch = async () => {
     if (!destination.trim()) {
-      alert('Please select a destination');
+      alert('Por favor, selecciona un destino');
       return;
     }
 
     if (!destId || !destType) {
-      alert('Please select a destination from the dropdown');
+      alert('Por favor, selecciona un destino de la lista');
       return;
     }
 
@@ -133,7 +133,7 @@ const HotelSearchForm: React.FC<HotelSearchFormProps> = ({
       }
     } catch (error) {
       console.error('Search error:', error);
-      alert('Error searching for hotels. Please try again.');
+      alert('Error al buscar hoteles. Por favor, inténtalo de nuevo.');
     } finally {
       setIsSearching(false);
     }
@@ -145,16 +145,16 @@ const HotelSearchForm: React.FC<HotelSearchFormProps> = ({
         {/* Destination */}
         <div className="md:col-span-2">
           <label className="block text-sm font-medium text-gray-700 mb-2 text-left">
-            Destination
+            Destino
           </label>
           <LocationSearch
             onSelectLocation={handleLocationSelect}
-            placeholder="🗺️ Where are we going?"
+            placeholder="🗺️ ¿A dónde vamos?"
             className="w-full"
           />
           {destination && (
             <div className="text-xs text-gray-600 mt-1 text-left">
-              Selected: {destination}
+              Seleccionado: {destination}
             </div>
           )}
         </div>
@@ -162,7 +162,7 @@ const HotelSearchForm: React.FC<HotelSearchFormProps> = ({
         {/* Dates - Click to open date picker */}
         <div className="relative md:col-span-2">
           <label className="block text-sm font-medium text-gray-700 mb-2 text-left">
-            Dates
+            Fechas
           </label>
           <button
             type="button"
@@ -175,7 +175,7 @@ const HotelSearchForm: React.FC<HotelSearchFormProps> = ({
                 {formatDate(dateRange[0].endDate)}
               </span>
             ) : (
-              <span className="text-gray-500">Check-in - Check-out</span>
+              <span className="text-gray-500">Entrada - Salida</span>
             )}
           </button>
           <i className="fas fa-calendar-alt absolute right-3 top-10 text-gray-400 pointer-events-none" />
@@ -198,7 +198,7 @@ const HotelSearchForm: React.FC<HotelSearchFormProps> = ({
                   onClick={() => setShowDatePicker(false)}
                   className="w-full bg-[#FF6F61] hover:bg-[#E85A4F] text-white py-2 px-4 rounded-lg font-medium transition-colors"
                 >
-                  Apply dates
+                  Aplicar fechas
                 </button>
               </div>
             </div>
@@ -208,14 +208,14 @@ const HotelSearchForm: React.FC<HotelSearchFormProps> = ({
         {/* Guests */}
         <div className="relative md:col-span-2">
           <label className="block text-sm font-medium text-gray-700 mb-2 text-left">
-            Guests
+            Huéspedes
           </label>
           <input
             type="text"
             value={guests}
             onChange={(e) => setGuests(e.target.value)}
             className="w-full px-4 py-3 pr-10 text-gray-800 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF6F61] text-sm"
-            placeholder="Number of travelers"
+            placeholder="Número de viajeros"
           />
           <i className="fas fa-user absolute right-3 top-10 text-gray-400 text-sm" />
         </div>
@@ -234,10 +234,10 @@ const HotelSearchForm: React.FC<HotelSearchFormProps> = ({
             {isSearching ? (
               <div className="flex items-center justify-center">
                 <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
-                Searching...
+                Buscando...
               </div>
             ) : (
-              'Search'
+              'Buscar'
             )}
           </button>
         </div>
