@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles for accessibility */
+.contrast-more {
+  filter: contrast(150%) brightness(120%);
+}
+
+.contrast-more * {
+  border-color: currentColor !important;
+}
+
+/* Custom styles for React Date Range */
+.rdrCalendarWrapper {
+  @apply rounded-lg overflow-hidden;
+}
+
+.rdrDateRangeWrapper {
+  @apply rounded-lg;
+}
+
+.rdrDefinedRangesWrapper {
+  @apply hidden;
+}
+
+.rdrMonth {
+  @apply p-4;
+}
+
+.rdrWeekDay {
+  @apply text-sm font-medium text-gray-600 py-2;
+}
+
+.rdrDay {
+  @apply text-sm;
+}
+
+.rdrDayNumber span {
+  @apply font-medium;
+}
+
+.rdrDayToday .rdrDayNumber span:after {
+  @apply bg-[#FF6F61];
+}
+
+.rdrDayActive .rdrDayNumber span {
+  @apply bg-[#FF6F61] text-white;
+}
+
+.rdrDayInRange .rdrDayNumber span {
+  @apply bg-[#FF6F61]/10 text-[#FF6F61];
+}
+
+.rdrDayStartEdge .rdrDayNumber span,
+.rdrDayEndEdge .rdrDayNumber span {
+  @apply bg-[#FF6F61] text-white;
+}
+
+.rdrDayHovered .rdrDayNumber span {
+  @apply bg-[#FF6F61]/20;
+}
+
+/* Animation for dropdown menu */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.2s ease-out;
+}

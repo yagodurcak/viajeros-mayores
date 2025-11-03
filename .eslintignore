@@ -1,0 +1,10 @@
+node_modules
+.next
+out
+dist
+build
+*.config.js
+next.config.js
+postcss.config.js
+tailwind.config.js
+
