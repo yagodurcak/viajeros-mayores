@@ -4,7 +4,7 @@ interface LoadingSpinnerProps {
 }
 
 export default function LoadingSpinner({
-  message = 'Loading...',
+  message = 'Cargando...',
   fullScreen = true,
 }: LoadingSpinnerProps) {
   const content = (

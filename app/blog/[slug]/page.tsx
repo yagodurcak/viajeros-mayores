@@ -64,16 +64,16 @@ export default function BlogPostPage() {
         <div className="text-center">
           <div className="text-red-500 text-6xl mb-4">📄</div>
           <h1 className="text-3xl font-bold text-gray-800 mb-4">
-            Article not found
+            Artículo no encontrado
           </h1>
           <p className="text-gray-600 mb-8">
-            {error || 'The article you are looking for does not exist.'}
+            {error || 'El artículo que buscas no existe.'}
           </p>
           <Link
             href="/blog"
             className="inline-block bg-[#FF6F61] text-white px-6 py-3 rounded-lg hover:bg-[#E55A4F] transition-colors"
           >
-            Back to Blog
+            Volver al Blog
           </Link>
         </div>
       </div>
@@ -105,7 +105,7 @@ export default function BlogPostPage() {
       {filteredRelatedPosts.length > 0 && (
         <FeaturedArticles
           articles={filteredRelatedPosts}
-          title="Related Articles"
+          title="Artículos Relacionados"
           backgroundColor="bg-white"
         />
       )}

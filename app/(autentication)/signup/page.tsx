@@ -24,13 +24,13 @@ export default function SignUpPage() {
 
     // Validations
     if (password !== confirmPassword) {
-      setError('Passwords do not match');
+      setError('Las contraseñas no coinciden');
       setLoading(false);
       return;
     }
 
     if (password.length < 6) {
-      setError('Password must be at least 6 characters');
+      setError('La contraseña debe tener al menos 6 caracteres');
       setLoading(false);
       return;
     }
@@ -56,7 +56,7 @@ export default function SignUpPage() {
       if (data.user) {
         // Check if email confirmation is needed
         if (data.user.identities?.length === 0) {
-          setError('This email is already registered');
+          setError('Este correo electrónico ya está registrado');
           setLoading(false);
           return;
         }
@@ -75,7 +75,7 @@ export default function SignUpPage() {
         }
       }
     } catch (err) {
-      setError('Error creating account. Please try again.');
+      setError('Error al crear la cuenta. Por favor, inténtalo de nuevo.');
       console.error(err);
     } finally {
       setLoading(false);
@@ -96,7 +96,7 @@ export default function SignUpPage() {
         setError(error.message);
       }
     } catch (err) {
-      setError('Error connecting with Google');
+      setError('Error al conectar con Google');
       console.error(err);
     }
   };
@@ -123,13 +123,13 @@ export default function SignUpPage() {
             </div>
           </div>
           <h2 className="text-2xl font-bold text-gray-800 mb-2">
-            Account created successfully!
+            ¡Cuenta creada exitosamente!
           </h2>
           <p className="text-gray-600 mb-4">
-            Please check your email to verify your account.
+            Por favor, revisa tu correo electrónico para verificar tu cuenta.
           </p>
           <p className="text-sm text-gray-500">
-            You will be redirected to the sign in page...
+            Serás redirigido a la página de inicio de sesión...
           </p>
         </div>
       </div>
@@ -141,10 +141,10 @@ export default function SignUpPage() {
       <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-[#FF6F61] mb-2">
-            Create Account
+            Crear Cuenta
           </h1>
           <p className="text-gray-600">
-            Join Explore4All and start your adventure
+            Únete a Explore4All y comienza tu aventura
           </p>
         </div>
 
@@ -156,8 +156,8 @@ export default function SignUpPage() {
 
         <form onSubmit={handleSignUp} className="space-y-4">
           <p className="text-sm text-gray-600 mb-4">
-            All fields marked with <span className="text-red-500">*</span> are
-            required
+            Todos los campos marcados con <span className="text-red-500">*</span> son
+            obligatorios
           </p>
 
           <div>
@@ -165,7 +165,7 @@ export default function SignUpPage() {
               htmlFor="fullName"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              Full Name <span className="text-red-500">*</span>
+              Nombre Completo <span className="text-red-500">*</span>
             </label>
             <input
               id="fullName"
@@ -174,7 +174,7 @@ export default function SignUpPage() {
               onChange={(e) => setFullName(e.target.value)}
               required
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6F61] focus:border-transparent outline-none transition-all"
-              placeholder="John Doe"
+              placeholder="Juan Pérez"
             />
           </div>
 
@@ -192,7 +192,7 @@ export default function SignUpPage() {
               onChange={(e) => setEmail(e.target.value)}
               required
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6F61] focus:border-transparent outline-none transition-all"
-              placeholder="your@email.com"
+              placeholder="tu@email.com"
             />
           </div>
 
@@ -201,7 +201,7 @@ export default function SignUpPage() {
               htmlFor="password"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              Password <span className="text-red-500">*</span>
+              Contraseña <span className="text-red-500">*</span>
             </label>
             <div className="relative">
               <input
@@ -263,7 +263,7 @@ export default function SignUpPage() {
               htmlFor="confirmPassword"
               className="block text-sm font-medium text-gray-700 mb-1"
             >
-              Confirm Password <span className="text-red-500">*</span>
+              Confirmar Contraseña <span className="text-red-500">*</span>
             </label>
             <div className="relative">
               <input
@@ -325,7 +325,7 @@ export default function SignUpPage() {
             disabled={loading}
             className="w-full py-3 bg-[#FF6F61] text-white rounded-lg font-medium hover:bg-[#FF5A4A] transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
           >
-            {loading ? 'Creating account...' : 'Create Account'}
+            {loading ? 'Creando cuenta...' : 'Crear Cuenta'}
           </button>
         </form>
 
@@ -336,7 +336,7 @@ export default function SignUpPage() {
             </div>
             <div className="relative flex justify-center text-sm">
               <span className="px-2 bg-white text-gray-500">
-                Or continue with
+                O continúa con
               </span>
             </div>
           </div>
@@ -370,12 +370,12 @@ export default function SignUpPage() {
 
         <div className="mt-6 text-center">
           <p className="text-gray-600 text-sm">
-            Already have an account?{' '}
+            ¿Ya tienes una cuenta?{' '}
             <button
               onClick={() => router.push('/login')}
               className="text-[#FF6F61] hover:text-[#FF5A4A] font-medium"
             >
-              Sign in
+              Inicia sesión
             </button>
           </p>
         </div>

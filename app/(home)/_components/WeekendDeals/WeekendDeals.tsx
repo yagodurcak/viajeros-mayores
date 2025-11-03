@@ -9,10 +9,10 @@ const WeekendDeals: React.FC = () => {
     <section className="py-16 px-6 bg-gray-50">
       <div className="max-w-6xl mx-auto">
         <h3 className="text-3xl font-bold text-gray-800 mb-2 font-alata">
-          Accessible weekend deals
+          Ofertas accesibles de fin de semana
         </h3>
         <p className="text-lg text-gray-600 mb-8 font-light">
-          Save on accessible stays for these dates: December 15 - December 17
+          Ahorra en estadías accesibles para estas fechas: 15 de diciembre - 17 de diciembre
         </p>
 
         <div className="relative">
@@ -25,7 +25,7 @@ const WeekendDeals: React.FC = () => {
           {/* Navigation arrows */}
           <button
             className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-shadow"
-            aria-label="View more deals"
+            aria-label="Ver más ofertas"
           >
             <i className="fas fa-chevron-right text-gray-600" />
           </button>
