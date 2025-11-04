@@ -30,37 +30,42 @@ const AboutPage = () => {
               </h2>
               <div className="space-y-4 text-lg text-gray-700 leading-relaxed">
                 <p>
-                  Explore4All nació de una experiencia profundamente personal.
-                  La idea surgió de los innumerables viajes que he compartido
-                  con mi madre. Ella fue quien me enseñó lo hermoso que es
-                  viajar, experimentar nuevas culturas y maravillarse con el
-                  mundo. Sin embargo, con cada año que pasaba, vi cómo el simple
-                  acto de viajar se volvía más complicado para ella. Trayectos
-                  que antes eran solo una simple caminata se convirtieron en
-                  desafíos: largas caminatas, escaleras inesperadas o caminos
-                  empinados comenzaron a convertirse en obstáculos.
+                  Viajeros Mayores nació de una experiencia profundamente
+                  personal. La idea surgió de los innumerables viajes que
+                  compartí con mi madre —mi primera compañera de aventuras, la
+                  mujer que me enseñó a mirar el mundo con asombro y curiosidad.
                 </p>
                 <p>
-                  Cada nuevo viaje se convertía en una misión de investigación
-                  exhaustiva. Pasábamos horas buscando opiniones honestas sobre
-                  el costo (en esfuerzo) de llegar a un lugar turístico. Nos
-                  enfrentamos a hoteles que mentían en sus descripciones de
-                  accesibilidad y, desafortunadamente, sufrimos varias
-                  decepciones al llegar a un destino que no estaba preparado
-                  para nosotros.
+                  Con el paso de los años, sin embargo, vi cómo el simple acto
+                  de viajar comenzó a transformarse. Lo que antes eran paseos
+                  espontáneos se convirtieron en verdaderas pruebas: escaleras
+                  que no esperábamos, calles empinadas, hoteles que prometían
+                  accesibilidad pero no cumplían. Cada viaje requería horas de
+                  investigación, buscando en foros y reseñas lo que nadie decía
+                  con claridad: cuánto esfuerzo cuesta realmente disfrutar un
+                  lugar.
                 </p>
                 <p>
-                  Me di cuenta de que nuestro problema no era único. Millones de
-                  personas con movilidad reducida, y sus familias, enfrentan
-                  esta misma incertidumbre y frustración. Por eso creé esta
-                  plataforma. La idea detrás de Explore4All es simple: construir
-                  la comunidad que mi madre y yo siempre necesitamos. Un lugar
-                  para proporcionar a las personas con movilidad reducida la
-                  información honesta, el consejo práctico y las experiencias
-                  del mundo real de otros viajeros. Queremos eliminar la
-                  decepción y la ansiedad de la planificación, para que tu
-                  próximo viaje pueda ser exactamente lo que debe ser: una
-                  experiencia preparada, alegre y sin límites.
+                  Y lo más duro era ver la ilusión de mi madre transformarse en
+                  frustración. Fue entonces cuando entendí que este no era solo
+                  nuestro problema: millones de personas con movilidad reducida,
+                  y sus familias, viven esa misma incertidumbre antes de cada
+                  viaje.
+                </p>
+                <p>
+                  Así nació Viajeros Mayores. No como una simple web, sino como
+                  una misión: construir la comunidad que mi madre y yo siempre
+                  necesitamos. Un espacio donde las experiencias reales valen
+                  más que las descripciones publicitarias, donde la empatía guía
+                  la información, y donde cada consejo puede hacer la diferencia
+                  entre un viaje difícil y una experiencia inolvidable.
+                </p>
+                <p>
+                  Queremos que viajar vuelva a ser lo que siempre fue: libertad,
+                  descubrimiento y alegría. Queremos desafiar la idea de que la
+                  edad o la movilidad definen los límites de una aventura.
+                  Porque todos merecemos explorar el mundo —sin miedo, sin
+                  barreras, sin decepciones.
                 </p>
               </div>
             </div>

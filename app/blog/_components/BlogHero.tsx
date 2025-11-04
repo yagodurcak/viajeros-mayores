@@ -20,7 +20,9 @@ const BlogHero: React.FC<BlogHeroProps> = ({
   return (
     <section className="relative bg-gradient-to-r from-[#FF6F61] to-[#FF8A7A] text-white py-20 px-6">
       <div className="relative z-10 max-w-6xl mx-auto text-center">
-        <h1 className="text-5xl font-bold mb-4 font-alata">Explore4All Blog</h1>
+        <h1 className="text-5xl font-bold mb-4 font-alata">
+          Viajeros Mayores Blog
+        </h1>
         <p className="text-xl mb-8 font-light opacity-90">
           Discover stories, tips and guides about accessible tourism for
           everyone

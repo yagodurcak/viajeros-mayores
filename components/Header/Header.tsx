@@ -111,7 +111,7 @@ const Header = ({ session: initialSession }: HeaderProps) => {
     if (session?.user?.email) {
       return session.user.email.split('@')[0];
     }
-    return 'User';
+    return 'Usuario';
   };
 
   return (
@@ -121,10 +121,10 @@ const Header = ({ session: initialSession }: HeaderProps) => {
           className="flex items-center gap-3 cursor-pointer"
           onClick={() => router.push('/')}
         >
-          <div className="relative w-44 h-14">
+          <div className="relative w-52 h-14">
             <Image
               src="/images/logo.png"
-              alt="Explore4All Logo"
+              alt="Viajeros Mayores Logo"
               fill
               className="object-contain"
             />
@@ -136,13 +136,13 @@ const Header = ({ session: initialSession }: HeaderProps) => {
             className={getNavButtonClass('/')}
             onClick={() => router.push('/')}
           >
-            Home
+            Inicio
           </button>
           <button
             className={getNavButtonClass('/news')}
             onClick={() => router.push('/news')}
           >
-            News
+            Noticias
           </button>
           <button
             className={getNavButtonClass('/blog')}
@@ -154,7 +154,7 @@ const Header = ({ session: initialSession }: HeaderProps) => {
             className={getNavButtonClass('/about-us')}
             onClick={() => router.push('/about')}
           >
-            About Us
+            Acerca de Nosotros
           </button>
         </nav>
 
@@ -209,7 +209,7 @@ const Header = ({ session: initialSession }: HeaderProps) => {
                           d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                         />
                       </svg>
-                      Edit Profile
+                      Editar Perfil
                     </button>
 
                     <button
@@ -229,7 +229,7 @@ const Header = ({ session: initialSession }: HeaderProps) => {
                           d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
                         />
                       </svg>
-                      Sign Out
+                      Cerrar Sesión
                     </button>
                   </div>
                 )}
@@ -241,13 +241,13 @@ const Header = ({ session: initialSession }: HeaderProps) => {
                 onClick={handleSignIn}
                 className="px-4 py-2 bg-[#FF6F61] text-white rounded-lg hover:bg-[#FF5A4A] transition-colors"
               >
-                Sign In
+                Iniciar Sesión
               </button>
               <button
                 onClick={handleSignUp}
                 className="px-4 py-2 border border-[#FF6F61] text-[#FF6F61] rounded-lg hover:bg-[#FF6F61] hover:text-white transition-colors"
               >
-                Sign Up
+                Registrarse
               </button>
             </div>
           )}

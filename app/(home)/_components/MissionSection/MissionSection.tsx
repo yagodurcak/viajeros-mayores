@@ -44,7 +44,7 @@ const MissionSection: React.FC = () => {
           <div className="relative h-full min-h-[500px]">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-100 h-full">
               <Image
-                src="/images/women.png"
+                src="/images/ancianosmapa.png"
                 alt="Nuestra misión de turismo accesible"
                 fill
                 className="object-cover object-center"
