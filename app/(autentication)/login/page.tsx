@@ -83,7 +83,9 @@ export default function LoginPage() {
           <h1 className="text-3xl font-bold text-[#FF6F61] mb-2">
             Iniciar Sesión
           </h1>
-          <p className="text-gray-600">Bienvenido de vuelta a Explore4All</p>
+          <p className="text-gray-600">
+            Bienvenido de vuelta a Viajeros Mayores
+          </p>
         </div>
 
         {error && (

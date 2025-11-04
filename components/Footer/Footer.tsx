@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
               AccesiTravel
             </h4>
             <p className="text-gray-600 mb-4">
-              Making tourism accessible for everyone
+              Haciendo el turismo accesible para todos
             </p>
 
             {/* <div
@@ -50,14 +50,16 @@ const Footer: React.FC = () => {
           </div>
 
           <div>
-            <h5 className="font-semibold text-gray-800 mb-4">Quick Links</h5>
+            <h5 className="font-semibold text-gray-800 mb-4">
+              Enlaces Rápidos
+            </h5>
             <ul className="space-y-2 text-gray-600">
               <li>
                 <Link
                   href="/"
                   className="hover:text-[#FF6F61] transition-colors"
                 >
-                  Home
+                  Inicio
                 </Link>
               </li>
               <li>
@@ -65,7 +67,7 @@ const Footer: React.FC = () => {
                   href="/news"
                   className="hover:text-[#FF6F61] transition-colors"
                 >
-                  News
+                  Noticias
                 </Link>
               </li>
               <li>
@@ -81,14 +83,14 @@ const Footer: React.FC = () => {
                   href="/about"
                   className="hover:text-[#FF6F61] transition-colors"
                 >
-                  About Us
+                  Acerca de Nosotros
                 </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h5 className="font-semibold text-gray-800 mb-4">Resources</h5>
+            <h5 className="font-semibold text-gray-800 mb-4">Recursos</h5>
             <ul className="space-y-2 text-gray-600">
               <li>
                 <Link
@@ -133,7 +135,7 @@ const Footer: React.FC = () => {
             <div className="relative w-44 h-32">
               <Image
                 src="/images/logo.png"
-                alt="Explore4All Logo"
+                alt="Viajeros Mayores Logo"
                 fill
                 className="object-contain"
               />
@@ -143,8 +145,8 @@ const Footer: React.FC = () => {
 
         <div className="border-t border-gray-300 mt-8 pt-8 text-center text-gray-600">
           <p>
-            &copy; {new Date().getFullYear()} AccesiTravel. All rights reserved.
-            Committed to inclusive tourism.
+            &copy; {new Date().getFullYear()} AccesiTravel. Todos los derechos
+            reservados. Comprometidos con el turismo inclusivo.
           </p>
         </div>
       </div>

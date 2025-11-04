@@ -44,7 +44,7 @@ const CommentItem: React.FC<CommentItemProps> = ({
   const authorName =
     comment.profiles?.full_name ||
     comment.profiles?.username ||
-    'Anonymous User';
+    'Usuario Anónimo';
 
   const isAuthor = currentUserId === comment.user_id;
   const isEditing = editingId === comment.id;
@@ -108,14 +108,14 @@ const CommentItem: React.FC<CommentItemProps> = ({
                 disabled={submitting}
                 className="px-3 py-1.5 bg-[#FF6F61] hover:bg-[#E55A4F] text-white rounded-lg text-xs font-medium transition-colors disabled:opacity-50"
               >
-                {submitting ? 'Saving...' : 'Save'}
+                {submitting ? 'Guardando...' : 'Guardar'}
               </button>
               <button
                 type="button"
                 onClick={handleCancelEdit}
                 className="px-3 py-1.5 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg text-xs font-medium transition-colors"
               >
-                Cancel
+                Cancelar
               </button>
             </div>
           </form>
@@ -144,7 +144,7 @@ const CommentItem: React.FC<CommentItemProps> = ({
                     d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"
                   />
                 </svg>
-                Reply
+                Responder
               </button>
 
               {/* Edit and Delete buttons - only show if user is author */}
@@ -167,20 +167,20 @@ const CommentItem: React.FC<CommentItemProps> = ({
                         d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
                       />
                     </svg>
-                    Edit
+                    Editar
                   </button>
 
                   {showDeleteConfirm ? (
                     <div className="flex items-center gap-2">
                       <span className="text-xs text-gray-700">
-                        Delete this comment?
+                        ¿Eliminar este comentario?
                       </span>
                       <button
                         onClick={handleDelete}
                         disabled={submitting}
                         className="px-2 py-1 bg-red-600 hover:bg-red-700 text-white rounded text-xs font-medium transition-colors disabled:opacity-50"
                       >
-                        Yes
+                        Sí
                       </button>
                       <button
                         onClick={() => setShowDeleteConfirm(false)}
@@ -207,7 +207,7 @@ const CommentItem: React.FC<CommentItemProps> = ({
                           d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
                         />
                       </svg>
-                      Delete
+                      Eliminar
                     </button>
                   )}
                 </>
@@ -225,7 +225,7 @@ const CommentItem: React.FC<CommentItemProps> = ({
             <textarea
               value={replyText}
               onChange={(e) => setReplyText(e.target.value)}
-              placeholder="Write your reply..."
+              placeholder="Escribe tu respuesta..."
               required
               rows={3}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF6F61] focus:border-transparent resize-none text-sm"
@@ -236,14 +236,14 @@ const CommentItem: React.FC<CommentItemProps> = ({
                 disabled={submitting}
                 className="px-3 py-1.5 bg-[#FF6F61] hover:bg-[#E55A4F] text-white rounded-lg text-xs font-medium transition-colors disabled:opacity-50"
               >
-                {submitting ? 'Posting...' : 'Post Reply'}
+                {submitting ? 'Publicando...' : 'Publicar Respuesta'}
               </button>
               <button
                 type="button"
                 onClick={() => onReply(null)}
                 className="px-3 py-1.5 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg text-xs font-medium transition-colors"
               >
-                Cancel
+                Cancelar
               </button>
             </div>
           </form>
@@ -315,7 +315,7 @@ const ArticleComments: React.FC<ArticleCommentsProps> = ({ articleSlug }) => {
       setShowCommentForm(false);
       setErrorMessage(null);
     } else {
-      setErrorMessage(result.error || 'Error posting comment');
+      setErrorMessage(result.error || 'Error al publicar comentario');
     }
   };
 
@@ -331,13 +331,13 @@ const ArticleComments: React.FC<ArticleCommentsProps> = ({ articleSlug }) => {
       setReplyingTo(null);
       setErrorMessage(null);
     } else {
-      setErrorMessage(result.error || 'Error posting reply');
+      setErrorMessage(result.error || 'Error al publicar respuesta');
     }
   };
 
   const handleShowCommentForm = () => {
     if (!isAuthenticated) {
-      setErrorMessage('You must be logged in to comment');
+      setErrorMessage('Debes iniciar sesión para comentar');
       return;
     }
     setShowCommentForm(true);
@@ -351,14 +351,14 @@ const ArticleComments: React.FC<ArticleCommentsProps> = ({ articleSlug }) => {
       setEditingId(null);
       setErrorMessage(null);
     } else {
-      setErrorMessage(result.error || 'Error updating comment');
+      setErrorMessage(result.error || 'Error al actualizar comentario');
     }
   };
 
   const handleDelete = async (commentId: string) => {
     const result = await deleteComment(commentId);
     if (!result.success) {
-      setErrorMessage(result.error || 'Error deleting comment');
+      setErrorMessage(result.error || 'Error al eliminar comentario');
     } else {
       setErrorMessage(null);
     }
@@ -370,7 +370,9 @@ const ArticleComments: React.FC<ArticleCommentsProps> = ({ articleSlug }) => {
         <div className="flex items-center justify-center py-8">
           <div className="text-center">
             <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[#FF6F61]"></div>
-            <p className="mt-2 text-gray-600 text-sm">Loading comments...</p>
+            <p className="mt-2 text-gray-600 text-sm">
+              Cargando comentarios...
+            </p>
           </div>
         </div>
       </div>
@@ -382,14 +384,14 @@ const ArticleComments: React.FC<ArticleCommentsProps> = ({ articleSlug }) => {
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl font-bold text-gray-900 font-alata">
-          Comments ({comments.length})
+          Comentarios ({comments.length})
         </h2>
         {!showCommentForm && !replyingTo && (
           <button
             onClick={handleShowCommentForm}
             className="px-4 py-2 bg-[#FF6F61] hover:bg-[#E55A4F] text-white rounded-lg text-sm font-medium transition-colors"
           >
-            Write comment
+            Escribir comentario
           </button>
         )}
       </div>
@@ -412,13 +414,13 @@ const ArticleComments: React.FC<ArticleCommentsProps> = ({ articleSlug }) => {
       {showCommentForm && (
         <div className="mb-6 bg-gray-50 rounded-xl p-4">
           <h3 className="text-base font-semibold text-gray-900 mb-3">
-            New comment
+            Nuevo comentario
           </h3>
           <form onSubmit={handleSubmitComment}>
             <textarea
               value={newComment}
               onChange={(e) => setNewComment(e.target.value)}
-              placeholder="Write your comment..."
+              placeholder="Escribe tu comentario..."
               required
               rows={4}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF6F61] focus:border-transparent resize-none text-sm mb-3"
@@ -429,7 +431,7 @@ const ArticleComments: React.FC<ArticleCommentsProps> = ({ articleSlug }) => {
                 disabled={submitting}
                 className="px-4 py-2 bg-[#FF6F61] hover:bg-[#E55A4F] text-white rounded-lg text-sm font-medium transition-colors disabled:opacity-50"
               >
-                {submitting ? 'Posting...' : 'Post'}
+                {submitting ? 'Publicando...' : 'Publicar'}
               </button>
               <button
                 type="button"
@@ -440,7 +442,7 @@ const ArticleComments: React.FC<ArticleCommentsProps> = ({ articleSlug }) => {
                 }}
                 className="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg text-sm font-medium transition-colors"
               >
-                Cancel
+                Cancelar
               </button>
             </div>
           </form>
@@ -452,7 +454,7 @@ const ArticleComments: React.FC<ArticleCommentsProps> = ({ articleSlug }) => {
         {comments.length === 0 ? (
           <div className="text-center py-8">
             <p className="text-gray-500">
-              No comments yet. Be the first to comment!
+              Aún no hay comentarios. ¡Sé el primero en comentar!
             </p>
           </div>
         ) : (

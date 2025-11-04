@@ -32,7 +32,7 @@ const testimonials: Testimonial[] = [
     location: 'Barcelona, España',
     avatar: 'SC',
     rating: 5,
-    text: 'Como persona con discapacidad visual, valoro mucho las descripciones detalladas y las reseñas honestas de la comunidad.',
+    text: 'Como persona con dificultades de movilidad, valoro mucho la información que me proporciona.',
   },
 ];
 
@@ -41,7 +41,7 @@ export default function TestimonialsSection() {
     <section className="py-16 px-6 bg-gray-50">
       <div className="max-w-6xl mx-auto">
         <h3
-          className="text-3xl font-bold text-gray-800 mb-2 text-center"
+          className="text-3xl font-boldxw text-gray-800 mb-2 text-center"
           style={{ fontFamily: 'Alata, sans-serif' }}
         >
           Testimonios de la Comunidad

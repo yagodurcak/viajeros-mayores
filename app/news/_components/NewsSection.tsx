@@ -68,10 +68,10 @@ const NewsSection: React.FC<NewsSectionProps> = ({
         <section className="relative bg-gradient-to-r from-[#FF6F61] to-[#FF8A7A] text-white py-20 px-6">
           <div className="relative z-10 max-w-6xl mx-auto text-center">
             <h1 className="text-5xl font-bold mb-4 font-alata">
-              Explore4All News
+              Viajeros Mayores News
             </h1>
             <p className="text-xl mb-8 font-light opacity-90">
-              Important news for people with reduced mobility.
+              Noticias importantes para personas con movilidad reducida.
             </p>
 
             {/* Search bar */}
@@ -81,9 +81,9 @@ const NewsSection: React.FC<NewsSectionProps> = ({
                   type="text"
                   value={searchQuery}
                   onChange={(e) => handleSearchChange(e.target.value)}
-                  placeholder="Search news by title, author, content..."
+                  placeholder="Buscar noticias por título, autor, contenido..."
                   className="w-full px-6 py-4 pr-28 rounded-full text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white shadow-lg transition-all"
-                  aria-label="Search news"
+                  aria-label="Buscar noticias"
                 />
 
                 {/* Clear button */}
@@ -91,7 +91,7 @@ const NewsSection: React.FC<NewsSectionProps> = ({
                   <button
                     onClick={handleClearSearch}
                     className="absolute right-16 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors p-2"
-                    aria-label="Clear search"
+                    aria-label="Limpiar búsqueda"
                   >
                     <svg
                       className="w-5 h-5"
@@ -112,7 +112,7 @@ const NewsSection: React.FC<NewsSectionProps> = ({
                 {/* Search button / loading */}
                 <button
                   className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#FF6F61] text-white p-3 rounded-full hover:bg-[#FF5A4A] transition-colors"
-                  aria-label="Search"
+                  aria-label="Buscar"
                 >
                   {isSearching ? (
                     <svg
@@ -156,13 +156,14 @@ const NewsSection: React.FC<NewsSectionProps> = ({
               {searchQuery && !isSearching && (
                 <div className="mt-4 text-sm opacity-90">
                   {regularArticles.length === 0 ? (
-                    <p>No news found for &ldquo;{searchQuery}&rdquo;</p>
+                    <p>
+                      No se encontraron noticias para &ldquo;{searchQuery}
+                      &rdquo;
+                    </p>
                   ) : (
                     <p>
-                      Found <strong>{regularArticles.length}</strong>{' '}
-                      {regularArticles.length === 1
-                        ? 'news article'
-                        : 'news articles'}
+                      Se encontraron <strong>{regularArticles.length}</strong>{' '}
+                      {regularArticles.length === 1 ? 'noticia' : 'noticias'}
                     </p>
                   )}
                 </div>
@@ -192,7 +193,7 @@ const NewsSection: React.FC<NewsSectionProps> = ({
           currentPage={currentPage}
           totalPages={totalPages}
           onPageChange={handlePageChange}
-          ariaLabel="News pagination"
+          ariaLabel="Paginación de noticias"
         />
       )}
     </>

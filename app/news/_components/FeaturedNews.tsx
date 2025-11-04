@@ -17,7 +17,7 @@ interface FeaturedNewsProps {
 
 const FeaturedNews: React.FC<FeaturedNewsProps> = ({
   articles,
-  title = 'Featured News',
+  title = 'Noticias Destacadas',
   backgroundColor = 'bg-gray-50',
 }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -99,7 +99,7 @@ const FeaturedNews: React.FC<FeaturedNewsProps> = ({
                     <div className="flex items-center gap-4 text-xs text-gray-300">
                       <span>{formatBlogDate(article.createdAt)}</span>
                       <span>•</span>
-                      <span>{article.readTime} min read</span>
+                      <span>{article.readTime} min de lectura</span>
                     </div>
                   </div>
                 </Link>
@@ -114,7 +114,7 @@ const FeaturedNews: React.FC<FeaturedNewsProps> = ({
               <button
                 onClick={prevSlide}
                 className="absolute left-0 top-1/2 -translate-y-1/2 bg-[#FF6F61] hover:bg-[#FF5A4A] text-white p-3 rounded-full shadow-xl transition-all hover:scale-110 z-20"
-                aria-label="Previous news"
+                aria-label="Noticia anterior"
               >
                 <svg
                   className="w-6 h-6"
@@ -135,7 +135,7 @@ const FeaturedNews: React.FC<FeaturedNewsProps> = ({
               <button
                 onClick={nextSlide}
                 className="absolute right-0 top-1/2 -translate-y-1/2 bg-[#FF6F61] hover:bg-[#FF5A4A] text-white p-3 rounded-full shadow-xl transition-all hover:scale-110 z-20"
-                aria-label="Next news"
+                aria-label="Siguiente noticia"
               >
                 <svg
                   className="w-6 h-6"
@@ -166,7 +166,7 @@ const FeaturedNews: React.FC<FeaturedNewsProps> = ({
                       ? 'w-8 h-2 bg-[#FF6F61]'
                       : 'w-2 h-2 bg-gray-300 hover:bg-gray-400'
                   } rounded-full`}
-                  aria-label={`Go to group ${index + 1} of ${totalSlides}`}
+                  aria-label={`Ir al grupo ${index + 1} de ${totalSlides}`}
                 />
               ))}
             </div>

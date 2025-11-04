@@ -16,15 +16,6 @@ function calculateReadTime(content: string): number {
   return minutes;
 }
 
-/**
- * Generate a summary from content
- */
-function generateSummary(content: string, maxLength = 150): string {
-  const text = content.replace(/<[^>]*>/g, '').trim(); // Remove HTML tags if present
-  if (text.length <= maxLength) return text;
-  return text.substring(0, maxLength).trim() + '...';
-}
-
 export function useBlogPosts() {
   const [posts, setPosts] = useState<BlogArticle[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
@@ -64,7 +55,7 @@ export function useBlogPosts() {
             id: post.id,
             title: post.title,
             slug: post.slug,
-            summary: generateSummary(post.content),
+            summary: post.summary || '',
             content: post.content,
             category: post.category,
             author: {

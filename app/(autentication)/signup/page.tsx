@@ -144,7 +144,7 @@ export default function SignUpPage() {
             Crear Cuenta
           </h1>
           <p className="text-gray-600">
-            Únete a Explore4All y comienza tu aventura
+            Únete a Viajeros Mayores y comienza tu aventura
           </p>
         </div>
 

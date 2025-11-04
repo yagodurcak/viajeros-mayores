@@ -9,6 +9,7 @@ export interface Database {
           title: string;
           slug: string;
           content: string;
+          summary: string;
           cover_image_url: string;
           author_id: string;
           is_featured: boolean;
@@ -20,6 +21,7 @@ export interface Database {
           title: string;
           slug: string;
           content: string;
+          summary: string;
           cover_image_url: string;
           author_id: string;
           is_featured?: boolean;
@@ -31,6 +33,7 @@ export interface Database {
           title?: string;
           slug?: string;
           content?: string;
+          summary?: string;
           cover_image_url?: string;
           author_id?: string;
           is_featured?: boolean;

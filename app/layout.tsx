@@ -5,6 +5,7 @@ import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const alata = Alata({
   weight: '400',
@@ -19,7 +20,7 @@ const nunitoSans = Nunito_Sans({
 });
 
 export const metadata: Metadata = {
-  title: 'Explore4All',
+  title: 'Viajeros Mayores',
   description: 'Travel without limits',
 };
 
@@ -83,6 +84,7 @@ export default async function RootLayout({
       <body className={`${alata.variable} ${nunitoSans.variable}`}>
         <Header session={session} />
         {children}
+        <SpeedInsights />
         <Footer />
       </body>
     </html>
