@@ -33,7 +33,9 @@ export default function ForgotPasswordPage() {
 
       setSuccess(true);
     } catch (err) {
-      setError('Error al enviar el correo de recuperación. Por favor, inténtalo de nuevo.');
+      setError(
+        'Error al enviar el correo de recuperación. Por favor, inténtalo de nuevo.'
+      );
       console.error(err);
     } finally {
       setLoading(false);
@@ -61,11 +63,13 @@ export default function ForgotPasswordPage() {
               </svg>
             </div>
           </div>
-          <h2 className="text-2xl font-bold text-gray-800 mb-2">¡Correo enviado!</h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-2">
+            ¡Correo enviado!
+          </h2>
           <p className="text-gray-600 mb-6">
-            Hemos enviado un enlace de recuperación a <strong>{email}</strong>. Por favor,
-            revisa tu correo electrónico (incluyendo la carpeta de spam) y sigue las instrucciones
-            para restablecer tu contraseña.
+            Hemos enviado un enlace de recuperación a <strong>{email}</strong>.
+            Por favor, revisa tu correo electrónico (incluyendo la carpeta de
+            spam) y sigue las instrucciones para restablecer tu contraseña.
           </p>
           <button
             onClick={() => router.push('/login')}

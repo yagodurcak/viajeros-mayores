@@ -16,10 +16,11 @@ const MissionSection: React.FC = () => {
             <p className="text-lg text-gray-700 mb-8 font-light leading-relaxed">
               Entendemos que para muchas personas, recorrer largas o cortas
               distancias, subir escaleras o caminar cuesta arriba puede ser un
-              desafío significativo. Nuestro objetivo es proporcionar información
-              práctica y accesible, y crear una comunidad de apoyo donde podamos
-              compartir experiencias y soluciones. Queremos que sigas disfrutando
-              de lo que amas: viajar, explorar y vivir la vida al máximo.
+              desafío significativo. Nuestro objetivo es proporcionar
+              información práctica y accesible, y crear una comunidad de apoyo
+              donde podamos compartir experiencias y soluciones. Queremos que
+              sigas disfrutando de lo que amas: viajar, explorar y vivir la vida
+              al máximo.
             </p>
             <div className="space-y-6">
               {missionValues.map((value) => (

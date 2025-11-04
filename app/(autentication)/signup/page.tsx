@@ -156,8 +156,8 @@ export default function SignUpPage() {
 
         <form onSubmit={handleSignUp} className="space-y-4">
           <p className="text-sm text-gray-600 mb-4">
-            Todos los campos marcados con <span className="text-red-500">*</span> son
-            obligatorios
+            Todos los campos marcados con
+            <span className="text-red-500">*</span> son obligatorios
           </p>
 
           <div>

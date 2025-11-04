@@ -30,35 +30,37 @@ const AboutPage = () => {
               </h2>
               <div className="space-y-4 text-lg text-gray-700 leading-relaxed">
                 <p>
-                  Explore4All nació de una experiencia profundamente personal. La
-                  idea surgió de los innumerables viajes que he compartido con mi
-                  madre. Ella fue quien me enseñó lo hermoso que es
-                  viajar, experimentar nuevas culturas y maravillarse con el mundo.
-                  Sin embargo, con cada año que pasaba, vi cómo el simple acto de
-                  viajar se volvía más complicado para ella. Trayectos que antes
-                  eran solo una simple caminata se convirtieron en desafíos: largas
-                  caminatas, escaleras inesperadas o caminos empinados comenzaron a
-                  convertirse en obstáculos.
+                  Explore4All nació de una experiencia profundamente personal.
+                  La idea surgió de los innumerables viajes que he compartido
+                  con mi madre. Ella fue quien me enseñó lo hermoso que es
+                  viajar, experimentar nuevas culturas y maravillarse con el
+                  mundo. Sin embargo, con cada año que pasaba, vi cómo el simple
+                  acto de viajar se volvía más complicado para ella. Trayectos
+                  que antes eran solo una simple caminata se convirtieron en
+                  desafíos: largas caminatas, escaleras inesperadas o caminos
+                  empinados comenzaron a convertirse en obstáculos.
                 </p>
                 <p>
-                  Cada nuevo viaje se convertía en una misión de investigación exhaustiva.
-                  Pasábamos horas buscando opiniones honestas sobre el costo (en
-                  esfuerzo) de llegar a un lugar turístico. Nos enfrentamos a hoteles que
-                  mentían en sus descripciones de accesibilidad y, desafortunadamente,
-                  sufrimos varias decepciones al llegar a un destino que no estaba
-                  preparado para nosotros.
+                  Cada nuevo viaje se convertía en una misión de investigación
+                  exhaustiva. Pasábamos horas buscando opiniones honestas sobre
+                  el costo (en esfuerzo) de llegar a un lugar turístico. Nos
+                  enfrentamos a hoteles que mentían en sus descripciones de
+                  accesibilidad y, desafortunadamente, sufrimos varias
+                  decepciones al llegar a un destino que no estaba preparado
+                  para nosotros.
                 </p>
                 <p>
-                  Me di cuenta de que nuestro problema no era único. Millones de personas
-                  con movilidad reducida, y sus familias, enfrentan esta misma
-                  incertidumbre y frustración. Por eso creé esta plataforma. La idea
-                  detrás de Explore4All es simple: construir la comunidad que mi madre y yo
-                  siempre necesitamos. Un lugar para proporcionar a las personas con
-                  movilidad reducida la información honesta, el consejo práctico y las
-                  experiencias del mundo real de otros viajeros. Queremos eliminar la
-                  decepción y la ansiedad de la planificación, para que tu próximo viaje
-                  pueda ser exactamente lo que debe ser: una experiencia preparada, alegre
-                  y sin límites.
+                  Me di cuenta de que nuestro problema no era único. Millones de
+                  personas con movilidad reducida, y sus familias, enfrentan
+                  esta misma incertidumbre y frustración. Por eso creé esta
+                  plataforma. La idea detrás de Explore4All es simple: construir
+                  la comunidad que mi madre y yo siempre necesitamos. Un lugar
+                  para proporcionar a las personas con movilidad reducida la
+                  información honesta, el consejo práctico y las experiencias
+                  del mundo real de otros viajeros. Queremos eliminar la
+                  decepción y la ansiedad de la planificación, para que tu
+                  próximo viaje pueda ser exactamente lo que debe ser: una
+                  experiencia preparada, alegre y sin límites.
                 </p>
               </div>
             </div>
@@ -98,8 +100,9 @@ const AboutPage = () => {
               </h3>
               <p className="text-gray-600 leading-relaxed">
                 Somos una red de apoyo donde los viajeros se unen para ayudarse
-                mutuamente. Al compartir nuestras experiencias reales y soluciones,
-                empoderamos a todos para seguir viajando y disfrutando del mundo.
+                mutuamente. Al compartir nuestras experiencias reales y
+                soluciones, empoderamos a todos para seguir viajando y
+                disfrutando del mundo.
               </p>
             </div>
             {/* Empowerment */}
@@ -111,9 +114,9 @@ const AboutPage = () => {
                 Empoderamiento
               </h3>
               <p className="text-gray-600 leading-relaxed">
-                Te damos las herramientas, la información y la confianza que necesitas
-                para planificar tu viaje perfecto, sabiendo que cada detalle ha sido
-                considerado con tus necesidades en mente.
+                Te damos las herramientas, la información y la confianza que
+                necesitas para planificar tu viaje perfecto, sabiendo que cada
+                detalle ha sido considerado con tus necesidades en mente.
               </p>
             </div>
             {/* Innovation */}
@@ -125,9 +128,9 @@ const AboutPage = () => {
                 Innovación
               </h3>
               <p className="text-gray-600 leading-relaxed">
-                Mejoramos continuamente nuestra plataforma con tecnología de vanguardia
-                para hacer que la planificación de viajes accesibles sea más fácil, rápida
-                y confiable que nunca.
+                Mejoramos continuamente nuestra plataforma con tecnología de
+                vanguardia para hacer que la planificación de viajes accesibles
+                sea más fácil, rápida y confiable que nunca.
               </p>
             </div>
           </div>

@@ -50,7 +50,7 @@ export default function LoginPage() {
       }
 
       // Redirect is handled in useEffect with onAuthStateChange
-      } catch (err) {
+    } catch (err) {
       setError('Error al iniciar sesión. Por favor, inténtalo de nuevo.');
       console.error(err);
       setLoading(false);
@@ -80,7 +80,9 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
       <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-[#FF6F61] mb-2">Iniciar Sesión</h1>
+          <h1 className="text-3xl font-bold text-[#FF6F61] mb-2">
+            Iniciar Sesión
+          </h1>
           <p className="text-gray-600">Bienvenido de vuelta a Explore4All</p>
         </div>
 

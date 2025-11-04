@@ -12,7 +12,8 @@ const WeekendDeals: React.FC = () => {
           Ofertas accesibles de fin de semana
         </h3>
         <p className="text-lg text-gray-600 mb-8 font-light">
-          Ahorra en estadías accesibles para estas fechas: 15 de diciembre - 17 de diciembre
+          Ahorra en estadías accesibles para estas fechas: 15 de diciembre - 17
+          de diciembre
         </p>
 
         <div className="relative">
