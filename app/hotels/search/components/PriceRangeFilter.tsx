@@ -13,7 +13,9 @@ export default function PriceRangeFilter({
 
   return (
     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
-      <h3 className="font-bold text-gray-900 mb-4">Tu presupuesto (por noche)</h3>
+      <h3 className="font-bold text-gray-900 mb-4">
+        Tu presupuesto (por noche)
+      </h3>
       <div className="space-y-4">
         <div className="flex items-center justify-between text-sm text-gray-600">
           <span>

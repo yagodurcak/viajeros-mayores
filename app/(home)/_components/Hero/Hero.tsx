@@ -20,10 +20,10 @@ const Hero: React.FC = () => {
           Explora Sin Límites
         </h2>
         <p className="text-xl mb-12 opacity-70 font-light">
-          No dejes que las largas caminatas o las escaleras te tomen por sorpresa 
-          o te impidan viajar. Nuestra comunidad te ayuda con la mejor información para 
-          estar preparado en tu viaje y disfrutar de cualquier destino. Tu próxima 
-          aventura te espera.
+          No dejes que las largas caminatas o las escaleras te tomen por
+          sorpresa o te impidan viajar. Nuestra comunidad te ayuda con la mejor
+          información para estar preparado en tu viaje y disfrutar de cualquier
+          destino. Tu próxima aventura te espera.
         </p>
       </div>
     </section>

@@ -64,7 +64,9 @@ export default function ResetPasswordPage() {
         router.push('/login');
       }, 3000);
     } catch (err) {
-      setError('Error al restablecer la contraseña. Por favor, inténtalo de nuevo.');
+      setError(
+        'Error al restablecer la contraseña. Por favor, inténtalo de nuevo.'
+      );
       console.error(err);
       setLoading(false);
     }
@@ -95,8 +97,8 @@ export default function ResetPasswordPage() {
             Enlace inválido o expirado
           </h2>
           <p className="text-gray-600 mb-6">
-            Este enlace de recuperación de contraseña es inválido o ha expirado. Por favor,
-            solicita un nuevo enlace de recuperación.
+            Este enlace de recuperación de contraseña es inválido o ha expirado.
+            Por favor, solicita un nuevo enlace de recuperación.
           </p>
           <button
             onClick={() => router.push('/forgot-password')}
