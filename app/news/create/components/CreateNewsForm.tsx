@@ -275,4 +275,3 @@ const CreateNewsForm: React.FC = () => {
 };
 
 export default CreateNewsForm;
-
