@@ -24,8 +24,8 @@ const BlogHero: React.FC<BlogHeroProps> = ({
           Viajeros Mayores Blog
         </h1>
         <p className="text-xl mb-8 font-light opacity-90">
-          Discover stories, tips and guides about accessible tourism for
-          everyone
+          Descubre historias, consejos y guías sobre turismo accesible para
+          todos
         </p>
 
         {/* Search bar */}
@@ -35,9 +35,9 @@ const BlogHero: React.FC<BlogHeroProps> = ({
               type="text"
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
-              placeholder="Search by title, author, content..."
+              placeholder="Buscar por título, autor, contenido..."
               className="w-full px-6 py-4 pr-28 rounded-full text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white shadow-lg transition-all"
-              aria-label="Search articles"
+              aria-label="Buscar artículos"
             />
 
             {/* Clear button */}
@@ -45,7 +45,7 @@ const BlogHero: React.FC<BlogHeroProps> = ({
               <button
                 onClick={onClearSearch}
                 className="absolute right-16 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors p-2"
-                aria-label="Clear search"
+                aria-label="Limpiar búsqueda"
               >
                 <svg
                   className="w-5 h-5"
@@ -66,7 +66,7 @@ const BlogHero: React.FC<BlogHeroProps> = ({
             {/* Search button / loading */}
             <button
               className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#FF6F61] text-white p-3 rounded-full hover:bg-[#FF5A4A] transition-colors"
-              aria-label="Search"
+              aria-label="Buscar"
             >
               {isSearching ? (
                 <svg
@@ -110,11 +110,14 @@ const BlogHero: React.FC<BlogHeroProps> = ({
           {searchQuery && !isSearching && resultsCount !== undefined && (
             <div className="mt-4 text-sm opacity-90">
               {resultsCount === 0 ? (
-                <p>No articles found for &ldquo;{searchQuery}&rdquo;</p>
+                <p>
+                  No se encontraron artículos para &ldquo;{searchQuery}&rdquo;
+                </p>
               ) : (
                 <p>
-                  Found <strong>{resultsCount}</strong>{' '}
-                  {resultsCount === 1 ? 'article' : 'articles'}
+                  Se {resultsCount === 1 ? 'encontró' : 'encontraron'}{' '}
+                  <strong>{resultsCount}</strong>{' '}
+                  {resultsCount === 1 ? 'artículo' : 'artículos'}
                 </p>
               )}
             </div>

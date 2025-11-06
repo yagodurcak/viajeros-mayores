@@ -72,7 +72,7 @@ export const useBlogArticles = ({
     });
   }, [debouncedSearchQuery, filters, posts, enableSearch]);
 
-  // Featured articles
+  // Articulos recomendados
   const featuredArticles = useMemo(() => {
     return posts.filter((article) => article.featured);
   }, [posts]);

@@ -33,7 +33,7 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({ post }) => {
         <span className="text-gray-400">•</span>
 
         {/* Read Time */}
-        <span>{post.readTime} min read</span>
+        <span>{post.readTime} min de lectura</span>
 
         {/* Separator */}
         <span className="text-gray-400">•</span>
