@@ -70,6 +70,9 @@ const Header = ({ session: initialSession }: HeaderProps) => {
     } else if (path === '/blog') {
       // Blog is active when path starts with /blog
       isActive = pathname.startsWith('/blog');
+    } else if (path === '/maps') {
+      // Maps is active when path starts with /maps
+      isActive = pathname.startsWith('/maps');
     } else {
       // Other paths use exact match
       isActive = pathname === path;
@@ -137,6 +140,12 @@ const Header = ({ session: initialSession }: HeaderProps) => {
             onClick={() => router.push('/')}
           >
             Inicio
+          </button>
+          <button
+            className={getNavButtonClass('/maps')}
+            onClick={() => router.push('/maps')}
+          >
+            Analizador de pendientes
           </button>
           <button
             className={getNavButtonClass('/news')}
