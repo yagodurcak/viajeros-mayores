@@ -108,7 +108,7 @@ export const GET = async (request: NextRequest) => {
     // === PASO 2: Obtener Muestras de Elevación (Elevation API) ===
 
     // Decidimos cuántas muestras tomar.
-    // Queremos una muestra cada ~15 metros para mejor precisión
+    // Queremos una muestra cada 5 metros para mejor precisión
     // Google Maps limita a 512 muestras por request
     const samplesPerMeter = 5;
     let samples = Math.max(Math.floor(routeDistance / samplesPerMeter), 50); // Mínimo 50 muestras
