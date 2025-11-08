@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <h4 className="text-lg font-bold text-gray-800 mb-4">
-              AccesiTravel
+              Viajeros Mayores
             </h4>
             <p className="text-gray-600 mb-4">
               Haciendo el turismo accesible para todos
@@ -24,7 +24,7 @@ const Footer: React.FC = () => {
             >
               <a
                 href="#"
-                aria-label="AccesiTravel Facebook"
+                aria-label="Viajeros Mayores Facebook"
                 className="text-[#FF6F61] text-xl hover:text-[#E85A4F] transition-colors"
               >
                 <i className="fab fa-facebook" />
@@ -32,7 +32,7 @@ const Footer: React.FC = () => {
               </a>
               <a
                 href="#"
-                aria-label="AccesiTravel Twitter"
+                aria-label="Viajeros Mayores Twitter"
                 className="text-[#FF6F61] text-xl hover:text-[#E85A4F] transition-colors"
               >
                 <i className="fab fa-twitter" />
@@ -40,7 +40,7 @@ const Footer: React.FC = () => {
               </a>
               <a
                 href="#"
-                aria-label="AccesiTravel Instagram"
+                aria-label="Viajeros Mayores Instagram"
                 className="text-[#FF6F61] text-xl hover:text-[#E85A4F] transition-colors"
               >
                 <i className="fab fa-instagram" />
@@ -145,8 +145,8 @@ const Footer: React.FC = () => {
 
         <div className="border-t border-gray-300 mt-8 pt-8 text-center text-gray-600">
           <p>
-            &copy; {new Date().getFullYear()} AccesiTravel. Todos los derechos
-            reservados. Comprometidos con el turismo inclusivo.
+            &copy; {new Date().getFullYear()} Viajeros Mayores. Todos los
+            derechos reservados. Comprometidos con el turismo inclusivo.
           </p>
         </div>
       </div>

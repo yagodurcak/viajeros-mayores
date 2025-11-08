@@ -27,10 +27,10 @@ const NewsGrid: React.FC<NewsGridProps> = ({ articles }) => {
             </svg>
           </div>
           <h3 className="text-xl font-semibold text-gray-600 mb-2">
-            No news found
+            No se encontraron noticias
           </h3>
           <p className="text-gray-500">
-            Try adjusting your filters or search terms
+            Intenta ajustar tus filtros o términos de búsqueda
           </p>
         </div>
       </div>
@@ -41,7 +41,7 @@ const NewsGrid: React.FC<NewsGridProps> = ({ articles }) => {
     <section className="py-12 px-6 bg-gray-50">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl font-bold text-gray-800 mb-8 font-alata">
-          All News
+          Todas las noticias
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

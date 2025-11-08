@@ -17,7 +17,7 @@ interface FeaturedArticlesProps {
 
 const FeaturedArticles: React.FC<FeaturedArticlesProps> = ({
   articles,
-  title = 'Featured Articles',
+  title = 'Articulos recomendados',
   backgroundColor = 'bg-gray-50',
 }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -99,7 +99,7 @@ const FeaturedArticles: React.FC<FeaturedArticlesProps> = ({
                     <div className="flex items-center gap-4 text-xs text-gray-300">
                       <span>{formatBlogDate(article.createdAt)}</span>
                       <span>•</span>
-                      <span>{article.readTime} min read</span>
+                      <span>{article.readTime} min de lectura</span>
                     </div>
                   </div>
                 </Link>

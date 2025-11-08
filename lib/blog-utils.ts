@@ -2,22 +2,32 @@
 
 // Predefined colors for categories
 const categoryColors: Record<string, string> = {
-  destinos: 'bg-blue-500',
-  consejos: 'bg-green-500',
-  experiencias: 'bg-purple-500',
-  tecnologia: 'bg-indigo-500',
-  movilidad: 'bg-orange-500',
-  guias: 'bg-pink-500',
+  // Blog categories
+  'destinos accesibles': 'bg-blue-600',
+  'viajar con comodidad': 'bg-emerald-600',
+  'consejos de viaje consciente': 'bg-amber-600',
+  'bienestar y slow travel': 'bg-purple-600',
+  'movilidad y transporte accesible': 'bg-orange-600',
+  // News categories
+  'transporte y movilidad accesible': 'bg-orange-600',
+  'innovación y tecnología accesible': 'bg-indigo-600',
+  'turismo senior y bienestar viajero': 'bg-rose-600',
+  'tendencias globales': 'bg-teal-600',
 };
 
-// Predefined labels for categories
+// Predefined labels for categories (for legacy support with dashes)
 const categoryLabels: Record<string, string> = {
-  destinos: 'Destinations',
-  consejos: 'Tips',
-  experiencias: 'Experiences',
-  tecnologia: 'Technology',
-  movilidad: 'Mobility',
-  guias: 'Guides',
+  // Blog categories (legacy)
+  'destinos-accesibles': 'Destinos Accesibles',
+  'viajar-con-comodidad': 'Viajar con Comodidad',
+  'consejos-viaje-consciente': 'Consejos de Viaje Consciente',
+  'bienestar-slow-travel': 'Bienestar y Slow Travel',
+  'movilidad-transporte': 'Movilidad y Transporte Accesible',
+  // News categories (legacy)
+  'transporte-movilidad': 'Transporte y Movilidad Accesible',
+  'innovacion-tecnologia': 'Innovación y Tecnología Accesible',
+  'turismo-senior': 'Turismo Senior y Bienestar Viajero',
+  'tendencias-globales': 'Tendencias Globales',
 };
 
 /**

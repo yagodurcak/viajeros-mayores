@@ -5,11 +5,20 @@ import { useCreateNews } from '../hooks/useCreateNews';
 import MarkdownPreview from '@/app/blog/create/components/MarkdownPreview';
 
 const CATEGORIES = [
-  { value: 'legislation', label: 'Legislación' },
-  { value: 'technology', label: 'Tecnología' },
-  { value: 'infrastructure', label: 'Infraestructura' },
-  { value: 'services', label: 'Servicios' },
-  { value: 'events', label: 'Eventos' },
+  {
+    value: 'Transporte y Movilidad Accesible',
+    label: 'Transporte y Movilidad Accesible',
+  },
+  { value: 'Destinos Accesibles', label: 'Destinos Accesibles' },
+  {
+    value: 'Innovación y Tecnología Accesible',
+    label: 'Innovación y Tecnología Accesible',
+  },
+  {
+    value: 'Turismo Senior y Bienestar Viajero',
+    label: 'Turismo Senior y Bienestar Viajero',
+  },
+  { value: 'Tendencias Globales', label: 'Tendencias Globales' },
 ];
 
 const CreateNewsForm: React.FC = () => {
@@ -20,7 +29,7 @@ const CreateNewsForm: React.FC = () => {
     title: '',
     summary: '',
     content: '',
-    category: 'legislation',
+    category: 'Transporte y Movilidad Accesible',
     cover_image_url: '',
     is_featured: false,
   });

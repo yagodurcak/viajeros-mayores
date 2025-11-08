@@ -5,11 +5,11 @@ import { useCreatePost } from '../hooks/useCreatePost';
 import MarkdownPreview from './MarkdownPreview';
 
 const CATEGORIES = [
-  { value: 'guides', label: 'Guías' },
-  { value: 'destinations', label: 'Destinos' },
-  { value: 'tips', label: 'Consejos' },
-  { value: 'experiences', label: 'Experiencias' },
-  { value: 'accessibility', label: 'Accesibilidad' },
+  { value: 'destinos-accesibles', label: 'Destinos Accesibles' },
+  { value: 'viajar-con-comodidad', label: 'Viajar con Comodidad' },
+  { value: 'consejos-viaje-consciente', label: 'Consejos de Viaje Consciente' },
+  { value: 'bienestar-slow-travel', label: 'Bienestar y Slow Travel' },
+  { value: 'movilidad-transporte', label: 'Movilidad y Transporte Accesible' },
 ];
 
 const CreatePostForm: React.FC = () => {
@@ -20,7 +20,7 @@ const CreatePostForm: React.FC = () => {
     title: '',
     summary: '',
     content: '',
-    category: 'guides',
+    category: 'destinos-accesibles',
     cover_image_url: '',
     is_featured: false,
   });

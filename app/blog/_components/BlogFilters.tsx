@@ -32,7 +32,7 @@ const BlogFilters: React.FC<BlogFiltersProps> = ({
                 : 'bg-white text-gray-700 border border-gray-200 hover:border-[#FF6F61] hover:text-[#FF6F61] shadow-sm'
             }`}
           >
-            All Categories
+            Todas las Categorías
           </button>
 
           {/* Dynamic categories from database */}

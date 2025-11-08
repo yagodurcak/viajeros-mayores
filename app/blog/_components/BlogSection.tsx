@@ -68,7 +68,7 @@ const BlogSection: React.FC<BlogSectionProps> = ({
         availableCategories={categories}
       />
 
-      {/* Featured articles (only when no filters active) */}
+      {/* Articulos recomendados (only when no filters active) */}
       {!hasActiveFilters && <FeaturedArticles articles={featuredArticles} />}
 
       {/* Articles grid */}

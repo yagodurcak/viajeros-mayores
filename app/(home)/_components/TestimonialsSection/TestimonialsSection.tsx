@@ -16,7 +16,7 @@ const testimonials: Testimonial[] = [
     location: 'Madrid, España',
     avatar: 'EM',
     rating: 5,
-    text: 'Gracias a AccesiTravel descubrí lugares increíbles que nunca pensé que podría visitar. La información sobre accesibilidad es muy detallada.',
+    text: 'Gracias a Viajeros Mayores descubrí lugares increíbles que nunca pensé que podría visitar. La información sobre accesibilidad es muy detallada.',
   },
   {
     id: 2,

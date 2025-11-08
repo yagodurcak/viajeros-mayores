@@ -13,7 +13,7 @@ const Home = () => {
   const { posts, loading } = useBlogPosts();
   const { articles: newsArticles, loading: newsLoading } = useNewsArticles();
 
-  // Filter only featured articles
+  // Filter only Articulos recomendados
   const featuredPosts = posts.filter((post) => post.featured);
   const featuredNewsArticles = newsArticles.filter(
     (article) => article.featured
