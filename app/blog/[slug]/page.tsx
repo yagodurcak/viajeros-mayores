@@ -71,7 +71,7 @@ export default function BlogPostPage() {
           </p>
           <Link
             href="/blog"
-            className="inline-block bg-[#FF6F61] text-white px-6 py-3 rounded-lg hover:bg-[#E55A4F] transition-colors"
+            className="inline-block bg-[#E36E4A] text-white px-6 py-3 rounded-lg hover:bg-[#E55A4F] transition-colors"
           >
             Volver al Blog
           </Link>

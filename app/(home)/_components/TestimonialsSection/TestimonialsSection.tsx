@@ -57,7 +57,7 @@ export default function TestimonialsSection() {
               className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow"
             >
               <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-[#FF6F61] rounded-full flex items-center justify-center mr-4">
+                <div className="w-12 h-12 bg-[#E36E4A] rounded-full flex items-center justify-center mr-4">
                   <span className="text-white font-bold">
                     {testimonial.avatar}
                   </span>

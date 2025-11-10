@@ -36,7 +36,7 @@ export default function FormTextarea({
         onChange={onChange}
         disabled={disabled}
         rows={rows}
-        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6F61] focus:border-transparent transition-all resize-none text-gray-900 disabled:bg-gray-100 disabled:cursor-not-allowed"
+        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#E36E4A] focus:border-transparent transition-all resize-none text-gray-900 disabled:bg-gray-100 disabled:cursor-not-allowed"
         placeholder={placeholder}
       />
       {helperText && <p className="mt-2 text-sm text-gray-500">{helperText}</p>}

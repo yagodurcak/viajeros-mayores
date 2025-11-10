@@ -25,7 +25,7 @@ const Footer: React.FC = () => {
               <a
                 href="#"
                 aria-label="Viajeros Mayores Facebook"
-                className="text-[#FF6F61] text-xl hover:text-[#E85A4F] transition-colors"
+                className="text-[#E36E4A] text-xl hover:text-[#E85A4F] transition-colors"
               >
                 <i className="fab fa-facebook" />
                 <span className="sr-only">Facebook</span>
@@ -33,7 +33,7 @@ const Footer: React.FC = () => {
               <a
                 href="#"
                 aria-label="Viajeros Mayores Twitter"
-                className="text-[#FF6F61] text-xl hover:text-[#E85A4F] transition-colors"
+                className="text-[#E36E4A] text-xl hover:text-[#E85A4F] transition-colors"
               >
                 <i className="fab fa-twitter" />
                 <span className="sr-only">Twitter</span>
@@ -41,7 +41,7 @@ const Footer: React.FC = () => {
               <a
                 href="#"
                 aria-label="Viajeros Mayores Instagram"
-                className="text-[#FF6F61] text-xl hover:text-[#E85A4F] transition-colors"
+                className="text-[#E36E4A] text-xl hover:text-[#E85A4F] transition-colors"
               >
                 <i className="fab fa-instagram" />
                 <span className="sr-only">Instagram</span>
@@ -57,7 +57,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link
                   href="/"
-                  className="hover:text-[#FF6F61] transition-colors"
+                  className="hover:text-[#E36E4A] transition-colors"
                 >
                   Inicio
                 </Link>
@@ -65,7 +65,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link
                   href="/news"
-                  className="hover:text-[#FF6F61] transition-colors"
+                  className="hover:text-[#E36E4A] transition-colors"
                 >
                   Noticias
                 </Link>
@@ -73,7 +73,7 @@ const Footer: React.FC = () => {
               <li>
                 <Link
                   href="/blog"
-                  className="hover:text-[#FF6F61] transition-colors"
+                  className="hover:text-[#E36E4A] transition-colors"
                 >
                   Blog
                 </Link>
@@ -81,9 +81,9 @@ const Footer: React.FC = () => {
               <li>
                 <Link
                   href="/about"
-                  className="hover:text-[#FF6F61] transition-colors"
+                  className="hover:text-[#E36E4A] transition-colors"
                 >
-                  Acerca de Nosotros
+                  Nosotros
                 </Link>
               </li>
             </ul>
@@ -96,7 +96,7 @@ const Footer: React.FC = () => {
                 <Link
                   href="https://europa.eu/youreurope/citizens/travel/transport-disability/reduced-mobility/index_en.htm"
                   target="_blank"
-                  className="hover:text-[#FF6F61] transition-colors"
+                  className="hover:text-[#E36E4A] transition-colors"
                 >
                   European Commission
                 </Link>
@@ -105,7 +105,7 @@ const Footer: React.FC = () => {
                 <Link
                   href="https://www.untourism.int/accessibility"
                   target="_blank"
-                  className="hover:text-[#FF6F61] transition-colors"
+                  className="hover:text-[#E36E4A] transition-colors"
                 >
                   UN Tourism – Accessible tourism
                 </Link>
@@ -114,7 +114,7 @@ const Footer: React.FC = () => {
                 <Link
                   href="https://www.accessibletourism.org"
                   target="_blank"
-                  className="hover:text-[#FF6F61] transition-colors"
+                  className="hover:text-[#E36E4A] transition-colors"
                 >
                   ENAT – Accessible Tourism
                 </Link>
@@ -123,7 +123,7 @@ const Footer: React.FC = () => {
                 <Link
                   href="https://travel.state.gov/en/international-travel/planning/personal-needs/accessibility.html"
                   target="_blank"
-                  className="hover:text-[#FF6F61] transition-colors"
+                  className="hover:text-[#E36E4A] transition-colors"
                 >
                   Accessibility Needs – Travel.State.gov
                 </Link>

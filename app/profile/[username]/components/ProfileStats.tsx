@@ -55,7 +55,7 @@ export default function ProfileStats({
           key={stat.label}
           className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 flex items-center gap-4"
         >
-          <div className="flex-shrink-0 w-12 h-12 bg-[#FF6F61]/10 rounded-full flex items-center justify-center text-[#FF6F61]">
+          <div className="flex-shrink-0 w-12 h-12 bg-[#E36E4A]/10 rounded-full flex items-center justify-center text-[#E36E4A]">
             {stat.icon}
           </div>
           <div>

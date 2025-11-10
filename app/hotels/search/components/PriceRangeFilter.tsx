@@ -29,7 +29,7 @@ export default function PriceRangeFilter({
             max="800000"
             value={range[0]}
             onChange={(e) => onChange([parseInt(e.target.value), range[1]])}
-            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#FF6F61]"
+            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#E36E4A]"
           />
         </div>
         <div className="relative">
@@ -39,7 +39,7 @@ export default function PriceRangeFilter({
             max="800000"
             value={range[1]}
             onChange={(e) => onChange([range[0], parseInt(e.target.value)])}
-            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#FF6F61]"
+            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#E36E4A]"
           />
         </div>
       </div>

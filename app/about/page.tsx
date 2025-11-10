@@ -8,11 +8,11 @@ const AboutPage = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative h-[30vh] min-h-[500px] bg-gradient-to-r from-[#FF6F61] to-[#FF8A80]">
+      <section className="relative h-[30vh] min-h-[500px] bg-gradient-to-r from-[#E36E4A] to-[#F4916F]">
         <div className="absolute inset-0 bg-black/20" />
         <div className="relative h-full max-w-6xl mx-auto px-6 flex flex-col justify-center items-center text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 font-alata">
-            Acerca de Travel4All
+            Acerca de Viajeros Mayores
           </h1>
           <p className="text-xl md:text-2xl text-white/95 max-w-3xl font-light leading-relaxed">
             Haciendo los viajes accesibles para todos, un viaje a la vez
@@ -72,7 +72,7 @@ const AboutPage = () => {
             <div className="relative h-full min-h-[600px] rounded-2xl overflow-hidden shadow-2xl">
               <Image
                 src="/images/mama.jpg"
-                alt="Comunidad Travel4All"
+                alt="Comunidad Viajeros Mayores"
                 fill
                 className="object-cover object-top"
               />
@@ -97,7 +97,7 @@ const AboutPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Community */}
             <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
-              <div className="w-16 h-16 bg-[#FF6F61] rounded-xl flex items-center justify-center mb-6">
+              <div className="w-16 h-16 bg-[#E36E4A] rounded-xl flex items-center justify-center mb-6">
                 <span className="text-4xl">🤝</span>
               </div>
               <h3 className="text-2xl font-bold text-gray-800 mb-4 font-alata">
@@ -112,7 +112,7 @@ const AboutPage = () => {
             </div>
             {/* Empowerment */}
             <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
-              <div className="w-16 h-16 bg-[#FF6F61] rounded-xl flex items-center justify-center mb-6">
+              <div className="w-16 h-16 bg-[#E36E4A] rounded-xl flex items-center justify-center mb-6">
                 <span className="text-4xl">🚀</span>
               </div>
               <h3 className="text-2xl font-bold text-gray-800 mb-4 font-alata">
@@ -126,7 +126,7 @@ const AboutPage = () => {
             </div>
             {/* Innovation */}
             <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
-              <div className="w-16 h-16 bg-[#FF6F61] rounded-xl flex items-center justify-center mb-6">
+              <div className="w-16 h-16 bg-[#E36E4A] rounded-xl flex items-center justify-center mb-6">
                 <span className="text-4xl">💡</span>
               </div>
               <h3 className="text-2xl font-bold text-gray-800 mb-4 font-alata">
@@ -143,19 +143,19 @@ const AboutPage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-6 bg-gradient-to-r from-[#FF6F61] to-[#FF8A80]">
+      <section className="py-20 px-6 bg-gradient-to-r from-[#E36E4A] to-[#F4916F]">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold text-white mb-6 font-alata">
             ¿Listo para Comenzar tu Viaje?
           </h2>
           <p className="text-xl text-white/95 mb-8 leading-relaxed">
-            Únete a miles de viajeros que confían en Travel4All para ayudarles a
-            explorar el mundo con confianza y comodidad.
+            Únete a miles de viajeros que confían en Viajeros Mayores para
+            ayudarles a explorar el mundo con confianza y comodidad.
           </p>
           <div className="flex justify-center">
             <Link
               href="/signup"
-              className="px-12 py-4 bg-white text-[#FF6F61] rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors shadow-lg"
+              className="px-12 py-4 bg-white text-[#E36E4A] rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors shadow-lg"
             >
               Crear Cuenta
             </Link>

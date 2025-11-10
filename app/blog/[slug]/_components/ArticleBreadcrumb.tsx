@@ -15,17 +15,17 @@ const ArticleBreadcrumb: React.FC<ArticleBreadcrumbProps> = ({
 }) => {
   return (
     <nav className="flex items-center space-x-2 text-sm text-gray-600 ">
-      <Link href="/" className="hover:text-[#FF6F61] transition-colors">
+      <Link href="/" className="hover:text-[#E36E4A] transition-colors">
         Home
       </Link>
       <span>/</span>
-      <Link href="/blog" className="hover:text-[#FF6F61] transition-colors">
+      <Link href="/blog" className="hover:text-[#E36E4A] transition-colors">
         Blog
       </Link>
       <span>/</span>
-      <span className="text-[#FF6F61]">{getCategoryLabel(category)}</span>
+      <span className="text-[#E36E4A]">{getCategoryLabel(category)}</span>
       <span>/</span>
-      <span className="text-[#FF6F61] truncate max-w-md">{title}</span>
+      <span className="text-[#E36E4A] truncate max-w-md">{title}</span>
     </nav>
   );
 };

@@ -60,7 +60,7 @@ const LocationSearch = ({
         onFocus={() => setShowResults(true)}
         onBlur={() => setTimeout(() => setShowResults(false), 200)}
         placeholder={placeholder}
-        className="w-full px-4 py-3 text-gray-800 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF6F61] text-sm"
+        className="w-full px-4 py-3 text-gray-800 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E36E4A] text-sm"
       />
 
       {/* Loading Indicator */}

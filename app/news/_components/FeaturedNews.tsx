@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import type { NewsArticle } from '@/types/news';
 import {
@@ -21,10 +21,28 @@ const FeaturedNews: React.FC<FeaturedNewsProps> = ({
   backgroundColor = 'bg-gray-50',
 }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detectar si es móvil
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Reset slide cuando cambie el tamaño de pantalla
+  useEffect(() => {
+    setCurrentSlide(0);
+  }, [isMobile]);
 
   if (articles.length === 0) return null;
 
-  const itemsPerSlide = 3;
+  const itemsPerSlide = isMobile ? 1 : 3;
   const totalSlides = Math.ceil(articles.length / itemsPerSlide);
 
   const nextSlide = () => {
@@ -58,7 +76,13 @@ const FeaturedNews: React.FC<FeaturedNewsProps> = ({
         <div className="relative px-12">
           {/* Cards Container */}
           <div className="overflow-hidden">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div
+              className={`grid gap-6 ${
+                isMobile
+                  ? 'grid-cols-1'
+                  : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+              }`}
+            >
               {currentArticles.map((article) => (
                 <Link
                   key={article.id}
@@ -86,7 +110,7 @@ const FeaturedNews: React.FC<FeaturedNewsProps> = ({
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-2xl font-bold mb-2 line-clamp-2 group-hover:text-[#FF8A7A] transition-colors">
+                    <h3 className="text-2xl font-bold mb-2 line-clamp-2 group-hover:text-[#F4916F] transition-colors">
                       {article.title}
                     </h3>
 
@@ -107,13 +131,13 @@ const FeaturedNews: React.FC<FeaturedNewsProps> = ({
             </div>
           </div>
 
-          {/* Navigation buttons - Only if there are more than 3 articles */}
-          {articles.length > itemsPerSlide && (
+          {/* Navigation buttons */}
+          {totalSlides > 1 && (
             <>
               {/* Previous button */}
               <button
                 onClick={prevSlide}
-                className="absolute left-0 top-1/2 -translate-y-1/2 bg-[#FF6F61] hover:bg-[#FF5A4A] text-white p-3 rounded-full shadow-xl transition-all hover:scale-110 z-20"
+                className="absolute left-0 top-1/2 -translate-y-1/2 bg-[#E36E4A] hover:bg-[#D45A36] text-white p-3 rounded-full shadow-xl transition-all hover:scale-110 z-20"
                 aria-label="Noticia anterior"
               >
                 <svg
@@ -134,7 +158,7 @@ const FeaturedNews: React.FC<FeaturedNewsProps> = ({
               {/* Next button */}
               <button
                 onClick={nextSlide}
-                className="absolute right-0 top-1/2 -translate-y-1/2 bg-[#FF6F61] hover:bg-[#FF5A4A] text-white p-3 rounded-full shadow-xl transition-all hover:scale-110 z-20"
+                className="absolute right-0 top-1/2 -translate-y-1/2 bg-[#E36E4A] hover:bg-[#D45A36] text-white p-3 rounded-full shadow-xl transition-all hover:scale-110 z-20"
                 aria-label="Siguiente noticia"
               >
                 <svg
@@ -155,7 +179,7 @@ const FeaturedNews: React.FC<FeaturedNewsProps> = ({
           )}
 
           {/* Dot indicators */}
-          {articles.length > itemsPerSlide && (
+          {totalSlides > 1 && (
             <div className="flex justify-center gap-2 mt-8">
               {Array.from({ length: totalSlides }).map((_, index) => (
                 <button
@@ -163,7 +187,7 @@ const FeaturedNews: React.FC<FeaturedNewsProps> = ({
                   onClick={() => goToSlide(index)}
                   className={`transition-all ${
                     index === currentSlide
-                      ? 'w-8 h-2 bg-[#FF6F61]'
+                      ? 'w-8 h-2 bg-[#E36E4A]'
                       : 'w-2 h-2 bg-gray-300 hover:bg-gray-400'
                   } rounded-full`}
                   aria-label={`Ir al grupo ${index + 1} de ${totalSlides}`}

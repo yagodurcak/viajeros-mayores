@@ -65,7 +65,7 @@ export default function ReviewsSection({ reviews }: ReviewsSectionProps) {
             <div className="flex items-start justify-between mb-2">
               <div>
                 <h3 className="font-semibold text-gray-900">{review.title}</h3>
-                <p className="text-sm text-[#FF6F61]">{review.place_name}</p>
+                <p className="text-sm text-[#E36E4A]">{review.place_name}</p>
               </div>
               {renderStars(review.rating)}
             </div>

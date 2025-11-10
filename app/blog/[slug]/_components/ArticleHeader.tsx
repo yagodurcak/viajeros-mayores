@@ -14,7 +14,7 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({ post }) => {
     <header className="mb-8">
       {/* Category Label */}
       <div className="mb-4">
-        <span className="text-[#FF6F61] text-sm font-medium tracking-wide">
+        <span className="text-[#E36E4A] text-sm font-medium tracking-wide">
           {getCategoryLabel(post.category)}
         </span>
       </div>

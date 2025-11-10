@@ -45,8 +45,8 @@ const Avatar: React.FC<AvatarProps> = ({
 }) => {
   const { container, text } = sizeClasses[size];
   const bgClass = gradient
-    ? 'bg-gradient-to-br from-[#FF6F61] to-[#FF8A7A]'
-    : 'bg-[#FF6F61]';
+    ? 'bg-gradient-to-br from-[#E36E4A] to-[#F4916F]'
+    : 'bg-[#E36E4A]';
 
   return (
     <div

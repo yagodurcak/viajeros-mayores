@@ -53,12 +53,12 @@ const HotelDealCard: React.FC<HotelDealCardProps> = ({ deal }) => {
               className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:bg-white"
               aria-label="Agregar a favoritos"
             >
-              <i className="far fa-heart text-[#FF6F61] text-lg" />
+              <i className="far fa-heart text-[#E36E4A] text-lg" />
             </button>
           </div>
           <div className="absolute bottom-4 left-4 right-4">
             <div className="flex items-center justify-between">
-              <span className="bg-[#FF6F61] text-white px-3 py-1 rounded-full text-xs font-bold flex items-center">
+              <span className="bg-[#E36E4A] text-white px-3 py-1 rounded-full text-xs font-bold flex items-center">
                 <i className="fas fa-universal-access mr-1" />
                 {deal.type}
               </span>
@@ -81,7 +81,7 @@ const HotelDealCard: React.FC<HotelDealCardProps> = ({ deal }) => {
                 {deal.name}
               </h4>
               <p className="text-sm text-gray-500 flex items-center">
-                <i className="fas fa-map-marker-alt text-[#FF6F61] mr-1" />
+                <i className="fas fa-map-marker-alt text-[#E36E4A] mr-1" />
                 {deal.location}
               </p>
             </div>

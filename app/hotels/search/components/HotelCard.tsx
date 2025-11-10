@@ -51,7 +51,7 @@ export default function HotelCard({ hotel }: HotelCardProps) {
           <div className="flex flex-col md:flex-row items-start justify-between gap-4">
             {/* Left side - Details */}
             <div className="flex-1">
-              <h3 className="text-xl font-bold text-[#FF6F61] mb-1 hover:underline cursor-pointer">
+              <h3 className="text-xl font-bold text-[#E36E4A] mb-1 hover:underline cursor-pointer">
                 {hotel.name}
                 <span className="text-yellow-500 ml-2">★★★★</span>
               </h3>
@@ -123,7 +123,7 @@ export default function HotelCard({ hotel }: HotelCardProps) {
                   <div className="text-sm text-gray-600">Accessibility</div>
                   <div className="text-xs text-gray-500">Our score</div>
                 </div>
-                <div className="bg-[#FF6F61] text-white px-2 py-1 rounded font-bold">
+                <div className="bg-[#E36E4A] text-white px-2 py-1 rounded font-bold">
                   {getAccessibilityScore()}
                 </div>
               </div>
@@ -138,7 +138,7 @@ export default function HotelCard({ hotel }: HotelCardProps) {
                   + {formatPrice(Math.round(hotel.pricePerNight * 0.1))} in
                   taxes
                 </div>
-                <button className="bg-[#FF6F61] text-white px-6 py-2 rounded mt-2 hover:bg-[#E85A4F] transition-colors font-semibold">
+                <button className="bg-[#E36E4A] text-white px-6 py-2 rounded mt-2 hover:bg-[#E85A4F] transition-colors font-semibold">
                   View availability
                 </button>
               </div>

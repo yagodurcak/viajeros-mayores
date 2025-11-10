@@ -39,7 +39,7 @@ const Home = () => {
           <div className="flex justify-center pb-12 bg-gray-50">
             <Link
               href="/news"
-              className="px-8 py-3 bg-[#FF6F61] hover:bg-[#FF5A4A] text-white rounded-lg font-semibold text-lg transition-colors shadow-lg hover:shadow-xl"
+              className="px-8 py-3 bg-[#E36E4A] hover:bg-[#D45A36] text-white rounded-lg font-semibold text-lg transition-colors shadow-lg hover:shadow-xl"
             >
               Ver Todas las Noticias →
             </Link>
@@ -60,7 +60,7 @@ const Home = () => {
           <div className="flex justify-center pb-12 bg-gray-50">
             <Link
               href="/blog"
-              className="px-8 py-3 bg-[#FF6F61] hover:bg-[#FF5A4A] text-white rounded-lg font-semibold text-lg transition-colors shadow-lg hover:shadow-xl"
+              className="px-8 py-3 bg-[#E36E4A] hover:bg-[#D45A36] text-white rounded-lg font-semibold text-lg transition-colors shadow-lg hover:shadow-xl"
             >
               Ver Todos los Artículos →
             </Link>

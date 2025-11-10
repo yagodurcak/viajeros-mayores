@@ -167,7 +167,7 @@ const HotelSearchForm: React.FC<HotelSearchFormProps> = ({
           <button
             type="button"
             onClick={() => setShowDatePicker(!showDatePicker)}
-            className="w-full px-4 py-3 text-gray-800 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF6F61] text-sm text-left bg-white hover:bg-gray-50 transition-colors"
+            className="w-full px-4 py-3 text-gray-800 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E36E4A] text-sm text-left bg-white hover:bg-gray-50 transition-colors"
           >
             {hasSelectedDates ? (
               <span className="text-gray-800">
@@ -186,7 +186,7 @@ const HotelSearchForm: React.FC<HotelSearchFormProps> = ({
               <DateRangePicker
                 ranges={dateRange}
                 onChange={handleSelect}
-                rangeColors={['#FF6F61']}
+                rangeColors={['#E36E4A']}
                 months={2}
                 direction="horizontal"
                 showSelectionPreview={true}
@@ -196,7 +196,7 @@ const HotelSearchForm: React.FC<HotelSearchFormProps> = ({
               <div className="p-4 border-t border-gray-200">
                 <button
                   onClick={() => setShowDatePicker(false)}
-                  className="w-full bg-[#FF6F61] hover:bg-[#E85A4F] text-white py-2 px-4 rounded-lg font-medium transition-colors"
+                  className="w-full bg-[#E36E4A] hover:bg-[#E85A4F] text-white py-2 px-4 rounded-lg font-medium transition-colors"
                 >
                   Aplicar fechas
                 </button>
@@ -214,7 +214,7 @@ const HotelSearchForm: React.FC<HotelSearchFormProps> = ({
             type="text"
             value={guests}
             onChange={(e) => setGuests(e.target.value)}
-            className="w-full px-4 py-3 pr-10 text-gray-800 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF6F61] text-sm"
+            className="w-full px-4 py-3 pr-10 text-gray-800 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E36E4A] text-sm"
             placeholder="Número de viajeros"
           />
           <i className="fas fa-user absolute right-3 top-10 text-gray-400 text-sm" />
@@ -228,7 +228,7 @@ const HotelSearchForm: React.FC<HotelSearchFormProps> = ({
             className={`px-8 py-3 rounded-lg font-semibold transition-all duration-200 ${
               isSearching || !destination.trim() || !destId
                 ? 'bg-gray-400 cursor-not-allowed'
-                : 'bg-[#FF6F61] hover:bg-[#E85A4F] hover:shadow-lg transform hover:scale-105'
+                : 'bg-[#E36E4A] hover:bg-[#E85A4F] hover:shadow-lg transform hover:scale-105'
             } text-white`}
           >
             {isSearching ? (

@@ -25,7 +25,7 @@ const Pagination: React.FC<PaginationProps> = ({
   loadMoreText = 'Cargar más',
   ariaLabel = 'Paginación',
   className = '',
-  primaryColor = 'bg-[#FF6F61]',
+  primaryColor = 'bg-[#E36E4A]',
 }) => {
   const getPageNumbers = () => {
     const pages: (number | string)[] = [];

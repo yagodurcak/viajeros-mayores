@@ -73,7 +73,7 @@ export default function ForgotPasswordPage() {
           </p>
           <button
             onClick={() => router.push('/login')}
-            className="px-6 py-3 bg-[#FF6F61] text-white rounded-lg font-medium hover:bg-[#FF5A4A] transition-colors"
+            className="px-6 py-3 bg-[#E36E4A] text-white rounded-lg font-medium hover:bg-[#D45A36] transition-colors"
           >
             Volver a iniciar sesión
           </button>
@@ -86,9 +86,9 @@ export default function ForgotPasswordPage() {
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
       <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8">
         <div className="text-center mb-8">
-          <div className="mx-auto w-16 h-16 bg-[#FF6F61] bg-opacity-10 rounded-full flex items-center justify-center mb-4">
+          <div className="mx-auto w-16 h-16 bg-[#E36E4A] bg-opacity-10 rounded-full flex items-center justify-center mb-4">
             <svg
-              className="w-8 h-8 text-[#FF6F61]"
+              className="w-8 h-8 text-[#E36E4A]"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -101,7 +101,7 @@ export default function ForgotPasswordPage() {
               />
             </svg>
           </div>
-          <h1 className="text-3xl font-bold text-[#FF6F61] mb-2">
+          <h1 className="text-3xl font-bold text-[#E36E4A] mb-2">
             ¿Olvidaste tu contraseña?
           </h1>
           <p className="text-gray-600">
@@ -129,7 +129,7 @@ export default function ForgotPasswordPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6F61] focus:border-transparent outline-none transition-all"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#E36E4A] focus:border-transparent outline-none transition-all"
               placeholder="tu@email.com"
             />
             <p className="mt-2 text-sm text-gray-500">
@@ -140,7 +140,7 @@ export default function ForgotPasswordPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 bg-[#FF6F61] text-white rounded-lg font-medium hover:bg-[#FF5A4A] transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+            className="w-full py-3 bg-[#E36E4A] text-white rounded-lg font-medium hover:bg-[#D45A36] transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
           >
             {loading ? 'Enviando...' : 'Enviar enlace de recuperación'}
           </button>
@@ -149,7 +149,7 @@ export default function ForgotPasswordPage() {
         <div className="mt-6 text-center">
           <button
             onClick={() => router.push('/login')}
-            className="text-gray-600 text-sm hover:text-[#FF6F61] transition-colors"
+            className="text-gray-600 text-sm hover:text-[#E36E4A] transition-colors"
           >
             ← Volver a iniciar sesión
           </button>

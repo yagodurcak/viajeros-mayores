@@ -96,7 +96,7 @@ const CreatePostForm: React.FC = () => {
                 value={formData.title}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6F61] focus:border-transparent"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#E36E4A] focus:border-transparent"
                 placeholder="Título del artículo"
               />
             </div>
@@ -116,7 +116,7 @@ const CreatePostForm: React.FC = () => {
                 onChange={handleChange}
                 required
                 rows={3}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6F61] focus:border-transparent resize-none"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#E36E4A] focus:border-transparent resize-none"
                 placeholder="Breve resumen del artículo"
               />
             </div>
@@ -135,7 +135,7 @@ const CreatePostForm: React.FC = () => {
                 value={formData.category}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6F61] focus:border-transparent"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#E36E4A] focus:border-transparent"
               >
                 {CATEGORIES.map((cat) => (
                   <option key={cat.value} value={cat.value}>
@@ -160,7 +160,7 @@ const CreatePostForm: React.FC = () => {
                 value={formData.cover_image_url}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6F61] focus:border-transparent"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#E36E4A] focus:border-transparent"
                 placeholder="https://example.com/image.jpg"
               />
             </div>
@@ -173,7 +173,7 @@ const CreatePostForm: React.FC = () => {
                 name="is_featured"
                 checked={formData.is_featured}
                 onChange={handleChange}
-                className="w-5 h-5 text-[#FF6F61] border-gray-300 rounded focus:ring-[#FF6F61]"
+                className="w-5 h-5 text-[#E36E4A] border-gray-300 rounded focus:ring-[#E36E4A]"
               />
               <label
                 htmlFor="is_featured"
@@ -195,7 +195,7 @@ const CreatePostForm: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setShowPreview(!showPreview)}
-                  className="text-sm text-[#FF6F61] hover:underline"
+                  className="text-sm text-[#E36E4A] hover:underline"
                 >
                   {showPreview ? 'Ocultar' : 'Mostrar'} Vista Previa
                 </button>
@@ -207,7 +207,7 @@ const CreatePostForm: React.FC = () => {
                 onChange={handleChange}
                 required
                 rows={15}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6F61] focus:border-transparent resize-none font-mono text-sm"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#E36E4A] focus:border-transparent resize-none font-mono text-sm"
                 placeholder="# Título del artículo&#10;&#10;Escribe tu contenido aquí usando **Markdown**..."
               />
               <p className="text-xs text-gray-500 mt-2">
@@ -235,7 +235,7 @@ const CreatePostForm: React.FC = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="flex-1 bg-[#FF6F61] text-white py-3 px-6 rounded-lg font-semibold hover:bg-[#FF5A4A] transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
+                className="flex-1 bg-[#E36E4A] text-white py-3 px-6 rounded-lg font-semibold hover:bg-[#D45A36] transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
               >
                 {loading ? 'Creando...' : 'Crear Post'}
               </button>
