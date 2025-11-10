@@ -71,7 +71,7 @@ export default function ProfileForm({
             className={`flex-1 px-6 py-3 rounded-lg font-semibold text-white transition-all duration-200 ${
               saving
                 ? 'bg-gray-400 cursor-not-allowed'
-                : 'bg-[#FF6F61] hover:bg-[#E85A4F] hover:shadow-lg transform hover:scale-[1.02]'
+                : 'bg-[#E36E4A] hover:bg-[#E85A4F] hover:shadow-lg transform hover:scale-[1.02]'
             }`}
           >
             {saving ? (

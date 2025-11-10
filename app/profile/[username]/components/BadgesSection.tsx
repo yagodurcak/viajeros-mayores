@@ -41,9 +41,9 @@ export default function BadgesSection({ badges }: BadgesSectionProps) {
         {badges.map((badge) => (
           <div
             key={badge.id}
-            className="flex items-start gap-3 p-3 rounded-lg bg-gradient-to-r from-[#FF6F61]/5 to-transparent border border-[#FF6F61]/20 hover:border-[#FF6F61]/40 transition-colors"
+            className="flex items-start gap-3 p-3 rounded-lg bg-gradient-to-r from-[#E36E4A]/5 to-transparent border border-[#E36E4A]/20 hover:border-[#E36E4A]/40 transition-colors"
           >
-            <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-[#FF6F61] to-[#FF8A7A] rounded-full flex items-center justify-center text-2xl shadow-sm">
+            <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-[#E36E4A] to-[#F4916F] rounded-full flex items-center justify-center text-2xl shadow-sm">
               {badge.icon}
             </div>
             <div className="flex-1 min-w-0">

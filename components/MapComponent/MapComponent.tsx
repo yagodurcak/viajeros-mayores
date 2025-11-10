@@ -13,11 +13,6 @@ const libraries: ('places' | 'drawing' | 'geometry' | 'visualization')[] = [
   'places',
 ];
 
-const containerStyle = {
-  width: '100%',
-  height: '600px',
-};
-
 const defaultCenter = {
   lat: 40.416775,
   lng: -3.70379,
@@ -264,6 +259,20 @@ const MapComponent: React.FC = () => {
     setError(null);
   };
 
+  const clearOrigin = () => {
+    setOrigin('');
+    setOriginMarker(null);
+    setRouteSegments([]);
+    setRouteStats(null);
+  };
+
+  const clearDestination = () => {
+    setDestination('');
+    setDestinationMarker(null);
+    setRouteSegments([]);
+    setRouteStats(null);
+  };
+
   const getRouteData = async () => {
     if (!origin.trim() || !destination.trim()) {
       setError('Por favor ingresa origen y destino');
@@ -333,21 +342,18 @@ const MapComponent: React.FC = () => {
   }
 
   return (
-    <div className="w-full">
-      <div className="mb-6 rounded-lg bg-white p-6 shadow-md">
+    <div className="flex flex-col md:flex-row min-h-screen md:h-screen w-full md:gap-4 md:p-4">
+      {/* Panel - arriba en móvil, izquierda en desktop */}
+      <div className="w-full md:w-96 bg-white p-4 shadow-md space-y-4 md:overflow-y-auto md:max-h-screen md:rounded-lg">
+        {/* Alertas de ubicación */}
         {locationError && !userLocation && (
-          <div className="mb-4 flex items-center justify-between rounded-lg bg-yellow-50 p-4">
-            <div>
-              <p className="text-sm font-medium text-yellow-800">
-                {locationError}
-              </p>
-              <p className="text-xs text-yellow-700">
-                Haz clic en el botón para intentar de nuevo
-              </p>
-            </div>
+          <div className="rounded-lg bg-yellow-50 p-3">
+            <p className="text-sm font-medium text-yellow-800">
+              {locationError}
+            </p>
             <button
               onClick={requestUserLocation}
-              className="ml-4 rounded-lg bg-yellow-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-yellow-700"
+              className="mt-2 w-full rounded-lg bg-yellow-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-yellow-700"
             >
               Obtener Ubicación
             </button>
@@ -355,91 +361,70 @@ const MapComponent: React.FC = () => {
         )}
 
         {!userLocation && !locationError && (
-          <div className="mb-4 rounded-lg bg-blue-50 p-4">
+          <div className="rounded-lg bg-blue-50 p-3">
             <p className="text-sm text-blue-800">
-              📍 Solicitando tu ubicación para centrar el mapa...
+              📍 Solicitando tu ubicación...
             </p>
           </div>
         )}
 
         {userLocation && !locationError && (
-          <div className="mb-4 rounded-lg bg-green-50 p-4">
+          <div className="rounded-lg bg-green-50 p-3">
             <p className="text-sm font-medium text-green-800">
               ✓ Ubicación obtenida
             </p>
           </div>
         )}
 
-        <div className="mb-4 grid gap-4 md:grid-cols-2">
-          <div>
-            <label
-              htmlFor="origin"
-              className="mb-2 block text-sm font-medium text-gray-700"
+        {/* Campo Desde */}
+        <div>
+          <label
+            htmlFor="origin"
+            className="mb-2 block text-sm font-medium text-gray-700"
+          >
+            Desde
+          </label>
+          <div className="relative">
+            <Autocomplete
+              onLoad={onOriginLoad}
+              onPlaceChanged={onOriginPlaceChanged}
             >
-              Desde
-            </label>
-            <div className="relative">
-              <Autocomplete
-                onLoad={onOriginLoad}
-                onPlaceChanged={onOriginPlaceChanged}
-              >
-                <input
-                  id="origin"
-                  type="text"
-                  value={origin}
-                  onChange={(e) => setOrigin(e.target.value)}
-                  placeholder="Buscar lugar de origen..."
-                  className="w-full rounded-lg border border-gray-300 px-4 py-3 pr-12 text-gray-900 transition-colors focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </Autocomplete>
+              <input
+                id="origin"
+                type="text"
+                value={origin}
+                onChange={(e) => setOrigin(e.target.value)}
+                placeholder="Buscar lugar de origen..."
+                className="w-full rounded-lg border border-gray-300 px-4 py-2 pr-20 text-sm text-gray-900 transition-colors focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </Autocomplete>
+            <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1">
+              {origin && (
+                <button
+                  onClick={clearOrigin}
+                  className="rounded-lg p-1 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600"
+                  title="Limpiar"
+                  type="button"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-4 w-4"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </button>
+              )}
               {userLocation && (
                 <button
                   onClick={useMyLocationAsOrigin}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 rounded-lg p-2 text-blue-600 transition-colors hover:bg-blue-50"
+                  className="rounded-lg p-1 text-blue-600 transition-colors hover:bg-blue-50"
                   title="Usar mi ubicación"
-                  type="button"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </button>
-              )}
-            </div>
-            {!origin && (
-              <div className="mt-2 flex flex-wrap gap-2">
-                {userLocation && (
-                  <button
-                    onClick={useMyLocationAsOrigin}
-                    className="flex items-center gap-2 rounded-md bg-blue-50 px-3 py-2 text-sm text-blue-700 transition-colors hover:bg-blue-100"
-                    type="button"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-4 w-4"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    Usar mi ubicación
-                  </button>
-                )}
-                <button
-                  onClick={startSelectingOrigin}
-                  className="flex items-center gap-2 rounded-md bg-green-50 px-3 py-2 text-sm text-green-700 transition-colors hover:bg-green-100"
                   type="button"
                 >
                   <svg
@@ -454,81 +439,105 @@ const MapComponent: React.FC = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  Marcar en el mapa
                 </button>
-              </div>
-            )}
+              )}
+            </div>
           </div>
-
-          <div>
-            <label
-              htmlFor="destination"
-              className="mb-2 block text-sm font-medium text-gray-700"
-            >
-              Hasta
-            </label>
-            <div className="relative">
-              <Autocomplete
-                onLoad={onDestinationLoad}
-                onPlaceChanged={onDestinationPlaceChanged}
+          {!origin && (
+            <div className="mt-2 flex flex-col gap-2">
+              {userLocation && (
+                <button
+                  onClick={useMyLocationAsOrigin}
+                  className="flex items-center justify-center gap-2 rounded-md bg-blue-50 px-3 py-2 text-xs text-blue-700 transition-colors hover:bg-blue-100"
+                  type="button"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-3 w-3"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  Usar mi ubicación
+                </button>
+              )}
+              <button
+                onClick={startSelectingOrigin}
+                className="flex items-center justify-center gap-2 rounded-md bg-green-50 px-3 py-2 text-xs text-green-700 transition-colors hover:bg-green-100"
+                type="button"
               >
-                <input
-                  id="destination"
-                  type="text"
-                  value={destination}
-                  onChange={(e) => setDestination(e.target.value)}
-                  placeholder="Buscar lugar de destino..."
-                  className="w-full rounded-lg border border-gray-300 px-4 py-3 pr-12 text-gray-900 transition-colors focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </Autocomplete>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-3 w-3"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                Marcar en el mapa
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* Campo Hasta */}
+        <div>
+          <label
+            htmlFor="destination"
+            className="mb-2 block text-sm font-medium text-gray-700"
+          >
+            Hasta
+          </label>
+          <div className="relative">
+            <Autocomplete
+              onLoad={onDestinationLoad}
+              onPlaceChanged={onDestinationPlaceChanged}
+            >
+              <input
+                id="destination"
+                type="text"
+                value={destination}
+                onChange={(e) => setDestination(e.target.value)}
+                placeholder="Buscar lugar de destino..."
+                className="w-full rounded-lg border border-gray-300 px-4 py-2 pr-20 text-sm text-gray-900 transition-colors focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </Autocomplete>
+            <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1">
+              {destination && (
+                <button
+                  onClick={clearDestination}
+                  className="rounded-lg p-1 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600"
+                  title="Limpiar"
+                  type="button"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-4 w-4"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </button>
+              )}
               {userLocation && (
                 <button
                   onClick={useMyLocationAsDestination}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 rounded-lg p-2 text-blue-600 transition-colors hover:bg-blue-50"
+                  className="rounded-lg p-1 text-blue-600 transition-colors hover:bg-blue-50"
                   title="Usar mi ubicación"
-                  type="button"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </button>
-              )}
-            </div>
-            {!destination && (
-              <div className="mt-2 flex flex-wrap gap-2">
-                {userLocation && (
-                  <button
-                    onClick={useMyLocationAsDestination}
-                    className="flex items-center gap-2 rounded-md bg-blue-50 px-3 py-2 text-sm text-blue-700 transition-colors hover:bg-blue-100"
-                    type="button"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-4 w-4"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    Usar mi ubicación
-                  </button>
-                )}
-                <button
-                  onClick={startSelectingDestination}
-                  className="flex items-center gap-2 rounded-md bg-red-50 px-3 py-2 text-sm text-red-700 transition-colors hover:bg-red-100"
                   type="button"
                 >
                   <svg
@@ -543,261 +552,305 @@ const MapComponent: React.FC = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  Marcar en el mapa
                 </button>
-              </div>
-            )}
+              )}
+            </div>
           </div>
+          {!destination && (
+            <div className="mt-2 flex flex-col gap-2">
+              {userLocation && (
+                <button
+                  onClick={useMyLocationAsDestination}
+                  className="flex items-center justify-center gap-2 rounded-md bg-blue-50 px-3 py-2 text-xs text-blue-700 transition-colors hover:bg-blue-100"
+                  type="button"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-3 w-3"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  Usar mi ubicación
+                </button>
+              )}
+              <button
+                onClick={startSelectingDestination}
+                className="flex items-center justify-center gap-2 rounded-md bg-red-50 px-3 py-2 text-xs text-red-700 transition-colors hover:bg-red-100"
+                type="button"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-3 w-3"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                Marcar en el mapa
+              </button>
+            </div>
+          )}
         </div>
 
-        <div className="flex flex-wrap items-center gap-4">
+        {/* Botón Calcular */}
+        <button
+          onClick={getRouteData}
+          disabled={isLoading || selectingMode !== null}
+          className="w-full rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-gray-400"
+        >
+          {isLoading ? 'Calculando...' : 'Calcular Pendiente'}
+        </button>
+
+        {selectingMode && (
           <button
-            onClick={getRouteData}
-            disabled={isLoading || selectingMode !== null}
-            className="rounded-lg bg-blue-600 px-8 py-3 font-semibold text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-gray-400"
+            onClick={cancelSelecting}
+            className="w-full rounded-lg border-2 border-gray-300 bg-white px-6 py-2 font-semibold text-gray-700 transition-colors hover:bg-gray-50"
           >
-            {isLoading ? 'Calculando...' : 'Calcular Pendiente'}
+            Cancelar Selección
           </button>
+        )}
 
-          {selectingMode && (
-            <button
-              onClick={cancelSelecting}
-              className="rounded-lg border-2 border-gray-300 bg-white px-6 py-3 font-semibold text-gray-700 transition-colors hover:bg-gray-50"
-            >
-              Cancelar Selección
-            </button>
-          )}
+        {error && !selectingMode && (
+          <div className="rounded-md bg-red-50 px-3 py-2 text-sm text-red-600">
+            {error}
+          </div>
+        )}
 
-          {error && !selectingMode && (
-            <div className="rounded-md bg-red-50 px-4 py-2 text-sm text-red-600">
-              {error}
-            </div>
-          )}
+        {selectingMode && (
+          <div className="rounded-md bg-blue-50 px-3 py-2 text-sm text-blue-700">
+            {selectingMode === 'origin'
+              ? '📍 Haz clic en el mapa para marcar el ORIGEN'
+              : '📍 Haz clic en el mapa para marcar el DESTINO'}
+          </div>
+        )}
 
-          {selectingMode && (
-            <div className="rounded-md bg-blue-50 px-4 py-2 text-sm text-blue-700">
-              {selectingMode === 'origin'
-                ? '📍 Haz clic en el mapa para marcar el ORIGEN (Desde)'
-                : '📍 Haz clic en el mapa para marcar el DESTINO (Hasta)'}
-            </div>
-          )}
-        </div>
-      </div>
-      {routeSegments.length > 0 && (
-        <div className="mt-4 space-y-4 mb-4">
-          {/* Estadísticas de la Ruta */}
-          {routeStats && (
-            <div className="rounded-lg bg-blue-50 p-4">
-              <h3 className="mb-3 font-semibold text-gray-800">
-                📊 Estadísticas de la Ruta:
-              </h3>
-              <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
-                <div className="rounded-md bg-white p-3">
-                  <p className="text-xs font-medium text-gray-600">
-                    Distancia Total
-                  </p>
-                  <p className="text-2xl font-bold text-gray-900">
-                    {routeStats.totalDistance >= 1000
-                      ? `${(routeStats.totalDistance / 1000).toFixed(2)} km`
-                      : `${routeStats.totalDistance} m`}
-                  </p>
-                </div>
-                <div className="rounded-md bg-white p-3">
-                  <p className="text-xs font-medium text-gray-600">
-                    ⬆️ Subida Total
-                  </p>
-                  <p className="text-2xl font-bold text-orange-600">
-                    {routeStats.totalAscent.toFixed(0)} m
-                  </p>
-                </div>
-                <div className="rounded-md bg-white p-3">
-                  <p className="text-xs font-medium text-gray-600">
-                    ⬇️ Bajada Total
-                  </p>
-                  <p className="text-2xl font-bold text-blue-600">
-                    {routeStats.totalDescent.toFixed(0)} m
-                  </p>
-                </div>
+        {/* Estadísticas - solo cuando hay ruta */}
+        {routeSegments.length > 0 && routeStats && (
+          <div className="rounded-lg bg-blue-50 p-3">
+            <h3 className="mb-2 text-sm font-semibold text-gray-800">
+              📊 Estadísticas de la Ruta:
+            </h3>
+            <div className="space-y-2">
+              <div className="rounded-md bg-white p-2">
+                <p className="text-xs font-medium text-gray-600">
+                  Distancia Total
+                </p>
+                <p className="text-xl font-bold text-gray-900">
+                  {routeStats.totalDistance >= 1000
+                    ? `${(routeStats.totalDistance / 1000).toFixed(2)} km`
+                    : `${routeStats.totalDistance} m`}
+                </p>
+              </div>
+              <div className="rounded-md bg-white p-2">
+                <p className="text-xs font-medium text-gray-600">
+                  ⬆️ Subida Total
+                </p>
+                <p className="text-xl font-bold text-orange-600">
+                  {routeStats.totalAscent.toFixed(0)} m
+                </p>
+              </div>
+              <div className="rounded-md bg-white p-2">
+                <p className="text-xs font-medium text-gray-600">
+                  ⬇️ Bajada Total
+                </p>
+                <p className="text-xl font-bold text-blue-600">
+                  {routeStats.totalDescent.toFixed(0)} m
+                </p>
               </div>
             </div>
-          )}
+          </div>
+        )}
 
-          {/* Leyenda de Pendientes */}
-          <div className="rounded-lg bg-gray-50 p-4">
-            <h3 className="mb-3 font-semibold text-gray-800">
+        {/* Leyenda - solo cuando hay ruta */}
+        {routeSegments.length > 0 && (
+          <div className="rounded-lg bg-gray-50 p-3">
+            <h3 className="mb-2 text-sm font-semibold text-gray-800">
               Leyenda de Pendientes:
             </h3>
 
-            <div className="mb-3">
-              <h4 className="mb-2 text-sm font-semibold text-gray-700">
+            <div className="mb-2">
+              <h4 className="mb-1 text-xs font-semibold text-gray-700">
                 ⬆️ Subidas (más difíciles):
               </h4>
-              <div className="flex flex-wrap gap-3">
+              <div className="space-y-1">
                 <div className="flex items-center gap-2">
                   <div
-                    className="h-4 w-8 rounded"
+                    className="h-3 w-6 rounded"
                     style={{ backgroundColor: '#FFEB3B' }}
                   ></div>
-                  <span className="text-sm text-gray-700">Suave (3-7%)</span>
+                  <span className="text-xs text-gray-700">Suave (3-7%)</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div
-                    className="h-4 w-8 rounded"
+                    className="h-3 w-6 rounded"
                     style={{ backgroundColor: '#FF9800' }}
                   ></div>
-                  <span className="text-sm text-gray-700">
+                  <span className="text-xs text-gray-700">
                     Moderada (8-15%)
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div
-                    className="h-4 w-8 rounded"
+                    className="h-3 w-6 rounded"
                     style={{ backgroundColor: '#F44336' }}
                   ></div>
-                  <span className="text-sm text-gray-700">
+                  <span className="text-xs text-gray-700">
                     Pronunciada (&gt; 16%)
                   </span>
                 </div>
               </div>
             </div>
 
-            <div className="mb-3">
-              <h4 className="mb-2 text-sm font-semibold text-gray-700">
+            <div className="mb-2">
+              <h4 className="mb-1 text-xs font-semibold text-gray-700">
                 ↔️ Plano:
               </h4>
               <div className="flex items-center gap-2">
                 <div
-                  className="h-4 w-8 rounded"
+                  className="h-3 w-6 rounded"
                   style={{ backgroundColor: '#4CAF50' }}
                 ></div>
-                <span className="text-sm text-gray-700">Plano (-3% a 3%)</span>
+                <span className="text-xs text-gray-700">Plano (-3% a 3%)</span>
               </div>
             </div>
 
             <div>
-              <h4 className="mb-2 text-sm font-semibold text-gray-700">
+              <h4 className="mb-1 text-xs font-semibold text-gray-700">
                 ⬇️ Bajadas (más fáciles):
               </h4>
-              <div className="flex flex-wrap gap-3">
+              <div className="space-y-1">
                 <div className="flex items-center gap-2">
                   <div
-                    className="h-4 w-8 rounded"
+                    className="h-3 w-6 rounded"
                     style={{ backgroundColor: '#4DD0E1' }}
                   ></div>
-                  <span className="text-sm text-gray-700">
+                  <span className="text-xs text-gray-700">
                     Suave (-3% a -7%)
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div
-                    className="h-4 w-8 rounded"
+                    className="h-3 w-6 rounded"
                     style={{ backgroundColor: '#2196F3' }}
                   ></div>
-                  <span className="text-sm text-gray-700">
+                  <span className="text-xs text-gray-700">
                     Moderada (-7% a -15%)
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div
-                    className="h-4 w-8 rounded"
+                    className="h-3 w-6 rounded"
                     style={{ backgroundColor: '#9C27B0' }}
                   ></div>
-                  <span className="text-sm text-gray-700">
+                  <span className="text-xs text-gray-700">
                     Pronunciada (&lt; -15%)
                   </span>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
-
-      <GoogleMap
-        mapContainerStyle={containerStyle}
-        center={mapCenter}
-        zoom={15}
-        options={{
-          ...mapOptions,
-          clickableIcons: false,
-          gestureHandling: 'greedy',
-        }}
-        onLoad={onMapLoad}
-        onClick={onMapClick}
-        clickableIcons={false}
-      >
-        {/* Marcador de ubicación actual del usuario */}
-        {userLocation && !originMarker && !destinationMarker && (
-          <Marker
-            position={userLocation}
-            icon={{
-              path: google.maps.SymbolPath.CIRCLE,
-              scale: 8,
-              fillColor: '#4285F4',
-              fillOpacity: 1,
-              strokeColor: '#FFFFFF',
-              strokeWeight: 2,
-            }}
-            title="Tu ubicación"
-          />
         )}
+      </div>
 
-        {/* Marcador de Origen - Pin Verde */}
-        {originMarker && (
-          <Marker
-            position={originMarker}
-            label={{
-              text: 'A',
-              color: '#FFFFFF',
-              fontWeight: 'bold',
-            }}
-            icon={{
-              path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
-              scale: 8,
-              fillColor: '#10B981',
-              fillOpacity: 1,
-              strokeColor: '#FFFFFF',
-              strokeWeight: 2,
-              rotation: 180,
-            }}
-            title="Origen"
-          />
-        )}
+      {/* Mapa - abajo en móvil, derecha en desktop */}
+      <div className="w-full h-[600px] md:h-full md:flex-1">
+        <GoogleMap
+          mapContainerStyle={{ width: '100%', height: '100%' }}
+          center={mapCenter}
+          zoom={15}
+          options={{
+            ...mapOptions,
+            clickableIcons: false,
+            gestureHandling: 'greedy',
+          }}
+          onLoad={onMapLoad}
+          onClick={onMapClick}
+          clickableIcons={false}
+        >
+          {/* Marcador de ubicación actual del usuario */}
+          {userLocation && !originMarker && !destinationMarker && (
+            <Marker
+              position={userLocation}
+              icon={{
+                path: google.maps.SymbolPath.CIRCLE,
+                scale: 8,
+                fillColor: '#4285F4',
+                fillOpacity: 1,
+                strokeColor: '#FFFFFF',
+                strokeWeight: 2,
+              }}
+              title="Tu ubicación"
+            />
+          )}
 
-        {/* Marcador de Destino - Pin Rojo */}
-        {destinationMarker && (
-          <Marker
-            position={destinationMarker}
-            label={{
-              text: 'B',
-              color: '#FFFFFF',
-              fontWeight: 'bold',
-            }}
-            icon={{
-              path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
-              scale: 8,
-              fillColor: '#EF4444',
-              fillOpacity: 1,
-              strokeColor: '#FFFFFF',
-              strokeWeight: 2,
-              rotation: 180,
-            }}
-            title="Destino"
-          />
-        )}
+          {/* Marcador de Origen - Pin Verde */}
+          {originMarker && (
+            <Marker
+              position={originMarker}
+              label={{
+                text: 'A',
+                color: '#FFFFFF',
+                fontWeight: 'bold',
+              }}
+              icon={{
+                path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
+                scale: 8,
+                fillColor: '#10B981',
+                fillOpacity: 1,
+                strokeColor: '#FFFFFF',
+                strokeWeight: 2,
+                rotation: 180,
+              }}
+              title="Origen"
+            />
+          )}
 
-        {/* Ruta con pendientes coloreadas */}
-        {routeSegments.map((segment, index) => (
-          <Polyline
-            key={index}
-            path={segment.path}
-            options={{
-              strokeColor: segment.color,
-              strokeOpacity: 0.8,
-              strokeWeight: 6,
-            }}
-          />
-        ))}
-      </GoogleMap>
+          {/* Marcador de Destino - Pin Rojo */}
+          {destinationMarker && (
+            <Marker
+              position={destinationMarker}
+              label={{
+                text: 'B',
+                color: '#FFFFFF',
+                fontWeight: 'bold',
+              }}
+              icon={{
+                path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
+                scale: 8,
+                fillColor: '#EF4444',
+                fillOpacity: 1,
+                strokeColor: '#FFFFFF',
+                strokeWeight: 2,
+                rotation: 180,
+              }}
+              title="Destino"
+            />
+          )}
+
+          {/* Ruta con pendientes coloreadas */}
+          {routeSegments.map((segment, index) => (
+            <Polyline
+              key={index}
+              path={segment.path}
+              options={{
+                strokeColor: segment.color,
+                strokeOpacity: 0.8,
+                strokeWeight: 6,
+              }}
+            />
+          ))}
+        </GoogleMap>
+      </div>
     </div>
   );
 };

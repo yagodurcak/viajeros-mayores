@@ -1,4 +1,4 @@
-# Travel4All
+# Viajeros Mayores
 
 A modern travel companion built with Next.js and Tailwind CSS.
 

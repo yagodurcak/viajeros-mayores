@@ -95,7 +95,7 @@ const CommentItem: React.FC<CommentItemProps> = ({
             <textarea
               value={editText}
               onChange={(e) => setEditText(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF6F61] focus:border-transparent resize-none text-sm"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E36E4A] focus:border-transparent resize-none text-sm"
               rows={3}
               required
             />
@@ -103,7 +103,7 @@ const CommentItem: React.FC<CommentItemProps> = ({
               <button
                 type="submit"
                 disabled={submitting}
-                className="px-3 py-1.5 bg-[#FF6F61] hover:bg-[#E55A4F] text-white rounded-lg text-xs font-medium transition-colors disabled:opacity-50"
+                className="px-3 py-1.5 bg-[#E36E4A] hover:bg-[#E55A4F] text-white rounded-lg text-xs font-medium transition-colors disabled:opacity-50"
               >
                 {submitting ? 'Saving...' : 'Save'}
               </button>
@@ -126,7 +126,7 @@ const CommentItem: React.FC<CommentItemProps> = ({
             <div className="flex items-center gap-3 mb-3">
               <button
                 onClick={() => onReply(comment.id)}
-                className="flex items-center gap-1 text-gray-600 hover:text-[#FF6F61] transition-colors text-xs font-medium"
+                className="flex items-center gap-1 text-gray-600 hover:text-[#E36E4A] transition-colors text-xs font-medium"
               >
                 <svg
                   className="w-3 h-3"
@@ -225,13 +225,13 @@ const CommentItem: React.FC<CommentItemProps> = ({
               placeholder="Write your reply..."
               required
               rows={3}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF6F61] focus:border-transparent resize-none text-sm"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E36E4A] focus:border-transparent resize-none text-sm"
             />
             <div className="flex items-center gap-2 mt-2">
               <button
                 type="submit"
                 disabled={submitting}
-                className="px-3 py-1.5 bg-[#FF6F61] hover:bg-[#E55A4F] text-white rounded-lg text-xs font-medium transition-colors disabled:opacity-50"
+                className="px-3 py-1.5 bg-[#E36E4A] hover:bg-[#E55A4F] text-white rounded-lg text-xs font-medium transition-colors disabled:opacity-50"
               >
                 {submitting ? 'Posting...' : 'Post Reply'}
               </button>
@@ -366,7 +366,7 @@ const NewsComments: React.FC<NewsCommentsProps> = ({ newsSlug }) => {
       <div className="mt-10 pt-6 border-t border-gray-200">
         <div className="flex items-center justify-center py-8">
           <div className="text-center">
-            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[#FF6F61]"></div>
+            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[#E36E4A]"></div>
             <p className="mt-2 text-gray-600 text-sm">Loading comments...</p>
           </div>
         </div>
@@ -384,7 +384,7 @@ const NewsComments: React.FC<NewsCommentsProps> = ({ newsSlug }) => {
         {!showCommentForm && !replyingTo && (
           <button
             onClick={handleShowCommentForm}
-            className="px-4 py-2 bg-[#FF6F61] hover:bg-[#E55A4F] text-white rounded-lg text-sm font-medium transition-colors"
+            className="px-4 py-2 bg-[#E36E4A] hover:bg-[#E55A4F] text-white rounded-lg text-sm font-medium transition-colors"
           >
             Write comment
           </button>
@@ -418,13 +418,13 @@ const NewsComments: React.FC<NewsCommentsProps> = ({ newsSlug }) => {
               placeholder="Write your comment..."
               required
               rows={4}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#FF6F61] focus:border-transparent resize-none text-sm mb-3"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#E36E4A] focus:border-transparent resize-none text-sm mb-3"
             />
             <div className="flex items-center gap-2">
               <button
                 type="submit"
                 disabled={submitting}
-                className="px-4 py-2 bg-[#FF6F61] hover:bg-[#E55A4F] text-white rounded-lg text-sm font-medium transition-colors disabled:opacity-50"
+                className="px-4 py-2 bg-[#E36E4A] hover:bg-[#E55A4F] text-white rounded-lg text-sm font-medium transition-colors disabled:opacity-50"
               >
                 {submitting ? 'Posting...' : 'Post'}
               </button>

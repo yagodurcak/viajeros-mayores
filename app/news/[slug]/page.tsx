@@ -70,7 +70,7 @@ export default function NewsArticlePage() {
           </p>
           <Link
             href="/news"
-            className="inline-block bg-[#FF6F61] text-white px-6 py-3 rounded-lg hover:bg-[#E55A4F] transition-colors"
+            className="inline-block bg-[#E36E4A] text-white px-6 py-3 rounded-lg hover:bg-[#E55A4F] transition-colors"
           >
             Volver a Noticias
           </Link>

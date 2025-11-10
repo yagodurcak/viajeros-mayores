@@ -28,8 +28,8 @@ const BlogFilters: React.FC<BlogFiltersProps> = ({
             onClick={() => handleCategoryChange('all')}
             className={`px-6 py-3 rounded-lg font-medium transition-all cursor-pointer whitespace-nowrap ${
               (filters.category || 'all') === 'all'
-                ? 'bg-[#FF6F61] text-white shadow-lg'
-                : 'bg-white text-gray-700 border border-gray-200 hover:border-[#FF6F61] hover:text-[#FF6F61] shadow-sm'
+                ? 'bg-[#E36E4A] text-white shadow-lg'
+                : 'bg-white text-gray-700 border border-gray-200 hover:border-[#E36E4A] hover:text-[#E36E4A] shadow-sm'
             }`}
           >
             Todas las Categorías
@@ -42,8 +42,8 @@ const BlogFilters: React.FC<BlogFiltersProps> = ({
               onClick={() => handleCategoryChange(cat)}
               className={`px-6 py-3 rounded-lg font-medium transition-all cursor-pointer whitespace-nowrap ${
                 filters.category === cat
-                  ? 'bg-[#FF6F61] text-white shadow-lg'
-                  : 'bg-white text-gray-700 border border-gray-200 hover:border-[#FF6F61] hover:text-[#FF6F61] shadow-sm'
+                  ? 'bg-[#E36E4A] text-white shadow-lg'
+                  : 'bg-white text-gray-700 border border-gray-200 hover:border-[#E36E4A] hover:text-[#E36E4A] shadow-sm'
               }`}
             >
               {getCategoryLabel(cat)}

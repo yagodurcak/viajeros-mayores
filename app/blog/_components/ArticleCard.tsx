@@ -38,7 +38,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
           </div>
 
           {/* Title */}
-          <h3 className="text-xl font-bold text-gray-800 mb-2 line-clamp-2 group-hover:text-[#FF6F61] transition-colors flex-1">
+          <h3 className="text-xl font-bold text-gray-800 mb-2 line-clamp-2 group-hover:text-[#E36E4A] transition-colors flex-1">
             {article.title}
           </h3>
 

@@ -9,7 +9,7 @@ export default function LoadingSpinner({
 }: LoadingSpinnerProps) {
   const content = (
     <div className="flex flex-col items-center gap-4">
-      <div className="w-12 h-12 border-4 border-[#FF6F61] border-t-transparent rounded-full animate-spin"></div>
+      <div className="w-12 h-12 border-4 border-[#E36E4A] border-t-transparent rounded-full animate-spin"></div>
       <p className="text-gray-600">{message}</p>
     </div>
   );

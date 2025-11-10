@@ -18,7 +18,7 @@ const BlogHero: React.FC<BlogHeroProps> = ({
   isSearching,
 }) => {
   return (
-    <section className="relative bg-gradient-to-r from-[#FF6F61] to-[#FF8A7A] text-white py-20 px-6">
+    <section className="relative bg-gradient-to-r from-[#E36E4A] to-[#F4916F] text-white py-20 px-6">
       <div className="relative z-10 max-w-6xl mx-auto text-center">
         <h1 className="text-5xl font-bold mb-4 font-alata">
           Viajeros Mayores Blog
@@ -65,7 +65,7 @@ const BlogHero: React.FC<BlogHeroProps> = ({
 
             {/* Search button / loading */}
             <button
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#FF6F61] text-white p-3 rounded-full hover:bg-[#FF5A4A] transition-colors"
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#E36E4A] text-white p-3 rounded-full hover:bg-[#D45A36] transition-colors"
               aria-label="Buscar"
             >
               {isSearching ? (

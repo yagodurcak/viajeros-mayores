@@ -2,13 +2,13 @@ export default function AccessibilityBanner() {
   return (
     <div
       className="py-3"
-      style={{ backgroundColor: '#FFF5F4', borderLeft: '4px solid #FF6F61' }}
+      style={{ backgroundColor: '#FFF5F4', borderLeft: '4px solid #E36E4A' }}
     >
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex items-center justify-center">
           <svg
             className="w-6 h-6 mr-3"
-            style={{ color: '#FF6F61' }}
+            style={{ color: '#E36E4A' }}
             fill="currentColor"
             viewBox="0 0 20 20"
           >

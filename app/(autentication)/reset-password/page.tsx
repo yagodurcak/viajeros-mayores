@@ -102,7 +102,7 @@ export default function ResetPasswordPage() {
           </p>
           <button
             onClick={() => router.push('/forgot-password')}
-            className="px-6 py-3 bg-[#FF6F61] text-white rounded-lg font-medium hover:bg-[#FF5A4A] transition-colors"
+            className="px-6 py-3 bg-[#E36E4A] text-white rounded-lg font-medium hover:bg-[#D45A36] transition-colors"
           >
             Solicitar nuevo enlace
           </button>
@@ -150,9 +150,9 @@ export default function ResetPasswordPage() {
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
       <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8">
         <div className="text-center mb-8">
-          <div className="mx-auto w-16 h-16 bg-[#FF6F61] bg-opacity-10 rounded-full flex items-center justify-center mb-4">
+          <div className="mx-auto w-16 h-16 bg-[#E36E4A] bg-opacity-10 rounded-full flex items-center justify-center mb-4">
             <svg
-              className="w-8 h-8 text-[#FF6F61]"
+              className="w-8 h-8 text-[#E36E4A]"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -165,7 +165,7 @@ export default function ResetPasswordPage() {
               />
             </svg>
           </div>
-          <h1 className="text-3xl font-bold text-[#FF6F61] mb-2">
+          <h1 className="text-3xl font-bold text-[#E36E4A] mb-2">
             Restablecer Contraseña
           </h1>
           <p className="text-gray-600">Ingresa tu nueva contraseña</p>
@@ -193,7 +193,7 @@ export default function ResetPasswordPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 minLength={6}
-                className="w-full px-4 py-2 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6F61] focus:border-transparent outline-none transition-all"
+                className="w-full px-4 py-2 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#E36E4A] focus:border-transparent outline-none transition-all"
                 placeholder="••••••••"
               />
               <button
@@ -256,7 +256,7 @@ export default function ResetPasswordPage() {
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
                 minLength={6}
-                className="w-full px-4 py-2 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6F61] focus:border-transparent outline-none transition-all"
+                className="w-full px-4 py-2 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#E36E4A] focus:border-transparent outline-none transition-all"
                 placeholder="••••••••"
               />
               <button
@@ -306,7 +306,7 @@ export default function ResetPasswordPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 bg-[#FF6F61] text-white rounded-lg font-medium hover:bg-[#FF5A4A] transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+            className="w-full py-3 bg-[#E36E4A] text-white rounded-lg font-medium hover:bg-[#D45A36] transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
           >
             {loading ? 'Actualizando...' : 'Restablecer Contraseña'}
           </button>

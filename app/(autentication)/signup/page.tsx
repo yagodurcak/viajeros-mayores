@@ -140,7 +140,7 @@ export default function SignUpPage() {
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
       <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-[#FF6F61] mb-2">
+          <h1 className="text-3xl font-bold text-[#E36E4A] mb-2">
             Crear Cuenta
           </h1>
           <p className="text-gray-600">
@@ -173,7 +173,7 @@ export default function SignUpPage() {
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6F61] focus:border-transparent outline-none transition-all"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#E36E4A] focus:border-transparent outline-none transition-all"
               placeholder="Juan Pérez"
             />
           </div>
@@ -191,7 +191,7 @@ export default function SignUpPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6F61] focus:border-transparent outline-none transition-all"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#E36E4A] focus:border-transparent outline-none transition-all"
               placeholder="tu@email.com"
             />
           </div>
@@ -211,7 +211,7 @@ export default function SignUpPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 minLength={6}
-                className="w-full px-4 py-2 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6F61] focus:border-transparent outline-none transition-all"
+                className="w-full px-4 py-2 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#E36E4A] focus:border-transparent outline-none transition-all"
                 placeholder="••••••••"
               />
               <button
@@ -273,7 +273,7 @@ export default function SignUpPage() {
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
                 minLength={6}
-                className="w-full px-4 py-2 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6F61] focus:border-transparent outline-none transition-all"
+                className="w-full px-4 py-2 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#E36E4A] focus:border-transparent outline-none transition-all"
                 placeholder="••••••••"
               />
               <button
@@ -323,7 +323,7 @@ export default function SignUpPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 bg-[#FF6F61] text-white rounded-lg font-medium hover:bg-[#FF5A4A] transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+            className="w-full py-3 bg-[#E36E4A] text-white rounded-lg font-medium hover:bg-[#D45A36] transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
           >
             {loading ? 'Creando cuenta...' : 'Crear Cuenta'}
           </button>
@@ -373,7 +373,7 @@ export default function SignUpPage() {
             ¿Ya tienes una cuenta?{' '}
             <button
               onClick={() => router.push('/login')}
-              className="text-[#FF6F61] hover:text-[#FF5A4A] font-medium"
+              className="text-[#E36E4A] hover:text-[#D45A36] font-medium"
             >
               Inicia sesión
             </button>

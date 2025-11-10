@@ -46,12 +46,12 @@ const MarkdownPreview: React.FC<MarkdownPreviewProps> = ({ content }) => {
           ),
           li: ({ children }) => <li className="mb-1">{children}</li>,
           blockquote: ({ children }) => (
-            <blockquote className="border-l-4 border-[#FF6F61] pl-4 italic text-gray-600 my-4">
+            <blockquote className="border-l-4 border-[#E36E4A] pl-4 italic text-gray-600 my-4">
               {children}
             </blockquote>
           ),
           code: ({ children }) => (
-            <code className="bg-gray-100 text-[#FF6F61] px-2 py-1 rounded text-sm font-mono">
+            <code className="bg-gray-100 text-[#E36E4A] px-2 py-1 rounded text-sm font-mono">
               {children}
             </code>
           ),
@@ -63,7 +63,7 @@ const MarkdownPreview: React.FC<MarkdownPreviewProps> = ({ content }) => {
           a: ({ href, children }) => (
             <a
               href={href}
-              className="text-[#FF6F61] hover:underline"
+              className="text-[#E36E4A] hover:underline"
               target="_blank"
               rel="noopener noreferrer"
             >

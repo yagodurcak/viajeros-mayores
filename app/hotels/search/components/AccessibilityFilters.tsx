@@ -12,12 +12,12 @@ export default function AccessibilityFilters({
   return (
     <div
       className="rounded-lg p-6 border-2"
-      style={{ backgroundColor: '#FFF5F4', borderColor: '#FF6F61' }}
+      style={{ backgroundColor: '#FFF5F4', borderColor: '#E36E4A' }}
     >
       <h3 className="font-bold text-lg text-gray-900 mb-4 flex items-center">
         <svg
           className="w-6 h-6 mr-2"
-          style={{ color: '#FF6F61' }}
+          style={{ color: '#E36E4A' }}
           fill="currentColor"
           viewBox="0 0 20 20"
         >
@@ -36,7 +36,7 @@ export default function AccessibilityFilters({
             }`}
             style={{
               background: filter.enabled
-                ? 'linear-gradient(135deg, #FF6F61 0%, #FF8A7A 100%)'
+                ? 'linear-gradient(135deg, #E36E4A 0%, #F4916F 100%)'
                 : 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
             }}
           >
@@ -50,7 +50,7 @@ export default function AccessibilityFilters({
                   <span
                     className="text-lg"
                     style={{
-                      color: filter.enabled ? '#ffffff' : '#FF6F61',
+                      color: filter.enabled ? '#ffffff' : '#E36E4A',
                     }}
                   >
                     {filter.icon === 'fas fa-wheelchair-move' && '♿'}
@@ -109,7 +109,7 @@ export default function AccessibilityFilters({
                     style={{
                       backgroundColor: filter.enabled
                         ? 'rgba(255, 255, 255, 0.2)'
-                        : '#FF6F61',
+                        : '#E36E4A',
                       color: filter.enabled ? '#ffffff' : '#ffffff',
                     }}
                   >

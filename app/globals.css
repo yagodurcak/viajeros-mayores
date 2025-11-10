@@ -41,24 +41,24 @@
 }
 
 .rdrDayToday .rdrDayNumber span:after {
-  @apply bg-[#FF6F61];
+  @apply bg-[#E36E4A];
 }
 
 .rdrDayActive .rdrDayNumber span {
-  @apply bg-[#FF6F61] text-white;
+  @apply bg-[#E36E4A] text-white;
 }
 
 .rdrDayInRange .rdrDayNumber span {
-  @apply bg-[#FF6F61]/10 text-[#FF6F61];
+  @apply bg-[#E36E4A]/10 text-[#E36E4A];
 }
 
 .rdrDayStartEdge .rdrDayNumber span,
 .rdrDayEndEdge .rdrDayNumber span {
-  @apply bg-[#FF6F61] text-white;
+  @apply bg-[#E36E4A] text-white;
 }
 
 .rdrDayHovered .rdrDayNumber span {
-  @apply bg-[#FF6F61]/20;
+  @apply bg-[#E36E4A]/20;
 }
 
 /* Animation for dropdown menu */
