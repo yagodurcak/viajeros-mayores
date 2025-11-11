@@ -6,6 +6,7 @@ import Footer from '@/components/Footer/Footer';
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { defaultMetadata } from '@/lib/seo-config';
 
 const alata = Alata({
   weight: '400',
@@ -19,10 +20,7 @@ const nunitoSans = Nunito_Sans({
   variable: '--font-nunito-sans',
 });
 
-export const metadata: Metadata = {
-  title: 'Viajeros Mayores',
-  description: 'Travel without limits',
-};
+export const metadata: Metadata = defaultMetadata;
 
 export default async function RootLayout({
   children,

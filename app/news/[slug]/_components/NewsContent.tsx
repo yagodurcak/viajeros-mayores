@@ -5,7 +5,6 @@ import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import ArticleShare from '@/app/blog/[slug]/_components/ArticleShare';
-import ArticleComments from '@/app/blog/[slug]/_components/ArticleComments';
 
 interface NewsContentProps {
   content: string;

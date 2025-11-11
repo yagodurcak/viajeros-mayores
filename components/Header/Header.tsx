@@ -85,8 +85,8 @@ const Header = ({ session: initialSession }: HeaderProps) => {
     }
 
     return isActive
-      ? 'px-4 py-2 rounded-lg bg-[#E36E4A] text-white font-medium transition-colors'
-      : 'px-4 py-2 rounded-lg hover:text-[#E36E4A] hover:bg-gray-100 transition-colors font-medium text-gray-700';
+      ? 'px-3 py-2 rounded-lg bg-[#E36E4A] text-white font-medium transition-colors'
+      : 'px-3 py-2 rounded-lg hover:text-[#E36E4A] hover:bg-gray-100 transition-colors font-medium text-gray-700';
   };
 
   const handleLogout = async () => {
@@ -170,12 +170,12 @@ const Header = ({ session: initialSession }: HeaderProps) => {
           </svg>
         </button>
 
-        <nav className="hidden md:flex gap-2">
+        <nav className="hidden md:flex gap-1">
           <button
-            className={getNavButtonClass('/')}
-            onClick={() => router.push('/')}
+            className={getNavButtonClass('/hotels')}
+            onClick={() => router.push('/hotels')}
           >
-            Inicio
+            Hoteles
           </button>
           <button
             className={getNavButtonClass('/maps')}
@@ -311,6 +311,15 @@ const Header = ({ session: initialSession }: HeaderProps) => {
               }}
             >
               Inicio
+            </button>
+            <button
+              className={`${getNavButtonClass('/hotels')} w-full text-left`}
+              onClick={() => {
+                router.push('/hotels');
+                setIsMobileMenuOpen(false);
+              }}
+            >
+              Hoteles
             </button>
             <button
               className={`${getNavButtonClass('/maps')} w-full text-left`}
