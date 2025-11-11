@@ -31,7 +31,7 @@ const Hero: React.FC = () => {
   ];
 
   return (
-    <section className="relative text-white py-16 md:py-20 px-4 md:px-6 h-[600px] md:h-[700px] flex items-center">
+    <section className="relative text-white py-16 md:py-20 px-6 h-[600px] md:h-[700px] flex items-center">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
@@ -45,7 +45,7 @@ const Hero: React.FC = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto w-full">
+      <div className="relative z-10 max-w-6xl mx-auto w-full">
         <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
           {/* Left Column - Main Content */}
           <div className="space-y-6 md:space-y-8">
