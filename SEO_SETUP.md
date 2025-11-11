@@ -42,6 +42,38 @@ Funciones para obtener datos desde Supabase en el servidor (para generar metadat
 - `/app/blog/[slug]/page.tsx` - Genera metadata dinámica para artículos de blog
 - `/app/news/[slug]/page.tsx` - Genera metadata dinámica para noticias
 
+## ⚠️ Nota Importante: Next.js 15
+
+Este proyecto usa **Next.js 15**, donde `params` es una **Promise**. Esto es diferente de versiones anteriores.
+
+**En Next.js 15:**
+```typescript
+interface PageProps {
+  params: Promise<{ slug: string }>; // ← Promise!
+}
+
+export async function generateMetadata({ params }: PageProps) {
+  const { slug } = await params; // ← Debes hacer await
+  // ...
+}
+```
+
+**En Next.js 14 y anteriores:**
+```typescript
+interface PageProps {
+  params: { slug: string }; // ← Objeto directo
+}
+
+export async function generateMetadata({ params }: PageProps) {
+  const slug = params.slug; // ← Sin await
+  // ...
+}
+```
+
+Todos los ejemplos en esta documentación usan la sintaxis de Next.js 15.
+
+---
+
 ## 🚀 Cómo Funciona
 
 ### Para páginas existentes (Blog y Noticias)
@@ -83,20 +115,21 @@ import type { Metadata } from 'next';
 import { generateSEOMetadata } from '@/lib/seo-config';
 
 interface PageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
   // Obtén los datos desde tu base de datos
-  const data = await getDataFromDB(params.slug);
+  const data = await getDataFromDB(slug);
 
   return generateSEOMetadata({
     title: data.title,
     description: data.description,
     image: data.imageUrl,
-    url: `/ruta/${params.slug}`,
+    url: `/ruta/${slug}`,
     type: 'article',
     publishedTime: data.createdAt,
     author: data.author.name,

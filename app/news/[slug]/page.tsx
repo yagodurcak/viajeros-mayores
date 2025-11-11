@@ -4,15 +4,16 @@ import { generateSEOMetadata } from '@/lib/seo-config';
 import { NewsArticleClient } from './_components/NewsArticleClient';
 
 interface NewsArticlePageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({
   params,
 }: NewsArticlePageProps): Promise<Metadata> {
-  const article = await getNewsArticleBySlug(params.slug);
+  const { slug } = await params;
+  const article = await getNewsArticleBySlug(slug);
 
   if (!article) {
     return {

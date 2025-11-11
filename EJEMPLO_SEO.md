@@ -1,5 +1,21 @@
 # 📖 Ejemplo Práctico: Agregar SEO a una Nueva Página
 
+## ⚠️ Nota: Sintaxis de Next.js 15
+
+Este proyecto usa **Next.js 15**. En esta versión, `params` es una **Promise** que debes hacer `await`.
+
+```typescript
+// ✅ Correcto en Next.js 15
+const { slug } = await params;
+
+// ❌ Incorrecto (esto era Next.js 14)
+const slug = params.slug;
+```
+
+Todos los ejemplos en este documento usan la sintaxis correcta de Next.js 15.
+
+---
+
 ## Escenario: Crear una página de "Destinos" con SEO
 
 Supongamos que quieres crear una página `/destinos/[slug]` donde cada destino tenga su propia metadata para Facebook.
@@ -80,16 +96,17 @@ import { generateSEOMetadata } from '@/lib/seo-config';
 import { DestinoClient } from './_components/DestinoClient';
 
 interface DestinoPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 // 🎯 Esta función genera la metadata para Facebook
 export async function generateMetadata({
   params,
 }: DestinoPageProps): Promise<Metadata> {
-  const destino = await getDestinoBySlug(params.slug);
+  const { slug } = await params;
+  const destino = await getDestinoBySlug(slug);
 
   if (!destino) {
     return {
@@ -149,7 +166,8 @@ Tu publicación se verá así:
 ### Agregar autor específico
 ```typescript
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const destino = await getDestinoBySlug(params.slug);
+  const { slug } = await params;
+  const destino = await getDestinoBySlug(slug);
 
   return generateSEOMetadata({
     title: destino.nombre,
