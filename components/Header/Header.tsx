@@ -67,9 +67,6 @@ const Header = ({ session: initialSession }: HeaderProps) => {
     if (path === '/') {
       // Home is active only on the exact home page
       isActive = pathname === '/';
-    } else if (path === '/hotels') {
-      // Hotels is active when path starts with /hotels
-      isActive = pathname.startsWith('/hotels');
     } else if (path === '/news') {
       // News is active when path starts with /news
       isActive = pathname.startsWith('/news');
@@ -171,12 +168,6 @@ const Header = ({ session: initialSession }: HeaderProps) => {
         </button>
 
         <nav className="hidden md:flex gap-1">
-          <button
-            className={getNavButtonClass('/hotels')}
-            onClick={() => router.push('/hotels')}
-          >
-            Hoteles
-          </button>
           <button
             className={getNavButtonClass('/maps')}
             onClick={() => router.push('/maps')}
@@ -311,15 +302,6 @@ const Header = ({ session: initialSession }: HeaderProps) => {
               }}
             >
               Inicio
-            </button>
-            <button
-              className={`${getNavButtonClass('/hotels')} w-full text-left`}
-              onClick={() => {
-                router.push('/hotels');
-                setIsMobileMenuOpen(false);
-              }}
-            >
-              Hoteles
             </button>
             <button
               className={`${getNavButtonClass('/maps')} w-full text-left`}
