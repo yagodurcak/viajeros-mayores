@@ -7,16 +7,12 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-interface AuthorData {
-  full_name: string;
-}
-
 export const getBlogPostBySlug = async (
   slug: string
 ): Promise<BlogArticle | null> => {
   try {
     const { data, error } = await supabase
-      .from('blog_posts')
+      .from('posts')
       .select(
         `
         id,
@@ -26,36 +22,31 @@ export const getBlogPostBySlug = async (
         content,
         category,
         created_at,
-        read_time,
-        image_url,
-        featured,
-        author:profiles(full_name)
+        cover_image_url,
+        is_featured
       `
       )
       .eq('slug', slug)
-      .eq('published', true)
       .single();
 
     if (error || !data) {
       return null;
     }
 
-    const authorData = data.author as unknown as AuthorData;
-
     return {
       id: data.id,
       title: data.title,
       slug: data.slug,
-      summary: data.summary,
+      summary: data.summary || 'Artículo de viaje para adultos mayores',
       content: data.content,
-      category: data.category,
+      category: data.category || 'General',
       author: {
-        name: authorData?.full_name || 'Autor Desconocido',
+        name: 'Viajeros Mayores',
       },
       createdAt: data.created_at,
-      readTime: data.read_time,
-      imageUrl: data.image_url,
-      featured: data.featured,
+      readTime: 5,
+      imageUrl: data.cover_image_url || '/images/logo.png',
+      featured: data.is_featured || false,
     };
   } catch (error) {
     console.error('Error fetching blog post:', error);
@@ -78,36 +69,31 @@ export const getNewsArticleBySlug = async (
         content,
         category,
         created_at,
-        read_time,
-        image_url,
-        featured,
-        author:profiles(full_name)
+        cover_image_url,
+        is_featured
       `
       )
       .eq('slug', slug)
-      .eq('published', true)
       .single();
 
     if (error || !data) {
       return null;
     }
 
-    const authorData = data.author as unknown as AuthorData;
-
     return {
       id: data.id,
       title: data.title,
       slug: data.slug,
-      summary: data.summary,
+      summary: data.summary || 'Noticia de viajes para adultos mayores',
       content: data.content,
-      category: data.category,
+      category: data.category || 'Noticias',
       author: {
-        name: authorData?.full_name || 'Autor Desconocido',
+        name: 'Viajeros Mayores',
       },
       createdAt: data.created_at,
-      readTime: data.read_time,
-      imageUrl: data.image_url,
-      featured: data.featured,
+      readTime: 5,
+      imageUrl: data.cover_image_url || '/images/logo.png',
+      featured: data.is_featured || false,
     };
   } catch (error) {
     console.error('Error fetching news article:', error);
