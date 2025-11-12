@@ -7,6 +7,7 @@ import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { defaultMetadata } from '@/lib/seo-config';
+import { GoogleAnalytics } from '@/components/Analytics/GoogleAnalytics';
 
 const alata = Alata({
   weight: '400',
@@ -53,6 +54,9 @@ export default async function RootLayout({
   const {
     data: { session },
   } = await supabase.auth.getSession();
+
+  const gaId = process.env.NEXT_PUBLIC_GA_ID;
+
   return (
     <html lang="en">
       <head>
@@ -80,6 +84,7 @@ export default async function RootLayout({
         />
       </head>
       <body className={`${alata.variable} ${nunitoSans.variable}`}>
+        {gaId && <GoogleAnalytics gaId={gaId} />}
         <Header session={session} />
         {children}
         <SpeedInsights />
