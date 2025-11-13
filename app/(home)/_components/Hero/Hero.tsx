@@ -26,7 +26,7 @@ const Hero: React.FC = () => {
       icon: '👥',
       title: 'Comunidad',
       description: 'Informate de la opinión de otros viajeros',
-      link: '/community',
+      link: '/',
     },
   ];
 
