@@ -5,6 +5,12 @@ import Link from 'next/link';
 const Hero: React.FC = () => {
   const features = [
     {
+      icon: '🤖',
+      title: 'Explorar Destinos con IA',
+      description: 'Analiza las características de un destino',
+      link: '/search',
+    },
+    {
       icon: '🗺️',
       title: 'Analizador de Pendientes',
       description: 'Observe las subidas y bajadas de un camino',
@@ -21,12 +27,6 @@ const Hero: React.FC = () => {
       title: 'Noticias',
       description: 'Últimas novedades en turismo accesible',
       link: '/news',
-    },
-    {
-      icon: '👥',
-      title: 'Comunidad',
-      description: 'Informate de la opinión de otros viajeros',
-      link: '/',
     },
   ];
 
@@ -59,7 +59,7 @@ const Hero: React.FC = () => {
               cualquier destino. Tu próxima aventura te espera.
             </p>
             <Link
-              href="/maps"
+              href="/search"
               className="inline-block px-8 py-4 bg-[#E36E4A] hover:bg-[#D45A36] text-white rounded-lg font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
             >
               Comenzar mi viaje

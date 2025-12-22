@@ -36,9 +36,10 @@ type RouteStats = {
 };
 
 const MapComponent: React.FC = () => {
-  const { isLoaded } = useJsApiLoader({
+  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '';
+  const { isLoaded, loadError } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '',
+    googleMapsApiKey: apiKey,
     libraries,
   });
 
@@ -332,6 +333,46 @@ const MapComponent: React.FC = () => {
       setIsLoading(false);
     }
   };
+
+  if (!apiKey) {
+    return (
+      <div className="flex h-[600px] items-center justify-center">
+        <div className="max-w-md rounded-lg bg-red-50 p-6 text-center">
+          <div className="mb-2 text-2xl">⚠️</div>
+          <h3 className="mb-2 text-lg font-semibold text-red-800">
+            API Key de Google Maps no configurada
+          </h3>
+          <p className="text-sm text-red-600">
+            Por favor, agrega{' '}
+            <code className="rounded bg-red-100 px-1 py-0.5 text-xs">
+              NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
+            </code>{' '}
+            a tu archivo{' '}
+            <code className="rounded bg-red-100 px-1 py-0.5 text-xs">
+              .env.local
+            </code>
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  if (loadError) {
+    return (
+      <div className="flex h-[600px] items-center justify-center">
+        <div className="max-w-md rounded-lg bg-red-50 p-6 text-center">
+          <div className="mb-2 text-2xl">❌</div>
+          <h3 className="mb-2 text-lg font-semibold text-red-800">
+            Error al cargar Google Maps
+          </h3>
+          <p className="text-sm text-red-600">
+            {loadError.message ||
+              'Verifica que tu API key sea válida y tenga los permisos necesarios.'}
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   if (!isLoaded) {
     return (
