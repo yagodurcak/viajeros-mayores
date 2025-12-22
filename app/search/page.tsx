@@ -1,18 +1,32 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
 
 const SearchPage = () => {
+  const searchParams = useSearchParams();
   const [searchQuery, setSearchQuery] = useState('');
   const [isFocused, setIsFocused] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const handleSearch = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!searchQuery.trim()) return;
+  // Leer parámetro q de la URL y realizar búsqueda automática
+  useEffect(() => {
+    const queryParam = searchParams.get('q');
+    if (queryParam) {
+      setSearchQuery(queryParam);
+      // Realizar búsqueda automática después de un pequeño delay
+      const timer = setTimeout(() => {
+        performSearch(queryParam);
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [searchParams]);
+
+  const performSearch = async (query: string) => {
+    if (!query.trim()) return;
 
     setIsLoading(true);
     setError(null);
@@ -25,7 +39,7 @@ const SearchPage = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          destination: searchQuery.trim(),
+          destination: query.trim(),
         }),
       });
 
@@ -45,10 +59,16 @@ const SearchPage = () => {
     }
   };
 
+  const handleSearch = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!searchQuery.trim()) return;
+    await performSearch(searchQuery);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#E36E4A] via-[#D45A36] to-[#C04A26] py-16 md:py-24">
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#E36E4A] via-[#D45A36] to-[#C04A26] py-8 md:py-12">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div
@@ -68,18 +88,18 @@ const SearchPage = () => {
         <div className="relative mx-auto max-w-5xl px-4">
           <div className="text-center">
             {/* Title */}
-            <div className="mb-6">
-              <h1 className="mb-4 text-5xl font-bold text-white md:text-6xl lg:text-7xl">
+            <div className="mb-4">
+              <h1 className="mb-2 text-4xl font-bold text-white md:text-5xl lg:text-6xl">
                 Explora el Mundo
               </h1>
-              <p className="mx-auto max-w-2xl text-xl text-white/95 md:text-2xl">
+              <p className="mx-auto max-w-2xl text-lg text-white/95 md:text-xl">
                 Información detallada sobre cualquier destino del mundo con la
                 ayuda de nuestro agente entrenado de inteligencia artificial
               </p>
             </div>
 
             {/* Search Input in Hero */}
-            <form onSubmit={handleSearch} className="mx-auto mt-10 max-w-3xl">
+            <form onSubmit={handleSearch} className="mx-auto mt-6 max-w-3xl">
               <div
                 className={`relative rounded-2xl border-2 bg-white shadow-2xl transition-all duration-300 ${
                   isFocused
@@ -132,14 +152,17 @@ const SearchPage = () => {
             </form>
 
             {/* Quick Suggestions */}
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <div className="mt-4 flex flex-wrap justify-center gap-3">
               <span className="text-sm font-medium text-white/90">
                 Búsquedas populares:
               </span>
               {['París', 'Tokio', 'Roma', 'Barcelona'].map((example) => (
                 <button
                   key={example}
-                  onClick={() => setSearchQuery(example)}
+                  onClick={() => {
+                    setSearchQuery(example);
+                    performSearch(example);
+                  }}
                   className="rounded-full border border-white/30 bg-white/10 px-4 py-2 text-sm text-white backdrop-blur-sm transition-all hover:bg-white/20 hover:border-white/50"
                 >
                   {example}

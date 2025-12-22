@@ -1,8 +1,14 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const Hero: React.FC = () => {
+  const router = useRouter();
+  const [searchQuery, setSearchQuery] = useState('');
+  const [isFocused, setIsFocused] = useState(false);
   const features = [
     {
       icon: '🤖',
@@ -58,12 +64,49 @@ const Hero: React.FC = () => {
               mejor información para estar preparado en tu viaje y disfrutar de
               cualquier destino. Tu próxima aventura te espera.
             </p>
-            <Link
-              href="/search"
-              className="inline-block px-8 py-4 bg-[#E36E4A] hover:bg-[#D45A36] text-white rounded-lg font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+
+            {/* Search Input */}
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (searchQuery.trim()) {
+                  router.push(
+                    `/search?q=${encodeURIComponent(searchQuery.trim())}`
+                  );
+                }
+              }}
+              className="w-full max-w-2xl flex flex-col gap-4 md:flex-row md:items-center"
             >
-              Comenzar mi viaje
-            </Link>
+              <div
+                className={`relative flex-1 rounded-xl border-2 bg-white/10 backdrop-blur-md shadow-2xl transition-all duration-300 ${
+                  isFocused
+                    ? 'border-white/60 scale-[1.02] shadow-2xl'
+                    : 'border-white/20 shadow-xl'
+                }`}
+              >
+                <div className="px-4 py-3 md:px-6 md:py-4">
+                  {/* Input */}
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onFocus={() => setIsFocused(true)}
+                    onBlur={() => setIsFocused(false)}
+                    placeholder="Ej: París, Francia, Machu Picchu, Tokio..."
+                    className="w-full bg-transparent text-base text-white placeholder:text-white/60 focus:outline-none md:text-lg"
+                  />
+                </div>
+              </div>
+
+              {/* Explore Button */}
+              <button
+                type="submit"
+                disabled={!searchQuery.trim()}
+                className="flex-shrink-0 rounded-lg bg-gradient-to-r from-[#E36E4A] to-[#D45A36] px-6 py-3 font-bold text-white shadow-lg transition-all hover:from-[#D45A36] hover:to-[#C04A26] hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:from-[#E36E4A] disabled:hover:to-[#D45A36] md:px-8 md:py-4"
+              >
+                Explorar
+              </button>
+            </form>
           </div>
 
           {/* Right Column - Feature Cards */}
