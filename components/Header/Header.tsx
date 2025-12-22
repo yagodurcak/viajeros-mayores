@@ -76,6 +76,9 @@ const Header = ({ session: initialSession }: HeaderProps) => {
     } else if (path === '/maps') {
       // Maps is active when path starts with /maps
       isActive = pathname.startsWith('/maps');
+    } else if (path === '/search') {
+      // Search is active when path starts with /search
+      isActive = pathname.startsWith('/search');
     } else {
       // Other paths use exact match
       isActive = pathname === path;
@@ -168,6 +171,12 @@ const Header = ({ session: initialSession }: HeaderProps) => {
         </button>
 
         <nav className="hidden md:flex gap-1">
+          <button
+            className={getNavButtonClass('/search')}
+            onClick={() => router.push('/search')}
+          >
+            Explorar
+          </button>
           <button
             className={getNavButtonClass('/maps')}
             onClick={() => router.push('/maps')}
@@ -302,6 +311,15 @@ const Header = ({ session: initialSession }: HeaderProps) => {
               }}
             >
               Inicio
+            </button>
+            <button
+              className={`${getNavButtonClass('/search')} w-full text-left`}
+              onClick={() => {
+                router.push('/search');
+                setIsMobileMenuOpen(false);
+              }}
+            >
+              Explorar
             </button>
             <button
               className={`${getNavButtonClass('/maps')} w-full text-left`}

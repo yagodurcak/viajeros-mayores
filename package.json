@@ -23,17 +23,21 @@
     ]
   },
   "dependencies": {
+    "@ai-sdk/openai": "^2.0.77",
+    "@ai-sdk/react": "^2.0.108",
     "@react-google-maps/api": "^2.20.7",
     "@supabase/auth-helpers-nextjs": "^0.10.0",
     "@supabase/ssr": "^0.7.0",
     "@supabase/supabase-js": "^2.75.1",
     "@vercel/speed-insights": "^1.2.0",
+    "ai": "^5.0.108",
     "next": "^15.0.3",
     "react": "^18.3.1",
     "react-date-range": "^2.0.1",
     "react-dom": "^18.3.1",
     "react-markdown": "^10.1.0",
-    "remark-gfm": "^4.0.1"
+    "remark-gfm": "^4.0.1",
+    "zod": "^4.1.13"
   },
   "devDependencies": {
     "@types/node": "^22.19.0",
