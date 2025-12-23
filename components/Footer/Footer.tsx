@@ -64,6 +64,22 @@ const Footer: React.FC = () => {
               </li>
               <li>
                 <Link
+                  href="/search"
+                  className="hover:text-[#E36E4A] transition-colors"
+                >
+                  Explorar
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/maps"
+                  className="hover:text-[#E36E4A] transition-colors"
+                >
+                  Analizador de pendientes
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/news"
                   className="hover:text-[#E36E4A] transition-colors"
                 >

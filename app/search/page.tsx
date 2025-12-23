@@ -1,18 +1,32 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
 
 const SearchPage = () => {
+  const searchParams = useSearchParams();
   const [searchQuery, setSearchQuery] = useState('');
   const [isFocused, setIsFocused] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const handleSearch = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!searchQuery.trim()) return;
+  // Leer parámetro q de la URL y realizar búsqueda automática
+  useEffect(() => {
+    const queryParam = searchParams.get('q');
+    if (queryParam) {
+      setSearchQuery(queryParam);
+      // Realizar búsqueda automática después de un pequeño delay
+      const timer = setTimeout(() => {
+        performSearch(queryParam);
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [searchParams]);
+
+  const performSearch = async (query: string) => {
+    if (!query.trim()) return;
 
     setIsLoading(true);
     setError(null);
@@ -25,7 +39,7 @@ const SearchPage = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          destination: searchQuery.trim(),
+          destination: query.trim(),
         }),
       });
 
@@ -45,10 +59,16 @@ const SearchPage = () => {
     }
   };
 
+  const handleSearch = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!searchQuery.trim()) return;
+    await performSearch(searchQuery);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#E36E4A] via-[#D45A36] to-[#C04A26] py-16 md:py-24">
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#E36E4A] via-[#D45A36] to-[#C04A26] py-10 sm:py-12 md:py-16">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div
@@ -60,39 +80,42 @@ const SearchPage = () => {
         </div>
 
         {/* Decorative Elements */}
-        <div className="absolute top-10 left-10 h-20 w-20 rounded-full bg-white/10 blur-2xl"></div>
-        <div className="absolute bottom-10 right-10 h-32 w-32 rounded-full bg-white/10 blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/4 h-16 w-16 rounded-full bg-white/5 blur-xl"></div>
+        <div className="absolute top-5 left-5 sm:top-10 sm:left-10 h-16 w-16 sm:h-20 sm:w-20 rounded-full bg-white/10 blur-2xl"></div>
+        <div className="absolute bottom-5 right-5 sm:bottom-10 sm:right-10 h-24 w-24 sm:h-32 sm:w-32 rounded-full bg-white/10 blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/4 h-12 w-12 sm:h-16 sm:w-16 rounded-full bg-white/5 blur-xl"></div>
 
         {/* Content */}
-        <div className="relative mx-auto max-w-5xl px-4">
+        <div className="relative mx-auto max-w-5xl px-4 sm:px-6">
           <div className="text-center">
             {/* Title */}
-            <div className="mb-6">
-              <h1 className="mb-4 text-5xl font-bold text-white md:text-6xl lg:text-7xl">
+            <div className="mb-4 sm:mb-6">
+              <h1 className="mb-2 sm:mb-3 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white">
                 Explora el Mundo
               </h1>
-              <p className="mx-auto max-w-2xl text-xl text-white/95 md:text-2xl">
+              <p className="mx-auto max-w-2xl text-sm sm:text-base md:text-lg lg:text-xl text-white/95">
                 Información detallada sobre cualquier destino del mundo con la
                 ayuda de nuestro agente entrenado de inteligencia artificial
               </p>
             </div>
 
             {/* Search Input in Hero */}
-            <form onSubmit={handleSearch} className="mx-auto mt-10 max-w-3xl">
+            <form
+              onSubmit={handleSearch}
+              className="mx-auto mt-4 sm:mt-6 max-w-3xl"
+            >
               <div
-                className={`relative rounded-2xl border-2 bg-white shadow-2xl transition-all duration-300 ${
+                className={`relative rounded-xl sm:rounded-2xl border-2 bg-white shadow-2xl transition-all duration-300 ${
                   isFocused
-                    ? 'border-white scale-105 shadow-2xl'
+                    ? 'border-white scale-[1.01] sm:scale-[1.02] md:scale-105 shadow-2xl'
                     : 'border-white/30 shadow-xl'
                 }`}
               >
-                <div className="flex flex-col gap-4 p-4 md:flex-row md:items-center md:gap-4 md:p-6">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 p-3 sm:p-4 md:p-6 sm:items-center">
                   {/* Search Icon */}
-                  <div className="flex-shrink-0">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#E36E4A] to-[#D45A36] md:h-14 md:w-14">
+                  <div className="flex-shrink-0 hidden sm:flex">
+                    <div className="flex h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 items-center justify-center rounded-lg sm:rounded-xl bg-gradient-to-br from-[#E36E4A] to-[#D45A36]">
                       <svg
-                        className="h-6 w-6 text-white md:h-7 md:w-7"
+                        className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 text-white"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -114,8 +137,8 @@ const SearchPage = () => {
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onFocus={() => setIsFocused(true)}
                     onBlur={() => setIsFocused(false)}
-                    placeholder="Ej: París, Francia, Machu Picchu, Tokio..."
-                    className="flex-1 bg-transparent text-base text-gray-900 placeholder:text-gray-400 focus:outline-none md:text-lg"
+                    placeholder="Ej: París, Francia, Machu Picchu..."
+                    className="flex-1 bg-transparent text-sm sm:text-base text-gray-900 placeholder:text-gray-400 focus:outline-none md:text-lg"
                     disabled={isLoading}
                   />
 
@@ -123,7 +146,7 @@ const SearchPage = () => {
                   <button
                     type="submit"
                     disabled={!searchQuery.trim() || isLoading}
-                    className="flex-shrink-0 rounded-xl bg-gradient-to-r from-[#E36E4A] to-[#D45A36] px-8 py-4 font-bold text-white shadow-lg transition-all hover:from-[#D45A36] hover:to-[#C04A26] hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:from-[#E36E4A] disabled:hover:to-[#D45A36] md:px-10"
+                    className="w-full sm:w-auto flex-shrink-0 rounded-lg sm:rounded-xl bg-gradient-to-r from-[#E36E4A] to-[#D45A36] px-6 py-3 sm:py-3 md:py-4 font-bold text-white shadow-lg transition-all hover:from-[#D45A36] hover:to-[#C04A26] hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:from-[#E36E4A] disabled:hover:to-[#D45A36] md:px-10 text-sm sm:text-base"
                   >
                     {isLoading ? 'Buscando...' : 'Buscar'}
                   </button>
@@ -132,15 +155,18 @@ const SearchPage = () => {
             </form>
 
             {/* Quick Suggestions */}
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <span className="text-sm font-medium text-white/90">
+            <div className="mt-4 sm:mt-6 flex flex-wrap justify-center gap-2 sm:gap-3">
+              <span className="w-full sm:w-auto text-xs sm:text-sm font-medium text-white/90 mb-1 sm:mb-0">
                 Búsquedas populares:
               </span>
               {['París', 'Tokio', 'Roma', 'Barcelona'].map((example) => (
                 <button
                   key={example}
-                  onClick={() => setSearchQuery(example)}
-                  className="rounded-full border border-white/30 bg-white/10 px-4 py-2 text-sm text-white backdrop-blur-sm transition-all hover:bg-white/20 hover:border-white/50"
+                  onClick={() => {
+                    setSearchQuery(example);
+                    performSearch(example);
+                  }}
+                  className="rounded-full border border-white/30 bg-white/10 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm text-white backdrop-blur-sm transition-all hover:bg-white/20 hover:border-white/50"
                 >
                   {example}
                 </button>
