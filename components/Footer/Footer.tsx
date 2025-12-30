@@ -144,6 +144,14 @@ const Footer: React.FC = () => {
                   Accessibility Needs – Travel.State.gov
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/terms"
+                  className="hover:text-[#E36E4A] transition-colors"
+                >
+                  Términos y Condiciones
+                </Link>
+              </li>
             </ul>
           </div>
 
