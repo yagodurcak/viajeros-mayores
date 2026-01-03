@@ -17,13 +17,13 @@ const Footer: React.FC = () => {
               Haciendo el turismo accesible para todos
             </p>
 
-            {/* <div
+            <div
               className="flex space-x-4"
               role="navigation"
               aria-label="Social media"
             >
               <a
-                href="#"
+                href="https://www.facebook.com/profile.php?id=61583470460802"
                 aria-label="Viajeros Mayores Facebook"
                 className="text-[#E36E4A] text-xl hover:text-[#E85A4F] transition-colors"
               >
@@ -31,22 +31,14 @@ const Footer: React.FC = () => {
                 <span className="sr-only">Facebook</span>
               </a>
               <a
-                href="#"
-                aria-label="Viajeros Mayores Twitter"
-                className="text-[#E36E4A] text-xl hover:text-[#E85A4F] transition-colors"
-              >
-                <i className="fab fa-twitter" />
-                <span className="sr-only">Twitter</span>
-              </a>
-              <a
-                href="#"
+                href="https://www.instagram.com/viajerosmayores2026"
                 aria-label="Viajeros Mayores Instagram"
                 className="text-[#E36E4A] text-xl hover:text-[#E85A4F] transition-colors"
               >
                 <i className="fab fa-instagram" />
                 <span className="sr-only">Instagram</span>
               </a>
-            </div> */}
+            </div>
           </div>
 
           <div>
