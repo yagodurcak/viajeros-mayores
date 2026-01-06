@@ -6,7 +6,7 @@ export const metadata: Metadata = generateSEOMetadata({
   title:
     'Viajeros Mayores: Viajes Culturales y Consejos para Mayores de 60 Años',
   description:
-    'Guía completa para viajar después de los 60 años. Consejos prácticos para viajar en la tercera edad, destinos culturales, turismo de naturaleza y senderismo para adultos mayores activos. Planifica tu viaje con confianza.',
+    'Guía completa para viajar después de los 60 años. Consejos prácticos, destinos culturales y turismo de naturaleza para adultos mayores activos.',
   url: '/',
   type: 'website',
   tags: [

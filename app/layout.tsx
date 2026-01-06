@@ -59,13 +59,14 @@ export default async function RootLayout({
   const baseUrl =
     process.env.NEXT_PUBLIC_SITE_URL || 'https://viajerosmasayores.com';
 
-  // Structured Data (JSON-LD) para SEO
+  // Structured Data (JSON-LD) para SEO - URLs limpias sin comillas
+  const cleanBaseUrl = baseUrl.replace(/['"]/g, '');
   const organizationSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Viajeros Mayores',
-    url: baseUrl,
-    logo: `${baseUrl}/images/logo.png`,
+    url: cleanBaseUrl,
+    logo: `${cleanBaseUrl}/images/logo.png`,
     description:
       'Guía completa para viajar después de los 60 años. Consejos prácticos, destinos culturales y turismo de naturaleza para adultos mayores activos.',
     sameAs: [],
@@ -75,14 +76,14 @@ export default async function RootLayout({
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'Viajeros Mayores',
-    url: baseUrl,
+    url: cleanBaseUrl,
     description:
       'Viajes culturales y consejos para mayores de 60 años. Turismo senior activo, destinos históricos y naturaleza para viajeros mayores.',
     potentialAction: {
       '@type': 'SearchAction',
       target: {
         '@type': 'EntryPoint',
-        urlTemplate: `${baseUrl}/search?q={search_term_string}`,
+        urlTemplate: `${cleanBaseUrl}/search?q={search_term_string}`,
       },
       'query-input': 'required name=search_term_string',
     },
