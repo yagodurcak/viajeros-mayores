@@ -33,17 +33,28 @@ export const generateSEOMetadata = (config: SEOConfig): Metadata => {
   } = config;
 
   const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
-  const fullUrl = url.startsWith('http') ? url : `${baseUrl}${url}`;
-  const fullImageUrl = image.startsWith('http') ? image : `${baseUrl}${image}`;
+  // Asegurar URLs sin comillas y correctamente formateadas
+  const fullUrl = url.startsWith('http')
+    ? url.replace(/['"]/g, '')
+    : `${baseUrl}${url}`.replace(/['"]/g, '');
+  const fullImageUrl = image.startsWith('http')
+    ? image.replace(/['"]/g, '')
+    : `${baseUrl}${image}`.replace(/['"]/g, '');
+
+  // Limitar description a 160 caracteres para SEO óptimo
+  const optimizedDescription =
+    description.length > 160
+      ? `${description.substring(0, 157)}...`
+      : description;
 
   return {
     title: fullTitle,
-    description,
+    description: optimizedDescription,
     keywords: tags?.join(', ') || undefined,
     authors: author ? [{ name: author }] : undefined,
     openGraph: {
       title: fullTitle,
-      description,
+      description: optimizedDescription,
       url: fullUrl,
       siteName,
       images: [
@@ -67,7 +78,7 @@ export const generateSEOMetadata = (config: SEOConfig): Metadata => {
     twitter: {
       card: 'summary_large_image',
       title: fullTitle,
-      description,
+      description: optimizedDescription,
       images: [fullImageUrl],
     },
     alternates: {
@@ -88,11 +99,12 @@ export const generateSEOMetadata = (config: SEOConfig): Metadata => {
 };
 
 // Metadata por defecto para el sitio - Optimizado con keywords prioritarias
+// Meta description optimizada a menos de 160 caracteres
 export const defaultMetadata: Metadata = generateSEOMetadata({
   title:
     'Viajeros Mayores: Viajes Culturales y Consejos para Mayores de 60 Años',
   description:
-    'Guía completa para viajar después de los 60 años. Consejos prácticos, destinos culturales, turismo de naturaleza y senderismo para adultos mayores activos. Descubre cómo planificar tu viaje en la tercera edad.',
+    'Guía completa para viajar después de los 60 años. Consejos prácticos, destinos culturales y turismo de naturaleza para adultos mayores activos.',
   image: defaultImage,
   url: baseUrl,
   type: 'website',
