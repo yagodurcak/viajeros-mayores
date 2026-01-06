@@ -1,54 +1,24 @@
-'use client';
+import type { Metadata } from 'next';
+import { generateSEOMetadata } from '@/lib/seo-config';
+import BlogPageClient from './BlogPageClient';
 
-import React from 'react';
-import BlogSection from './_components/BlogSection';
-import { useBlogPosts } from './hooks/useBlogPosts';
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Consejos para Viajar en la Tercera Edad | Guías y Destinos',
+  description:
+    'Descubre consejos prácticos para viajar en la tercera edad. Guías completas sobre destinos culturales, planificación de viajes y turismo de naturaleza para mayores de 60 años.',
+  url: '/blog',
+  type: 'website',
+  tags: [
+    'consejos para viajar en la tercera edad',
+    'viajar después de los 60',
+    'guías de viaje para mayores',
+    'destinos culturales para personas mayores',
+    'planificar viaje tercera edad',
+  ],
+});
 
 const BlogPage = () => {
-  const { posts, categories, loading, error } = useBlogPosts();
-
-  // Show loading state
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gray-50">
-        <div className="flex items-center justify-center py-20">
-          <div className="text-center">
-            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-[#E36E4A]"></div>
-            <p className="mt-4 text-gray-600">Cargando artículos...</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  // Show error state
-  if (error) {
-    return (
-      <div className="min-h-screen bg-gray-50">
-        <div className="flex items-center justify-center py-20">
-          <div className="text-center">
-            <div className="text-red-500 text-5xl mb-4">⚠️</div>
-            <h3 className="text-xl font-semibold text-gray-800 mb-2">
-              Error al cargar artículos
-            </h3>
-            <p className="text-gray-600">{error}</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="min-h-screen bg-gray-50">
-      <BlogSection
-        posts={posts}
-        categories={categories}
-        showHero={true}
-        articlesPerPage={9}
-        enableSearch={true}
-      />
-    </div>
-  );
+  return <BlogPageClient />;
 };
 
 export default BlogPage;

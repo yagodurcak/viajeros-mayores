@@ -24,8 +24,9 @@ const Hero: React.FC = () => {
     },
     {
       icon: '💡',
-      title: 'Consejos',
-      description: 'Guías especializadas para viajeros accesibles',
+      title: 'Consejos para Viajar',
+      description:
+        'Guías y consejos para viajar en la tercera edad de forma segura',
       link: '/blog',
     },
     {
@@ -42,7 +43,7 @@ const Hero: React.FC = () => {
       <div className="absolute inset-0">
         <Image
           src="/images/hero-mayores.png"
-          alt="Viajes accesibles para todos"
+          alt="Viajeros mayores de 60 años explorando destinos culturales y turismo de naturaleza"
           fill
           priority
           className="object-cover"
@@ -56,13 +57,12 @@ const Hero: React.FC = () => {
           {/* Left Column - Main Content */}
           <div className="w-full space-y-4 md:space-y-6 lg:space-y-8">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight font-alata">
-              Explora Sin Límites
+              Viaja Después de los 60: Descubre el Mundo con Confianza
             </h1>
             <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 font-light leading-relaxed max-w-xl">
-              No dejes que las largas caminatas o las escaleras te tomen por
-              sorpresa o te impidan viajar. Nuestra comunidad te ayuda con la
-              mejor información para estar preparado en tu viaje y disfrutar de
-              cualquier destino. Tu próxima aventura te espera.
+              Guía completa para viajeros mayores activos. Consejos prácticos,
+              destinos culturales y turismo de naturaleza para mayores de 60
+              años. Planifica tu viaje en la tercera edad y explora sin límites.
             </p>
 
             {/* Search Input */}

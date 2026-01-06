@@ -1,54 +1,24 @@
-'use client';
+import type { Metadata } from 'next';
+import { generateSEOMetadata } from '@/lib/seo-config';
+import NewsPageClient from './NewsPageClient';
 
-import React from 'react';
-import NewsSection from './_components/NewsSection';
-import { useNewsArticles } from './hooks/useNewsArticles';
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Noticias de Viajes para Mayores de 60 | Turismo Senior',
+  description:
+    'Mantente informado sobre las últimas noticias de turismo para mayores de 60 años. Destinos accesibles, tendencias de viaje cultural y novedades para viajeros seniors activos.',
+  url: '/news',
+  type: 'website',
+  tags: [
+    'noticias viajes mayores',
+    'turismo senior',
+    'viajes para mayores de 60',
+    'destinos accesibles',
+    'turismo cultural senior',
+  ],
+});
 
 const NewsPage = () => {
-  const { articles, categories, loading, error } = useNewsArticles();
-
-  // Show loading state
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gray-50">
-        <div className="flex items-center justify-center py-20">
-          <div className="text-center">
-            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-[#E36E4A]"></div>
-            <p className="mt-4 text-gray-600">Cargando noticias...</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  // Show error state
-  if (error) {
-    return (
-      <div className="min-h-screen bg-gray-50">
-        <div className="flex items-center justify-center py-20">
-          <div className="text-center">
-            <div className="text-red-500 text-5xl mb-4">⚠️</div>
-            <h3 className="text-xl font-semibold text-gray-800 mb-2">
-              Error al cargar noticias
-            </h3>
-            <p className="text-gray-600">{error}</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="min-h-screen bg-gray-50">
-      <NewsSection
-        articles={articles}
-        categories={categories}
-        showHero={true}
-        articlesPerPage={9}
-        enableSearch={true}
-      />
-    </div>
-  );
+  return <NewsPageClient />;
 };
 
 export default NewsPage;

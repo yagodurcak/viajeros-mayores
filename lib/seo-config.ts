@@ -39,6 +39,8 @@ export const generateSEOMetadata = (config: SEOConfig): Metadata => {
   return {
     title: fullTitle,
     description,
+    keywords: tags?.join(', ') || undefined,
+    authors: author ? [{ name: author }] : undefined,
     openGraph: {
       title: fullTitle,
       description,
@@ -52,7 +54,7 @@ export const generateSEOMetadata = (config: SEOConfig): Metadata => {
           alt: title,
         },
       ],
-      locale: 'es_AR',
+      locale: 'es_ES',
       type,
       ...(type === 'article' && {
         publishedTime,
@@ -71,15 +73,36 @@ export const generateSEOMetadata = (config: SEOConfig): Metadata => {
     alternates: {
       canonical: fullUrl,
     },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
   };
 };
 
-// Metadata por defecto para el sitio
+// Metadata por defecto para el sitio - Optimizado con keywords prioritarias
 export const defaultMetadata: Metadata = generateSEOMetadata({
-  title: 'Viajeros Mayores',
+  title:
+    'Viajeros Mayores: Viajes Culturales y Consejos para Mayores de 60 Años',
   description:
-    'Encuentra los mejores hoteles accesibles, destinos y consejos de viaje para adultos mayores. Viaja sin límites con Viajeros Mayores.',
+    'Guía completa para viajar después de los 60 años. Consejos prácticos, destinos culturales, turismo de naturaleza y senderismo para adultos mayores activos. Descubre cómo planificar tu viaje en la tercera edad.',
   image: defaultImage,
   url: baseUrl,
   type: 'website',
+  tags: [
+    'viajar después de los 60',
+    'viajes para mayores de 60 años',
+    'consejos para viajar en la tercera edad',
+    'viajes culturales para mayores',
+    'turismo senior',
+    'destinos para personas mayores',
+    'planificar viaje tercera edad',
+  ],
 });
