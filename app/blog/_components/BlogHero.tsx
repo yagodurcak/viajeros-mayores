@@ -21,11 +21,12 @@ const BlogHero: React.FC<BlogHeroProps> = ({
     <section className="relative bg-gradient-to-r from-[#E36E4A] to-[#F4916F] text-white py-20 px-6">
       <div className="relative z-10 max-w-6xl mx-auto text-center">
         <h1 className="text-5xl font-bold mb-4 font-alata">
-          Viajeros Mayores Blog
+          Consejos para Viajar en la Tercera Edad
         </h1>
         <p className="text-xl mb-8 font-light opacity-90">
-          Descubre historias, consejos y guías sobre turismo accesible para
-          todos
+          Guías prácticas, destinos culturales y consejos para viajeros mayores
+          de 60 años. Aprende a planificar tu viaje y disfruta de experiencias
+          enriquecedoras.
         </p>
 
         {/* Search bar */}

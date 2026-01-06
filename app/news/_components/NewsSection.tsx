@@ -68,10 +68,11 @@ const NewsSection: React.FC<NewsSectionProps> = ({
         <section className="relative bg-gradient-to-r from-[#E36E4A] to-[#F4916F] text-white py-20 px-6">
           <div className="relative z-10 max-w-6xl mx-auto text-center">
             <h1 className="text-5xl font-bold mb-4 font-alata">
-              Viajeros Mayores News
+              Noticias de Viajes para Mayores de 60
             </h1>
             <p className="text-xl mb-8 font-light opacity-90">
-              Noticias importantes para personas con movilidad reducida.
+              Últimas noticias sobre turismo cultural, destinos accesibles y
+              consejos para viajeros mayores activos.
             </p>
 
             {/* Search bar */}

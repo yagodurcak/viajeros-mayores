@@ -11,16 +11,17 @@ const MissionSection: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
           <div className="flex flex-col justify-center">
             <h3 className="text-4xl font-bold text-gray-800 mb-6 font-alata">
-              Nuestra Misión y Valores
+              Viajar Después de los 60: Nuestra Misión
             </h3>
             <p className="text-lg text-gray-700 mb-8 font-light leading-relaxed">
-              Entendemos que para muchas personas, recorrer largas o cortas
-              distancias, subir escaleras o caminar cuesta arriba puede ser un
-              desafío significativo. Nuestro objetivo es proporcionar
-              información práctica y accesible, y crear una comunidad de apoyo
-              donde podamos compartir experiencias y soluciones. Queremos que
-              sigas disfrutando de lo que amas: viajar, explorar y vivir la vida
-              al máximo.
+              Creemos que viajar después de los 60 años puede ser una de las
+              experiencias más enriquecedoras de la vida. Nuestro objetivo es
+              proporcionar consejos prácticos, información sobre destinos
+              culturales accesibles y crear una comunidad de apoyo para
+              viajeros mayores activos. Queremos ayudarte a planificar tu viaje
+              en la tercera edad con confianza, disfrutando de experiencias
+              culturales, turismo de naturaleza y exploración urbana adaptada a
+              tu ritmo.
             </p>
             <div className="space-y-6">
               {missionValues.map((value) => (
@@ -45,7 +46,7 @@ const MissionSection: React.FC = () => {
             <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-100 h-full">
               <Image
                 src="/images/ancianosmapa.png"
-                alt="Nuestra misión de turismo accesible"
+                alt="Viajeros mayores de 60 años planificando viajes culturales y destinos accesibles"
                 fill
                 className="object-cover object-center"
                 priority={false}
