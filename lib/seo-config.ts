@@ -17,6 +17,7 @@ const baseUrl =
   process.env.NEXT_PUBLIC_SITE_URL || 'https://viajerosmasayores.com';
 const siteName = 'Viajeros Mayores';
 const defaultImage = `${baseUrl}/images/logo.png`;
+const defaultFaviconPath = '/images/iconfav.png';
 
 export const generateSEOMetadata = (config: SEOConfig): Metadata => {
   const {
@@ -50,6 +51,11 @@ export const generateSEOMetadata = (config: SEOConfig): Metadata => {
   return {
     title: fullTitle,
     description: optimizedDescription,
+    icons: {
+      icon: [{ url: defaultFaviconPath, type: 'image/png' }],
+      shortcut: [{ url: defaultFaviconPath, type: 'image/png' }],
+      apple: [{ url: defaultFaviconPath, type: 'image/png' }],
+    },
     keywords: tags?.join(', ') || undefined,
     authors: author ? [{ name: author }] : undefined,
     openGraph: {
