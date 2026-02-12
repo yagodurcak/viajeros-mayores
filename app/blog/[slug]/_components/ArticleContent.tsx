@@ -8,7 +8,35 @@ import ArticleShare from './ArticleShare';
 import ArticleComments from './ArticleComments';
 import { GuideCta } from './GuideCta';
 
-const GUIDE_TOKEN = 'guía-descargable';
+/**
+ * Parsea si el párrafo es un bloque de guía descargable y devuelve la clave.
+ * Formatos aceptados (en el content del post en Supabase):
+ * - "guía-descargable" → guía por defecto
+ * - "guía-descargable:clave" → ej. "guía-descargable:consejos-aeropuerto"
+ * - "guía-descargable (clave)" → ej. "guía-descargable (consejos-aeropuerto)"
+ * Retorna null si no es un bloque de guía, 'default' o la clave.
+ */
+function parseGuideBlockKey(paragraphText: string): string | null {
+  const t = paragraphText.trim();
+  const normalized = t
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/\s/g, '');
+
+  if (normalized === 'guia-descargable') return 'default';
+  if (normalized.startsWith('guia-descargable:')) {
+    const key = normalized.slice('guia-descargable:'.length).trim();
+    return key || 'default';
+  }
+  if (normalized.startsWith('guia-descargable(') && normalized.includes(')')) {
+    const start = 'guia-descargable('.length;
+    const end = normalized.indexOf(')');
+    const key = normalized.slice(start, end).trim();
+    return key || 'default';
+  }
+  return null;
+}
 
 interface ArticleContentProps {
   content: string;
@@ -83,15 +111,16 @@ const ArticleContent: React.FC<ArticleContentProps> = ({
                 ? children.trim()
                 : '';
 
-            // más tolerante (por espacios / saltos)
-            const normalized = text
-              .toLowerCase()
-              .normalize('NFD')
-              .replace(/[\u0300-\u036f]/g, '')
-              .replace(/\s/g, '');
-
-            if (normalized === 'guia-descargable') {
-              return <GuideCta postSlug={slug} />;
+            // Detecta bloque de guía descargable (viene del content de Supabase).
+            // Formatos: "guía-descargable" | "guía-descargable:clave" | "guía-descargable (clave)"
+            const guideKey = parseGuideBlockKey(text);
+            if (guideKey !== null) {
+              return (
+                <GuideCta
+                  postSlug={slug}
+                  guideKey={guideKey === 'default' ? undefined : guideKey}
+                />
+              );
             }
 
             return (

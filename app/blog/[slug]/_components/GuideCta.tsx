@@ -2,7 +2,22 @@
 
 import { useState } from 'react';
 
-export function GuideCta({ postSlug }: { postSlug?: string }) {
+export type GuideCtaProps = {
+  postSlug?: string;
+  /** Clave de la guía (debe existir en lib/guide-config.ts). Si no se pasa, se usa la guía por defecto. */
+  guideKey?: string;
+  /** Título del bloque (opcional) */
+  title?: string;
+  /** Descripción corta (opcional) */
+  description?: string;
+};
+
+export function GuideCta({
+  postSlug,
+  guideKey,
+  title = 'Guía gratuita',
+  description = 'Te la enviamos por mail para que la tengas a mano antes de viajar.',
+}: GuideCtaProps) {
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
@@ -18,7 +33,7 @@ export function GuideCta({ postSlug }: { postSlug?: string }) {
     const res = await fetch('/api/guide-download', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, name, postSlug }),
+      body: JSON.stringify({ email, name, postSlug, guideKey }),
     });
 
     setLoading(false);
@@ -37,8 +52,7 @@ export function GuideCta({ postSlug }: { postSlug?: string }) {
       {/* CTA block */}
       <div className="not-prose my-6 rounded-2xl border border-orange-100 bg-orange-50 p-5">
         <p className="text-sm text-gray-700">
-          📘 <span className="font-semibold">Guía gratuita:</span> beneficios
-          ocultos para adultos mayores al viajar
+          📘 <span className="font-semibold">{title}</span>
         </p>
 
         <div className="mt-4">
@@ -50,9 +64,7 @@ export function GuideCta({ postSlug }: { postSlug?: string }) {
           </button>
         </div>
 
-        <p className="mt-3 text-xs text-gray-600">
-          Te la enviamos por mail para que la tengas a mano antes de viajar.
-        </p>
+        <p className="mt-3 text-xs text-gray-600">{description}</p>
       </div>
 
       {/* Modal */}
