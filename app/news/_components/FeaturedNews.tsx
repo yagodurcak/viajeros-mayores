@@ -1,13 +1,14 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
 import type { NewsArticle } from '@/types/news';
 import {
   getCategoryColor,
   getCategoryLabel,
   formatBlogDate,
 } from '@/lib/blog-utils';
+import { usePremiumModal } from '@/context/PremiumModalContext';
+import { Sparkles } from 'lucide-react';
 
 interface FeaturedNewsProps {
   articles: NewsArticle[];
@@ -20,6 +21,7 @@ const FeaturedNews: React.FC<FeaturedNewsProps> = ({
   title = 'Noticias Destacadas',
   backgroundColor = 'bg-gray-50',
 }) => {
+  const { openPremiumModal } = usePremiumModal();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -84,10 +86,11 @@ const FeaturedNews: React.FC<FeaturedNewsProps> = ({
               }`}
             >
               {currentArticles.map((article) => (
-                <Link
+                <button
                   key={article.id}
-                  href={`/news/${article.slug}`}
-                  className="group relative h-96 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer block"
+                  type="button"
+                  onClick={() => openPremiumModal(`/news/${article.slug}`)}
+                  className="group relative h-96 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer block w-full text-left"
                 >
                   {/* Background image */}
                   <div
@@ -97,6 +100,14 @@ const FeaturedNews: React.FC<FeaturedNewsProps> = ({
 
                   {/* Overlay gradient */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+
+                  {/* Premium badge */}
+                  {article.featured && (
+                    <div className="absolute top-3 right-3 z-10 inline-flex items-center gap-1 px-2 py-1 rounded-full bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-semibold shadow-md">
+                      <Sparkles className="w-3.5 h-3.5" />
+                      <span>Premium</span>
+                    </div>
+                  )}
 
                   {/* Content */}
                   <div className="relative h-full flex flex-col justify-end p-6 text-white">
@@ -126,7 +137,7 @@ const FeaturedNews: React.FC<FeaturedNewsProps> = ({
                       <span>{article.readTime} min de lectura</span>
                     </div>
                   </div>
-                </Link>
+                </button>
               ))}
             </div>
           </div>

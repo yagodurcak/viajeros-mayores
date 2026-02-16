@@ -4,7 +4,6 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 export default function LoginPage() {
-  const supabase = createClient();
   const router = useRouter();
 
   const [email, setEmail] = useState('');
@@ -14,23 +13,19 @@ export default function LoginPage() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Escuchar cambios en la autenticación
+    const supabase = createClient();
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === 'SIGNED_IN' && session) {
-        // Refrescar la ruta para actualizar el Server Component (layout)
         router.refresh();
-        // Redirigir a la página principal
         router.push('/');
       }
     });
-
-    // Limpiar la suscripción cuando el componente se desmonte
     return () => {
       subscription.unsubscribe();
     };
-  }, [supabase, router]);
+  }, [router]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,6 +33,7 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
+      const supabase = createClient();
       const { error: signInError } = await supabase.auth.signInWithPassword({
         email,
         password,
@@ -60,6 +56,7 @@ export default function LoginPage() {
   const handleGoogleLogin = async () => {
     setError(null);
     try {
+      const supabase = createClient();
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {

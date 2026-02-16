@@ -3,16 +3,16 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { usePremiumModal } from '@/context/PremiumModalContext';
 
 const Hero: React.FC = () => {
-  const router = useRouter();
+  const { openPremiumModal } = usePremiumModal();
   const [searchQuery, setSearchQuery] = useState('');
   const [isFocused, setIsFocused] = useState(false);
   const features = [
     {
       icon: '🤖',
-      title: 'Explorar Destinos con IA',
+      title: 'Destinos con IA',
       description: 'Analiza las características de un destino',
       link: '/search',
     },
@@ -70,7 +70,7 @@ const Hero: React.FC = () => {
               onSubmit={(e) => {
                 e.preventDefault();
                 if (searchQuery.trim()) {
-                  router.push(
+                  openPremiumModal(
                     `/search?q=${encodeURIComponent(searchQuery.trim())}`
                   );
                 }
@@ -104,30 +104,46 @@ const Hero: React.FC = () => {
                 disabled={!searchQuery.trim()}
                 className="w-full md:w-auto flex-shrink-0 rounded-lg bg-gradient-to-r from-[#E36E4A] to-[#D45A36] px-6 py-3 font-bold text-white shadow-lg transition-all hover:from-[#D45A36] hover:to-[#C04A26] hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:from-[#E36E4A] disabled:hover:to-[#D45A36] md:px-8 md:py-4 text-sm sm:text-base"
               >
-                Explorar
+                Buscar destinos
               </button>
             </form>
           </div>
 
           {/* Right Column - Feature Cards */}
           <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-3 sm:gap-4">
-            {features.map((feature, index) => (
-              <Link
-                key={index}
-                href={feature.link}
-                className="group backdrop-blur-none bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-              >
-                <div className="text-3xl sm:text-4xl mb-2 sm:mb-3 transform group-hover:scale-110 transition-transform duration-300">
-                  {feature.icon}
-                </div>
-                <h3 className="text-base sm:text-lg font-bold mb-1 sm:mb-2 text-white">
-                  {feature.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-white/80 leading-relaxed">
-                  {feature.description}
-                </p>
-              </Link>
-            ))}
+            {features.map((feature, index) => {
+              const isPremiumLink =
+                feature.link === '/search' || feature.link === '/maps';
+              const content = (
+                <>
+                  <div className="text-3xl sm:text-4xl mb-2 sm:mb-3 transform group-hover:scale-110 transition-transform duration-300">
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-base sm:text-lg font-bold mb-1 sm:mb-2 text-white">
+                    {feature.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-white/80 leading-relaxed">
+                    {feature.description}
+                  </p>
+                </>
+              );
+              const cardClass =
+                'group backdrop-blur-none bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 transition-all duration-300 hover:scale-105 hover:shadow-2xl';
+              return isPremiumLink ? (
+                <button
+                  key={index}
+                  type="button"
+                  onClick={() => openPremiumModal(feature.link)}
+                  className={`w-full text-left ${cardClass}`}
+                >
+                  {content}
+                </button>
+              ) : (
+                <Link key={index} href={feature.link} className={cardClass}>
+                  {content}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </div>

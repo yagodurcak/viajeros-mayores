@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useBlogPost } from '../../hooks/useBlogPost';
+import { usePremiumModal } from '@/context/PremiumModalContext';
 import ArticleHeader from './ArticleHeader';
 import ArticleContent from './ArticleContent';
 import FeaturedArticles from '../../_components/FeaturedArticles';
@@ -12,7 +13,14 @@ import ArticleBreadcrumb from './ArticleBreadcrumb';
 export const BlogPostClient = () => {
   const params = useParams();
   const slug = params.slug as string;
+  const { openPremiumModal } = usePremiumModal();
   const { post, relatedPosts, loading, error } = useBlogPost(slug);
+
+  useEffect(() => {
+    if (post?.featured) {
+      openPremiumModal(`/blog/${post.slug}`);
+    }
+  }, [post?.slug, post?.featured, openPremiumModal]);
 
   // Filter and prepare related articles similar to main blog page
   const filteredRelatedPosts = useMemo(() => {
@@ -78,6 +86,11 @@ export const BlogPostClient = () => {
         </div>
       </div>
     );
+  }
+
+  // Artículo destacado: mostrar modal premium y no el contenido
+  if (post.featured) {
+    return <div className="min-h-screen bg-gray-50" />;
   }
 
   return (

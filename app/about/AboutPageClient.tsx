@@ -1,10 +1,33 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import type { Session } from '@supabase/supabase-js';
 import Image from 'next/image';
 import Link from 'next/link';
+import { createClient } from '@/lib/supabase/client';
 
 const AboutPageClient = () => {
+  const [session, setSession] = useState<Session | null>(null);
+
+  useEffect(() => {
+    const supabase = createClient();
+
+    const getInitialSession = async () => {
+      const {
+        data: { session: currentSession },
+      } = await supabase.auth.getSession();
+      setSession(currentSession);
+    };
+    getInitialSession();
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_, currentSession) => {
+      setSession(currentSession);
+    });
+    return () => subscription.unsubscribe();
+  }, []);
+
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -144,26 +167,28 @@ const AboutPageClient = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 px-6 bg-gradient-to-r from-[#E36E4A] to-[#F4916F]">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold text-white mb-6 font-alata">
-            ¿Listo para Comenzar tu Viaje?
-          </h2>
-          <p className="text-xl text-white/95 mb-8 leading-relaxed">
-            Únete a miles de viajeros mayores de 60 años que confían en Viajeros
-            Mayores para ayudarles a explorar el mundo con confianza y comodidad.
-          </p>
-          <div className="flex justify-center">
-            <Link
-              href="/signup"
-              className="px-12 py-4 bg-white text-[#E36E4A] rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors shadow-lg"
-            >
-              Crear Cuenta
-            </Link>
+      {/* CTA Section - solo para usuarios no registrados */}
+      {!session && (
+        <section className="py-20 px-6 bg-gradient-to-r from-[#E36E4A] to-[#F4916F]">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-4xl font-bold text-white mb-6 font-alata">
+              ¿Listo para Comenzar tu Viaje?
+            </h2>
+            <p className="text-xl text-white/95 mb-8 leading-relaxed">
+              Únete a miles de viajeros mayores de 60 años que confían en Viajeros
+              Mayores para ayudarles a explorar el mundo con confianza y comodidad.
+            </p>
+            <div className="flex justify-center">
+              <Link
+                href="/signup"
+                className="px-12 py-4 bg-white text-[#E36E4A] rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors shadow-lg"
+              >
+                Crear Cuenta
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </div>
   );
 };

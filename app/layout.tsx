@@ -1,14 +1,12 @@
 import type { Metadata } from 'next';
 import { Alata, Nunito_Sans } from 'next/font/google';
 import './globals.css';
-import Header from '@/components/Header/Header';
-import Footer from '@/components/Footer/Footer';
+import { LayoutWithPremiumModal } from '@/components/LayoutWithPremiumModal/LayoutWithPremiumModal';
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { defaultMetadata } from '@/lib/seo-config';
 import { GoogleAnalytics } from '@/components/Analytics/GoogleAnalytics';
-import { LeadCaptureModal } from '@/components/LeadCaptureModal/LeadCaptureModal';
 
 const alata = Alata({
   weight: '400',
@@ -131,11 +129,8 @@ export default async function RootLayout({
       </head>
       <body className={`${alata.variable} ${nunitoSans.variable}`}>
         {gaId && <GoogleAnalytics gaId={gaId} />}
-        <Header session={session} />
-        {children}
-        <LeadCaptureModal />
+        <LayoutWithPremiumModal session={session}>{children}</LayoutWithPremiumModal>
         <SpeedInsights />
-        <Footer />
       </body>
     </html>
   );

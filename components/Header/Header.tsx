@@ -1,9 +1,11 @@
 'use client';
 
+import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import type { Session } from '@supabase/supabase-js';
 import { createClient } from '@/lib/supabase/client';
+import { usePremiumModal } from '@/context/PremiumModalContext';
 import Avatar from '@/components/Avatar/Avatar';
 import Image from 'next/image';
 
@@ -14,17 +16,17 @@ interface HeaderProps {
 const Header = ({ session: initialSession }: HeaderProps) => {
   const router = useRouter();
   const pathname = usePathname();
-  const supabase = createClient();
+  const { openPremiumModal } = usePremiumModal();
   const [session, setSession] = useState<Session | null>(initialSession);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    // Sincronizar el estado de la sesión cuando cambie
     setSession(initialSession);
   }, [initialSession]);
 
   useEffect(() => {
+    const supabase = createClient();
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event, currentSession) => {
@@ -36,7 +38,7 @@ const Header = ({ session: initialSession }: HeaderProps) => {
     return () => {
       subscription.unsubscribe();
     };
-  }, [supabase, router]);
+  }, [router]);
 
   // Cerrar dropdown al hacer clic fuera
   useEffect(() => {
@@ -90,6 +92,7 @@ const Header = ({ session: initialSession }: HeaderProps) => {
   };
 
   const handleLogout = async () => {
+    const supabase = createClient();
     await supabase.auth.signOut();
     setIsDropdownOpen(false);
     router.push('/');
@@ -126,10 +129,7 @@ const Header = ({ session: initialSession }: HeaderProps) => {
   return (
     <header className="bg-gray-50 text-gray-800 py-4 px-6 shadow-sm border-b border-gray-100">
       <div className="mx-auto max-w-6xl flex items-center justify-between">
-        <div
-          className="flex items-center gap-3 cursor-pointer"
-          onClick={() => router.push('/')}
-        >
+        <Link href="/" className="flex items-center gap-3">
           <div className="relative w-52 h-14">
             <Image
               src="/images/logo.png"
@@ -138,7 +138,7 @@ const Header = ({ session: initialSession }: HeaderProps) => {
               className="object-contain"
             />
           </div>
-        </div>
+        </Link>
 
         {/* Botón Hamburguesa - Solo visible en móvil */}
         <button
@@ -172,35 +172,37 @@ const Header = ({ session: initialSession }: HeaderProps) => {
 
         <nav className="hidden md:flex gap-1">
           <button
+            type="button"
             className={getNavButtonClass('/search')}
-            onClick={() => router.push('/search')}
+            onClick={() => openPremiumModal('/search')}
           >
-            Explorar
+            Destinos con IA
           </button>
           <button
+            type="button"
             className={getNavButtonClass('/maps')}
-            onClick={() => router.push('/maps')}
+            onClick={() => openPremiumModal('/maps')}
           >
             Analizador de pendientes
           </button>
-          <button
+          <Link
+            href="/news"
             className={getNavButtonClass('/news')}
-            onClick={() => router.push('/news')}
           >
             Noticias
-          </button>
-          <button
+          </Link>
+          <Link
+            href="/blog"
             className={getNavButtonClass('/blog')}
-            onClick={() => router.push('/blog')}
           >
             Blog
-          </button>
-          <button
-            className={getNavButtonClass('/about-us')}
-            onClick={() => router.push('/about')}
+          </Link>
+          <Link
+            href="/about"
+            className={getNavButtonClass('/about')}
           >
             Nosotros
-          </button>
+          </Link>
         </nav>
 
         <div className="hidden md:flex items-center gap-4">
@@ -303,60 +305,54 @@ const Header = ({ session: initialSession }: HeaderProps) => {
       {isMobileMenuOpen && (
         <div className="md:hidden border-t border-gray-200 bg-white shadow-lg">
           <nav className="flex flex-col p-4 space-y-2">
-            <button
-              className={`${getNavButtonClass('/')} w-full text-left`}
-              onClick={() => {
-                router.push('/');
-                setIsMobileMenuOpen(false);
-              }}
+            <Link
+              href="/"
+              className={`${getNavButtonClass('/')} w-full text-left block`}
+              onClick={() => setIsMobileMenuOpen(false)}
             >
               Inicio
-            </button>
+            </Link>
             <button
+              type="button"
               className={`${getNavButtonClass('/search')} w-full text-left`}
               onClick={() => {
-                router.push('/search');
+                openPremiumModal('/search');
                 setIsMobileMenuOpen(false);
               }}
             >
-              Explorar
+              Destinos con IA
             </button>
             <button
+              type="button"
               className={`${getNavButtonClass('/maps')} w-full text-left`}
               onClick={() => {
-                router.push('/maps');
+                openPremiumModal('/maps');
                 setIsMobileMenuOpen(false);
               }}
             >
               Analizador de pendientes
             </button>
-            <button
-              className={`${getNavButtonClass('/news')} w-full text-left`}
-              onClick={() => {
-                router.push('/news');
-                setIsMobileMenuOpen(false);
-              }}
+            <Link
+              href="/news"
+              className={`${getNavButtonClass('/news')} w-full text-left block`}
+              onClick={() => setIsMobileMenuOpen(false)}
             >
               Noticias
-            </button>
-            <button
-              className={`${getNavButtonClass('/blog')} w-full text-left`}
-              onClick={() => {
-                router.push('/blog');
-                setIsMobileMenuOpen(false);
-              }}
+            </Link>
+            <Link
+              href="/blog"
+              className={`${getNavButtonClass('/blog')} w-full text-left block`}
+              onClick={() => setIsMobileMenuOpen(false)}
             >
               Blog
-            </button>
-            <button
-              className={`${getNavButtonClass('/about-us')} w-full text-left`}
-              onClick={() => {
-                router.push('/about');
-                setIsMobileMenuOpen(false);
-              }}
+            </Link>
+            <Link
+              href="/about"
+              className={`${getNavButtonClass('/about')} w-full text-left block`}
+              onClick={() => setIsMobileMenuOpen(false)}
             >
               Nosotros
-            </button>
+            </Link>
 
             {/* Separador */}
             <div className="border-t border-gray-200 my-2"></div>
