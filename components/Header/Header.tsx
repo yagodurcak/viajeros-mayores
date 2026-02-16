@@ -17,6 +17,8 @@ const Header = ({ session: initialSession }: HeaderProps) => {
   const supabase = createClient();
   const [session, setSession] = useState<Session | null>(initialSession);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isToolsDropdownOpen, setIsToolsDropdownOpen] = useState(false);
+  const [isToolsMobileExpanded, setIsToolsMobileExpanded] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -38,23 +40,26 @@ const Header = ({ session: initialSession }: HeaderProps) => {
     };
   }, [supabase, router]);
 
-  // Cerrar dropdown al hacer clic fuera
+  // Cerrar dropdowns al hacer clic fuera
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
       if (isDropdownOpen && !target.closest('.dropdown-container')) {
         setIsDropdownOpen(false);
       }
+      if (isToolsDropdownOpen && !target.closest('.tools-dropdown-container')) {
+        setIsToolsDropdownOpen(false);
+      }
     };
 
-    if (isDropdownOpen) {
+    if (isDropdownOpen || isToolsDropdownOpen) {
       document.addEventListener('click', handleClickOutside);
     }
 
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
-  }, [isDropdownOpen]);
+  }, [isDropdownOpen, isToolsDropdownOpen]);
 
   // Cerrar menú móvil cuando cambia la ruta
   useEffect(() => {
@@ -170,19 +175,58 @@ const Header = ({ session: initialSession }: HeaderProps) => {
           </svg>
         </button>
 
-        <nav className="hidden md:flex gap-1">
-          <button
-            className={getNavButtonClass('/search')}
-            onClick={() => router.push('/search')}
+        <nav className="hidden md:flex gap-1 items-center">
+          <div
+            className="relative tools-dropdown-container"
+            onMouseEnter={() => setIsToolsDropdownOpen(true)}
+            onMouseLeave={() => setIsToolsDropdownOpen(false)}
           >
-            Explorar
-          </button>
-          <button
-            className={getNavButtonClass('/maps')}
-            onClick={() => router.push('/maps')}
-          >
-            Analizador de pendientes
-          </button>
+            <button
+              type="button"
+              className={
+                pathname.startsWith('/search') || pathname.startsWith('/maps')
+                  ? 'px-3 py-2 rounded-lg bg-[#E36E4A] text-white font-medium transition-colors'
+                  : 'px-3 py-2 rounded-lg hover:text-[#E36E4A] hover:bg-gray-100 transition-colors font-medium text-gray-700'
+              }
+              onClick={() => setIsToolsDropdownOpen(!isToolsDropdownOpen)}
+              aria-expanded={isToolsDropdownOpen}
+              aria-haspopup="true"
+            >
+              Herramientas
+              <svg
+                className={`inline-block w-4 h-4 ml-1 align-middle transition-transform ${isToolsDropdownOpen ? 'rotate-180' : ''}`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            {isToolsDropdownOpen && (
+              <div className="absolute left-0 mt-1 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50 animate-fade-in">
+                <button
+                  type="button"
+                  onClick={() => {
+                    router.push('/search');
+                    setIsToolsDropdownOpen(false);
+                  }}
+                  className={`w-full text-left px-4 py-2.5 text-sm transition-colors ${pathname.startsWith('/search') ? 'bg-[#E36E4A]/10 text-[#E36E4A] font-medium' : 'text-gray-700 hover:bg-gray-50'}`}
+                >
+                  Destinos con IA
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    router.push('/maps');
+                    setIsToolsDropdownOpen(false);
+                  }}
+                  className={`w-full text-left px-4 py-2.5 text-sm transition-colors ${pathname.startsWith('/maps') ? 'bg-[#E36E4A]/10 text-[#E36E4A] font-medium' : 'text-gray-700 hover:bg-gray-50'}`}
+                >
+                  Analizador de pendientes
+                </button>
+              </div>
+            )}
+          </div>
           <button
             className={getNavButtonClass('/news')}
             onClick={() => router.push('/news')}
@@ -312,24 +356,50 @@ const Header = ({ session: initialSession }: HeaderProps) => {
             >
               Inicio
             </button>
-            <button
-              className={`${getNavButtonClass('/search')} w-full text-left`}
-              onClick={() => {
-                router.push('/search');
-                setIsMobileMenuOpen(false);
-              }}
-            >
-              Explorar
-            </button>
-            <button
-              className={`${getNavButtonClass('/maps')} w-full text-left`}
-              onClick={() => {
-                router.push('/maps');
-                setIsMobileMenuOpen(false);
-              }}
-            >
-              Analizador de pendientes
-            </button>
+            <div className="space-y-1">
+              <button
+                type="button"
+                className="w-full flex items-center justify-between px-3 py-2 rounded-lg hover:bg-gray-100 hover:text-[#E36E4A] transition-colors font-medium text-gray-700"
+                onClick={() => setIsToolsMobileExpanded(!isToolsMobileExpanded)}
+                aria-expanded={isToolsMobileExpanded}
+              >
+                Herramientas
+                <svg
+                  className={`w-4 h-4 transition-transform ${isToolsMobileExpanded ? 'rotate-180' : ''}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              {isToolsMobileExpanded && (
+                <div className="pl-4 space-y-1 border-l-2 border-gray-200 ml-2">
+                  <button
+                    type="button"
+                    className={`w-full text-left px-3 py-2 rounded-lg text-sm ${pathname.startsWith('/search') ? 'bg-[#E36E4A]/10 text-[#E36E4A] font-medium' : 'text-gray-600 hover:bg-gray-50'}`}
+                    onClick={() => {
+                      router.push('/search');
+                      setIsMobileMenuOpen(false);
+                      setIsToolsMobileExpanded(false);
+                    }}
+                  >
+                    Destinos con IA
+                  </button>
+                  <button
+                    type="button"
+                    className={`w-full text-left px-3 py-2 rounded-lg text-sm ${pathname.startsWith('/maps') ? 'bg-[#E36E4A]/10 text-[#E36E4A] font-medium' : 'text-gray-600 hover:bg-gray-50'}`}
+                    onClick={() => {
+                      router.push('/maps');
+                      setIsMobileMenuOpen(false);
+                      setIsToolsMobileExpanded(false);
+                    }}
+                  >
+                    Analizador de pendientes
+                  </button>
+                </div>
+              )}
+            </div>
             <button
               className={`${getNavButtonClass('/news')} w-full text-left`}
               onClick={() => {
