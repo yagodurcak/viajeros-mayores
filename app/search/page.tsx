@@ -1,16 +1,29 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
+
+const PROGRESS_STEPS = [
+  'Conectando con el agente de IA...',
+  'Analizando el destino...',
+  'Buscando información y consejos...',
+  'Preparando recomendaciones...',
+];
+
+const PROGRESS_MAX = 90;
+const PROGRESS_INTERVAL_MS = 180;
+const PROGRESS_INCREMENT = 5;
 
 const SearchPage = () => {
   const searchParams = useSearchParams();
   const [searchQuery, setSearchQuery] = useState('');
   const [isFocused, setIsFocused] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
   const [result, setResult] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const progressIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // Leer parámetro q de la URL y realizar búsqueda automática
   useEffect(() => {
@@ -24,6 +37,23 @@ const SearchPage = () => {
       return () => clearTimeout(timer);
     }
   }, [searchParams]);
+
+  // Barra de progreso que crece mientras carga (simulada hasta 90%; al terminar 100%)
+  useEffect(() => {
+    if (!isLoading) return;
+
+    setProgress(0);
+    progressIntervalRef.current = setInterval(() => {
+      setProgress((p) => (p >= PROGRESS_MAX ? p : p + PROGRESS_INCREMENT));
+    }, PROGRESS_INTERVAL_MS);
+
+    return () => {
+      if (progressIntervalRef.current) {
+        clearInterval(progressIntervalRef.current);
+        progressIntervalRef.current = null;
+      }
+    };
+  }, [isLoading]);
 
   const performSearch = async (query: string) => {
     if (!query.trim()) return;
@@ -55,6 +85,11 @@ const SearchPage = () => {
         err instanceof Error ? err.message : 'Error al buscar información'
       );
     } finally {
+      if (progressIntervalRef.current) {
+        clearInterval(progressIntervalRef.current);
+        progressIntervalRef.current = null;
+      }
+      setProgress(100);
       setIsLoading(false);
     }
   };
@@ -178,20 +213,67 @@ const SearchPage = () => {
 
       {/* Main Content */}
       <div className="mx-auto max-w-4xl px-4 py-12 md:py-16">
-        {/* Loading State */}
+        {/* Loading State - progreso que se va completando */}
         {isLoading && (
           <div className="mt-12 rounded-xl bg-white p-8 shadow-md">
             <div className="text-center">
-              <div className="mb-4 inline-block animate-spin rounded-full border-4 border-[#E36E4A] border-t-transparent h-12 w-12"></div>
               <h3 className="mb-2 text-xl font-semibold text-gray-800">
                 Buscando información sobre...
               </h3>
-              <p className="text-lg font-medium text-[#E36E4A]">
+              <p className="mb-6 text-lg font-medium text-[#E36E4A]">
                 {searchQuery}
               </p>
-              <p className="mt-4 text-sm text-gray-500">
-                Nuestro agente de IA está analizando el destino...
+
+              {/* Barra de progreso */}
+              <div className="mb-6 h-3 w-full overflow-hidden rounded-full bg-gray-200">
+                <div
+                  className="h-full rounded-full bg-gradient-to-r from-[#E36E4A] to-[#D45A36] transition-all duration-300 ease-out"
+                  style={{ width: `${progress}%` }}
+                />
+              </div>
+              <p className="mb-6 text-sm font-medium text-gray-600">
+                {progress}%
               </p>
+
+              {/* Pasos que se van completando */}
+              <ul className="space-y-3 text-left">
+                {PROGRESS_STEPS.map((label, index) => {
+                  const stepProgress = (index + 1) * (100 / PROGRESS_STEPS.length);
+                  const isDone = progress >= stepProgress;
+                  const isActive = progress >= index * (100 / PROGRESS_STEPS.length) && !isDone;
+                  return (
+                    <li
+                      key={label}
+                      className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-colors ${
+                        isDone
+                          ? 'bg-green-50 text-green-800'
+                          : isActive
+                            ? 'bg-orange-50 text-orange-800'
+                            : 'bg-gray-50 text-gray-400'
+                      }`}
+                    >
+                      {isDone ? (
+                        <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-green-500 text-white">
+                          <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </span>
+                      ) : isActive ? (
+                        <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center">
+                          <span className="h-4 w-4 animate-spin rounded-full border-2 border-[#E36E4A] border-t-transparent" />
+                        </span>
+                      ) : (
+                        <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-gray-200 text-xs font-medium text-gray-500">
+                          {index + 1}
+                        </span>
+                      )}
+                      <span className={`text-sm font-medium ${isDone ? 'line-through' : ''}`}>
+                        {label}
+                      </span>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
           </div>
         )}
