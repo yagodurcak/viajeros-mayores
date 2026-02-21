@@ -3,11 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { usePremiumModal } from '@/context/PremiumModalContext';
-
 const Footer: React.FC = () => {
-  const { openPremiumModal } = usePremiumModal();
-
   return (
     <footer className="bg-gray-100 py-12 px-6">
       <div className="max-w-6xl mx-auto">
@@ -58,22 +54,20 @@ const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => openPremiumModal('/search')}
-                  className="text-gray-600 hover:text-[#E36E4A] transition-colors text-left"
+                <Link
+                  href="/search"
+                  className="text-gray-600 hover:text-[#E36E4A] transition-colors"
                 >
                   Destinos con IA
-                </button>
+                </Link>
               </li>
               <li>
-                <button
-                  type="button"
-                  onClick={() => openPremiumModal('/maps')}
-                  className="text-gray-600 hover:text-[#E36E4A] transition-colors text-left"
+                <Link
+                  href="/maps"
+                  className="text-gray-600 hover:text-[#E36E4A] transition-colors"
                 >
                   Analizador de pendientes
-                </button>
+                </Link>
               </li>
               <li>
                 <Link

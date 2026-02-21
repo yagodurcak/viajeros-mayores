@@ -4,7 +4,6 @@ import type { Session } from '@supabase/supabase-js';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import { LeadCaptureModal } from '@/components/LeadCaptureModal/LeadCaptureModal';
-import { PremiumModalProvider } from '@/context/PremiumModalContext';
 
 interface LayoutWithPremiumModalProps {
   children: React.ReactNode;
@@ -16,11 +15,11 @@ export const LayoutWithPremiumModal = ({
   session,
 }: LayoutWithPremiumModalProps) => {
   return (
-    <PremiumModalProvider>
+    <>
       <Header session={session} />
       {children}
       <LeadCaptureModal />
       <Footer />
-    </PremiumModalProvider>
+    </>
   );
 };

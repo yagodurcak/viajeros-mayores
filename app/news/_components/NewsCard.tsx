@@ -9,7 +9,6 @@ import {
   formatBlogDate,
 } from '@/lib/blog-utils';
 import Avatar from '@/components/Avatar/Avatar';
-import { usePremiumModal } from '@/context/PremiumModalContext';
 import { Sparkles } from 'lucide-react';
 
 interface NewsCardProps {
@@ -17,7 +16,6 @@ interface NewsCardProps {
 }
 
 const NewsCard: React.FC<NewsCardProps> = ({ article }) => {
-  const { openPremiumModal } = usePremiumModal();
   const articleUrl = `/news/${article.slug}`;
   const isFeatured = article.featured === true;
 
@@ -31,7 +29,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ article }) => {
         {isFeatured && (
           <div className="absolute top-2 right-2 inline-flex items-center gap-1 px-2 py-1 rounded-full bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-semibold shadow-md">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Premium</span>
+            <span>Destacado</span>
           </div>
         )}
       </div>
@@ -65,20 +63,6 @@ const NewsCard: React.FC<NewsCardProps> = ({ article }) => {
       </div>
     </>
   );
-
-  if (isFeatured) {
-    return (
-      <button
-        type="button"
-        onClick={() => openPremiumModal(articleUrl)}
-        className="block h-full w-full text-left"
-      >
-        <article className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow cursor-pointer group h-full flex flex-col">
-          {cardContent}
-        </article>
-      </button>
-    );
-  }
 
   return (
     <Link href={articleUrl} className="block h-full">

@@ -1,10 +1,9 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useNewsArticle } from '../../hooks/useNewsArticle';
-import { usePremiumModal } from '@/context/PremiumModalContext';
 import ArticleHeader from '@/app/blog/[slug]/_components/ArticleHeader';
 import NewsContent from './NewsContent';
 import NewsBreadcrumb from './NewsBreadcrumb';
@@ -13,21 +12,10 @@ import NewsComments from './NewsComments';
 export const NewsArticleClient = () => {
   const params = useParams();
   const slug = params.slug as string;
-  const { openPremiumModal } = usePremiumModal();
   const { article, loading, error } = useNewsArticle(slug);
 
-  useEffect(() => {
-    if (article?.featured) {
-      openPremiumModal(`/news/${article.slug}`);
-    }
-  }, [article?.slug, article?.featured, openPremiumModal]);
-
-  // Convert NewsArticle to BlogArticle for compatibility (header only, keep real featured for gate)
   const blogArticle = article
-    ? {
-        ...article,
-        featured: false,
-      }
+    ? { ...article, featured: article.featured ?? false }
     : null;
 
   // Loading state
@@ -85,11 +73,6 @@ export const NewsArticleClient = () => {
         </div>
       </div>
     );
-  }
-
-  // Noticia destacada: mostrar modal premium y no el contenido
-  if (article.featured) {
-    return <div className="min-h-screen bg-gray-50" />;
   }
 
   return (
