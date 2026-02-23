@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import { getOptimizedImageUrl } from '@/lib/utils';
 import type { BlogArticle } from '@/types/blog';
 import type { NewsArticle } from '@/types/news';
 
@@ -45,7 +46,9 @@ export const getBlogPostBySlug = async (
       },
       createdAt: data.created_at,
       readTime: 5,
-      imageUrl: data.cover_image_url || '/images/logo.png',
+      imageUrl: getOptimizedImageUrl(
+        data.cover_image_url || '/images/logo.png'
+      ),
       featured: data.is_featured || false,
     };
   } catch (error) {
@@ -92,7 +95,9 @@ export const getNewsArticleBySlug = async (
       },
       createdAt: data.created_at,
       readTime: 5,
-      imageUrl: data.cover_image_url || '/images/logo.png',
+      imageUrl: getOptimizedImageUrl(
+        data.cover_image_url || '/images/logo.png'
+      ),
       featured: data.is_featured || false,
     };
   } catch (error) {

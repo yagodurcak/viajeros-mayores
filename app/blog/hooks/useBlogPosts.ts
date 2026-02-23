@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
+import { getOptimizedImageUrl } from '@/lib/utils';
 import type { BlogArticle } from '@/types/blog';
 import type { Database } from '@/types/database';
 
@@ -63,7 +64,7 @@ export function useBlogPosts() {
             },
             createdAt: post.created_at,
             readTime: calculateReadTime(post.content),
-            imageUrl: post.cover_image_url,
+            imageUrl: getOptimizedImageUrl(post.cover_image_url || ''),
             featured: post.is_featured,
           })
         );
