@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
+import { getOptimizedImageUrl } from '@/lib/utils';
 import type { NewsArticle } from '@/types/news';
 import type { Database } from '@/types/database';
 
@@ -79,8 +80,9 @@ export function useNewsArticles() {
               },
               createdAt: article.created_at,
               readTime: calculateReadTime(article.content),
-              imageUrl:
-                article.cover_image_url || '/images/placeholder-news.jpg',
+              imageUrl: getOptimizedImageUrl(
+                article.cover_image_url || '/images/placeholder-news.jpg'
+              ),
               featured: article.is_featured || false,
             };
           }

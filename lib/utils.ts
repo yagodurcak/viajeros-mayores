@@ -37,3 +37,24 @@ export function truncateText(text: string, maxLength: number): string {
   if (text.length <= maxLength) return text;
   return text.substring(0, maxLength).trim() + '...';
 }
+
+/**
+ * Cloudinary URL pattern: base + path after "image/upload/"
+ * We insert quality/format params after "image/upload/" to reduce bandwidth and credits.
+ */
+const CLOUDINARY_UPLOAD_REGEX =
+  /(https?:\/\/res\.cloudinary\.com\/[^/]+\/image\/upload\/)(.*)/;
+
+/**
+ * Optimize image URL for Cloudinary: lower quality and auto format to reduce credit usage.
+ * Only modifies Cloudinary URLs; other URLs are returned unchanged.
+ * @param url - Original image URL (e.g. from cover_image_url)
+ * @returns URL with q_auto:low,f_auto when Cloudinary, otherwise unchanged
+ */
+export const getOptimizedImageUrl = (url: string): string => {
+  if (!url || typeof url !== 'string') return url;
+  const match = url.match(CLOUDINARY_UPLOAD_REGEX);
+  if (!match) return url;
+  const [, prefix, rest] = match;
+  return `${prefix}q_auto:low,f_auto/${rest}`;
+};

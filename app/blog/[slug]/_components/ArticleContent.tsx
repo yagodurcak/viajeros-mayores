@@ -4,6 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { getOptimizedImageUrl } from '@/lib/utils';
 import ArticleShare from './ArticleShare';
 import ArticleComments from './ArticleComments';
 import { GuideCta } from './GuideCta';
@@ -74,7 +75,7 @@ const ArticleContent: React.FC<ArticleContentProps> = ({
       {/* Cover Image */}
       <div className="mb-8 rounded-xl overflow-hidden relative w-full h-[300px] md:h-[400px] lg:h-[500px]">
         <Image
-          src={imageUrl}
+          src={getOptimizedImageUrl(imageUrl)}
           alt={imageAlt}
           fill
           className="object-cover"
@@ -154,6 +155,14 @@ const ArticleContent: React.FC<ArticleContentProps> = ({
             >
               {children}
             </a>
+          ),
+          img: ({ src, alt }) => (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={src ? getOptimizedImageUrl(src) : ''}
+              alt={alt || ''}
+              className="rounded-lg shadow-md my-4 w-full"
+            />
           ),
         }}
       >

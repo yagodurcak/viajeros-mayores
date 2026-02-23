@@ -3,6 +3,7 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { getOptimizedImageUrl } from '@/lib/utils';
 
 interface MarkdownPreviewProps {
   content: string;
@@ -73,7 +74,7 @@ const MarkdownPreview: React.FC<MarkdownPreviewProps> = ({ content }) => {
           img: ({ src, alt }) => (
             // eslint-disable-next-line @next/next/no-img-element
             <img
-              src={src}
+              src={src ? getOptimizedImageUrl(src) : ''}
               alt={alt || ''}
               className="rounded-lg shadow-md my-4 w-full"
             />
