@@ -36,7 +36,10 @@ export const LeadCaptureModal = () => {
     const res = await fetch('/api/lead-subscribe', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email.trim(), name: name.trim() || undefined }),
+      body: JSON.stringify({
+        email: email.trim(),
+        name: name.trim() || undefined,
+      }),
     });
 
     setLoading(false);
@@ -70,8 +73,12 @@ export const LeadCaptureModal = () => {
         {!success ? (
           <>
             <div className="flex items-start justify-between gap-2">
-              <h2 id="lead-modal-title" className="text-xl font-bold text-gray-900">
-                ¡Sumate a nuestra comunidad!
+              <h2
+                id="lead-modal-title"
+                className="text-xl font-bold text-gray-900"
+              >
+                Recibí de regalo la{' '}
+                <strong>Guía de descuentos en vuelos 2026</strong>! 🎉
               </h2>
               <button
                 type="button"
@@ -83,8 +90,12 @@ export const LeadCaptureModal = () => {
               </button>
             </div>
             <p className="mt-2 text-sm text-gray-600">
-              Dejanos tu nombre y email y te enviaremos <strong>noticias</strong>,{' '}
-              <strong>consejos</strong>, <strong>beneficios</strong> y novedades para que no te pierdas nada.
+              Dejá tu email y suscribite a nuestro newsletter para recibir
+              novedades y noticias. De regalo te enviamos la{' '}
+              <strong>
+                Guía de descuentos en vuelos para viajeros mayores 2026
+              </strong>
+              .
             </p>
 
             <form onSubmit={handleSubmit} className="mt-5 grid gap-3">
@@ -117,7 +128,7 @@ export const LeadCaptureModal = () => {
                 disabled={loading}
                 className="rounded-xl bg-[#E36E4A] px-5 py-3 font-semibold text-white shadow-lg transition hover:bg-[#D45A36] disabled:opacity-60"
               >
-                {loading ? 'Guardando…' : 'Quiero recibir novedades'}
+                {loading ? 'Guardando…' : 'Quiero la guía y suscribirme'}
               </button>
 
               <button
@@ -131,19 +142,53 @@ export const LeadCaptureModal = () => {
           </>
         ) : (
           <>
-            <h2 id="lead-modal-title" className="text-xl font-bold text-gray-900">
-              ¡Gracias!
-            </h2>
-            <p className="mt-2 text-sm text-gray-700">
-              Te vamos a enviar noticias, consejos y beneficios a <strong>{email}</strong>.
-            </p>
-            <p className="mt-1 text-sm text-gray-600">
-              Revisá tu bandeja (y la carpeta de spam) para no perderte nada.
-            </p>
+            <div className="flex items-start justify-between gap-2">
+              <h2
+                id="lead-modal-title"
+                className="text-xl font-bold text-gray-900"
+              >
+                ¡Excelente! Tu Guía de descuentos en vuelos 2026 está viajando a
+                tu bandeja de entrada. ✈️
+              </h2>
+              <button
+                type="button"
+                onClick={closeModal}
+                className="rounded-lg p-1 text-gray-400 transition hover:bg-gray-100 hover:text-gray-600"
+                aria-label="Cerrar"
+              >
+                <span className="text-2xl leading-none">&times;</span>
+              </button>
+            </div>
+            <div className="mt-4 space-y-3 text-sm text-gray-700">
+              <p>
+                Para asegurarte de recibirla (y que no se pierda en el{' '}
+                <strong>correo no deseado</strong>):
+              </p>
+              <p>
+                Buscá un correo de: <strong>Viajeros Mayores</strong> (
+                <a
+                  href="mailto:hola@viajerosmayores.com"
+                  className="text-[#E36E4A] underline hover:no-underline"
+                >
+                  hola@viajerosmayores.com
+                </a>
+                ).
+              </p>
+              <p>
+                Si no lo ves, revisá la carpeta de <strong>Spam</strong> o{' '}
+                <strong>Promociones</strong>.
+              </p>
+              <p>
+                <strong>IMPORTANTE:</strong> Arrastrá el correo a tu bandeja
+                Principal; o marcálo como <strong>Remitente seguro</strong>.
+                ¡Esto le avisa a tu correo que somos amigos y asi no te pierdes
+                futuras noticias!
+              </p>
+            </div>
             <button
               type="button"
               onClick={closeModal}
-              className="mt-5 rounded-xl bg-[#E36E4A] px-5 py-3 font-semibold text-white transition hover:bg-[#D45A36]"
+              className="mt-5 w-full rounded-xl bg-[#E36E4A] px-5 py-3 font-semibold text-white transition hover:bg-[#D45A36]"
             >
               Cerrar
             </button>
