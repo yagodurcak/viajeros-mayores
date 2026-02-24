@@ -181,7 +181,7 @@ export const LeadCaptureModal = () => {
               <p>
                 <strong>IMPORTANTE:</strong> Arrastrá el correo a tu bandeja
                 Principal; o marcálo como <strong>Remitente seguro</strong>.
-                ¡Esto le avisa a tu correo que somos amigos y asi no te pierdes
+                ¡Esto le avisa a tu correo que somos amigos y así no te pierdes
                 futuras noticias!
               </p>
             </div>
