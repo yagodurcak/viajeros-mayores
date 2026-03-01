@@ -26,6 +26,27 @@ const HomeClient = () => {
     >
       <Hero />
 
+      {/* Featured Blog Articles */}
+      {!loading && featuredPosts.length > 0 && (
+        <div className="relative">
+          <FeaturedArticles
+            articles={featuredPosts}
+            title="Artículos Destacados"
+            backgroundColor="bg-gray-50"
+          />
+
+          {/* View All Blog Link */}
+          <div className="flex justify-center pb-12 bg-gray-50">
+            <Link
+              href="/blog"
+              className="px-8 py-3 bg-[#E36E4A] hover:bg-[#D45A36] text-white rounded-lg font-semibold text-lg transition-colors shadow-lg hover:shadow-xl"
+            >
+              Ver Todos los Artículos →
+            </Link>
+          </div>
+        </div>
+      )}
+
       {/* Featured News */}
       {!newsLoading && featuredNewsArticles.length > 0 && (
         <div className="relative">
@@ -34,27 +55,6 @@ const HomeClient = () => {
             title="Noticias Destacadas"
             backgroundColor="bg-gray-50"
           />
-
-          {/* Featured Blog Articles */}
-          {!loading && featuredPosts.length > 0 && (
-            <div className="relative">
-              <FeaturedArticles
-                articles={featuredPosts}
-                title="Artículos Destacados"
-                backgroundColor="bg-gray-50"
-              />
-
-              {/* View All Blog Link */}
-              <div className="flex justify-center pb-12 bg-gray-50">
-                <Link
-                  href="/blog"
-                  className="px-8 py-3 bg-[#E36E4A] hover:bg-[#D45A36] text-white rounded-lg font-semibold text-lg transition-colors shadow-lg hover:shadow-xl"
-                >
-                  Ver Todos los Artículos →
-                </Link>
-              </div>
-            </div>
-          )}
 
           {/* View All News Link */}
           <div className="flex justify-center pb-12 bg-gray-50">
