@@ -110,7 +110,7 @@ const Hero: React.FC = () => {
           </div>
 
           {/* Right Column - Feature Cards */}
-          <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-3 sm:gap-4">
+          <div className="hidden md:grid w-full grid-cols-2 gap-4">
             {features.map((feature, index) => (
               <Link
                 key={index}
