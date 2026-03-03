@@ -105,11 +105,11 @@ const Header = ({ session: initialSession }: HeaderProps) => {
     router.push('/profile/edit');
   };
 
-  const handleSignIn = () => {
+  const _handleSignIn = () => {
     router.push('/login');
   };
 
-  const handleSignUp = () => {
+  const _handleSignUp = () => {
     router.push('/signup');
   };
 
@@ -324,22 +324,23 @@ const Header = ({ session: initialSession }: HeaderProps) => {
                 )}
               </div>
             </div>
-          ) : (
-            <div className="flex items-center gap-3">
-              <button
-                onClick={handleSignIn}
-                className="px-4 py-2 bg-[#E36E4A] text-white rounded-lg hover:bg-[#D45A36] transition-colors"
-              >
-                Iniciar Sesión
-              </button>
-              <button
-                onClick={handleSignUp}
-                className="px-4 py-2 border border-[#E36E4A] text-[#E36E4A] rounded-lg hover:bg-[#E36E4A] hover:text-white transition-colors"
-              >
-                Registrarse
-              </button>
-            </div>
-          )}
+          ) : null}
+          {/* Botones de auth desktop temporalmente ocultos:
+          <div className="flex items-center gap-3">
+            <button
+              onClick={handleSignIn}
+              className="px-4 py-2 bg-[#E36E4A] text-white rounded-lg hover:bg-[#D45A36] transition-colors"
+            >
+              Iniciar Sesión
+            </button>
+            <button
+              onClick={handleSignUp}
+              className="px-4 py-2 border border-[#E36E4A] text-[#E36E4A] rounded-lg hover:bg-[#E36E4A] hover:text-white transition-colors"
+            >
+              Registrarse
+            </button>
+          </div>
+          */}
         </div>
       </div>
 
@@ -497,28 +498,23 @@ const Header = ({ session: initialSession }: HeaderProps) => {
                   Cerrar Sesión
                 </button>
               </div>
-            ) : (
-              <div className="flex flex-col space-y-2">
-                <button
-                  onClick={() => {
-                    handleSignIn();
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className="w-full px-4 py-2 bg-[#E36E4A] text-white rounded-lg hover:bg-[#D45A36] transition-colors"
-                >
-                  Iniciar Sesión
-                </button>
-                <button
-                  onClick={() => {
-                    handleSignUp();
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className="w-full px-4 py-2 border border-[#E36E4A] text-[#E36E4A] rounded-lg hover:bg-[#E36E4A] hover:text-white transition-colors"
-                >
-                  Registrarse
-                </button>
-              </div>
-            )}
+            ) : null}
+            {/* Botones de auth móvil temporalmente ocultos:
+            <div className="flex flex-col space-y-2">
+              <button
+                onClick={() => { handleSignIn(); setIsMobileMenuOpen(false); }}
+                className="w-full px-4 py-2 bg-[#E36E4A] text-white rounded-lg hover:bg-[#D45A36] transition-colors"
+              >
+                Iniciar Sesión
+              </button>
+              <button
+                onClick={() => { handleSignUp(); setIsMobileMenuOpen(false); }}
+                className="w-full px-4 py-2 border border-[#E36E4A] text-[#E36E4A] rounded-lg hover:bg-[#E36E4A] hover:text-white transition-colors"
+              >
+                Registrarse
+              </button>
+            </div>
+            */}
           </nav>
         </div>
       )}
