@@ -23,11 +23,31 @@ export function PremiumModal() {
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    const timer = setTimeout(() => {
-      const dismissed = localStorage.getItem(STORAGE_KEY);
-      if (!dismissed) setIsOpen(true);
-    }, 0);
-    return () => clearTimeout(timer);
+
+    const dismissed = localStorage.getItem(STORAGE_KEY);
+    if (dismissed) return;
+
+    let triggered = false;
+    const trigger = () => {
+      if (triggered) return;
+      triggered = true;
+      setIsOpen(true);
+    };
+
+    // Trigger after 20 seconds
+    const timer = setTimeout(trigger, 20000);
+
+    // Trigger when user scrolls 40% of the page
+    const onScroll = () => {
+      const scrolled = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+      if (scrolled >= 0.4) trigger();
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('scroll', onScroll);
+    };
   }, []);
 
 
