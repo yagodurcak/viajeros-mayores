@@ -78,7 +78,7 @@ export const LeadCaptureModal = () => {
                 className="text-xl font-bold text-gray-900"
               >
                 Recibí de regalo la{' '}
-                <strong>Guía de descuentos en vuelos 2026</strong>! 🎉
+                <strong>Guía Beneficios en equipaje para Viajeros Mayores 2026 </strong>! 🎉
               </h2>
               <button
                 type="button"
@@ -93,7 +93,7 @@ export const LeadCaptureModal = () => {
               Dejá tu email y suscribite a nuestro newsletter para recibir
               novedades y noticias. De regalo te enviamos la{' '}
               <strong>
-                Guía de descuentos en vuelos para viajeros mayores 2026
+                Guía Beneficios en equipaje para Viajeros Mayores 2026 
               </strong>
               .
             </p>
@@ -147,8 +147,7 @@ export const LeadCaptureModal = () => {
                 id="lead-modal-title"
                 className="text-xl font-bold text-gray-900"
               >
-                ¡Excelente! Tu Guía de descuentos en vuelos 2026 está viajando a
-                tu bandeja de entrada. ✈️
+                ¡Tu lista va en camino! ✈️
               </h2>
               <button
                 type="button"
@@ -161,36 +160,45 @@ export const LeadCaptureModal = () => {
             </div>
             <div className="mt-4 space-y-3 text-sm text-gray-700">
               <p>
-                Para asegurarte de recibirla (y que no se pierda en el{' '}
-                <strong>correo no deseado</strong>):
+                Si querés{' '}
+                <strong>ahorrar más dinero en tus viajes</strong>, investigué
+                mucho y creé una guía de los{' '}
+                <strong>
+                  Beneficios que ofrecen las Aerolíneas más conocidas para
+                  viajeros mayores 2026
+                </strong>{' '}
+                (Copa Airlines, LATAM, Avianca, Aeromexico, Aerolíneas
+                Argentinas, Iberia).
               </p>
               <p>
-                Buscá un correo de: <strong>Viajeros Mayores</strong> (
-                <a
-                  href="mailto:hola@viajerosmayores.com"
-                  className="text-[#E36E4A] underline hover:no-underline"
-                >
-                  hola@viajerosmayores.com
-                </a>
-                ).
+                Es un <strong>PDF descargable</strong> donde desarrollo sobre:
               </p>
-              <p>
-                Si no lo ves, revisá la carpeta de <strong>Spam</strong> o{' '}
-                <strong>Promociones</strong>.
-              </p>
-              <p>
-                <strong>IMPORTANTE:</strong> Arrastrá el correo a tu bandeja
-                Principal; o marcálo como <strong>Remitente seguro</strong>.
-                ¡Esto le avisa a tu correo que somos amigos y así no te pierdes
-                futuras noticias!
+              <ul className="list-inside list-disc space-y-1 pl-2 text-gray-600">
+                <li>Descuentos en pasajes</li>
+                <li>Guía paso a paso de como pedirlos</li>
+                <li>Datos de contacto de cada aerolínea</li>
+                <li>Checklist completo para repasar antes de viajar</li>
+                <li>Asistencia en aeropuerto</li>
+              </ul>
+              <p className="text-base font-semibold text-gray-900">
+                Todo eso a solo{' '}
+                <span className="text-[#E36E4A]">USD 9</span>.
               </p>
             </div>
+            <a
+              href="https://www.paypal.com/ncp/payment/XK86A59T5DCYC"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 block w-full rounded-xl bg-[#E36E4A] px-5 py-3 text-center font-semibold text-white shadow-lg transition hover:bg-[#D45A36]"
+            >
+              Quiero la guía por USD 9 →
+            </a>
             <button
               type="button"
               onClick={closeModal}
-              className="mt-5 w-full rounded-xl bg-[#E36E4A] px-5 py-3 font-semibold text-white transition hover:bg-[#D45A36]"
+              className="mt-3 w-full text-sm text-gray-500 underline transition hover:text-gray-700"
             >
-              Cerrar
+              Ahora no, gracias
             </button>
           </>
         )}

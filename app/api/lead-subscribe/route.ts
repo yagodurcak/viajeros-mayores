@@ -10,7 +10,7 @@ const supabaseAdmin = createClient(
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const WELCOME_GUIDE_FILE = 'guia-de-beneficios-aereos.pdf';
+const WELCOME_GUIDE_FILE = 'asientos-viajeros-mayores.pdf';
 const BUCKET = 'guides';
 const SIGNED_URL_EXPIRY_SEC = 24 * 60 * 60; // 24 horas
 
