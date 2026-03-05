@@ -147,7 +147,7 @@ export const LeadCaptureModal = () => {
                 id="lead-modal-title"
                 className="text-xl font-bold text-gray-900"
               >
-                ¡Tu lista va en camino! ✈️
+                ¡Tu guía va en camino! ✈️
               </h2>
               <button
                 type="button"
