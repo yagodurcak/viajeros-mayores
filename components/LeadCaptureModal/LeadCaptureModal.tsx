@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 const STORAGE_KEY = 'lead_modal_dismissed';
 
@@ -67,7 +68,7 @@ export const LeadCaptureModal = () => {
       onClick={closeModal}
     >
       <div
-        className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl"
+        className="w-full max-w-lg rounded-2xl bg-white p-8 shadow-2xl"
         onClick={(ev) => ev.stopPropagation()}
       >
         {!success ? (
@@ -145,7 +146,7 @@ export const LeadCaptureModal = () => {
             <div className="flex items-start justify-between gap-2">
               <h2
                 id="lead-modal-title"
-                className="text-xl font-bold text-gray-900"
+                className="text-2xl font-bold text-gray-900"
               >
                 ¡Tu guía va en camino! ✈️
               </h2>
@@ -158,7 +159,7 @@ export const LeadCaptureModal = () => {
                 <span className="text-2xl leading-none">&times;</span>
               </button>
             </div>
-            <div className="mt-4 space-y-3 text-sm text-gray-700">
+            <div className="mt-4 space-y-3 text-base text-gray-700">
               <p>
                 Si querés{' '}
                 <strong>ahorrar más dinero en tus viajes</strong>, investigué
@@ -173,17 +174,26 @@ export const LeadCaptureModal = () => {
               <p>
                 Es un <strong>PDF descargable</strong> donde desarrollo sobre:
               </p>
-              <ul className="list-inside list-disc space-y-1 pl-2 text-gray-600">
+              <ul className="list-inside list-disc space-y-2 pl-2 text-base text-gray-600">
                 <li>Descuentos en pasajes</li>
                 <li>Guía paso a paso de como pedirlos</li>
                 <li>Datos de contacto de cada aerolínea</li>
                 <li>Checklist completo para repasar antes de viajar</li>
                 <li>Asistencia en aeropuerto</li>
               </ul>
-              <p className="text-base font-semibold text-gray-900">
+              <p className="text-lg font-semibold text-gray-900">
                 Todo eso a solo{' '}
                 <span className="text-[#E36E4A]">USD 9</span>.
               </p>
+              <div className="flex justify-center pt-2">
+                <Image
+                  src="/images/guia.png"
+                  alt="Guía Beneficios Aerolíneas para Viajeros Mayores 2026"
+                  width={200}
+                  height={260}
+                  className="rounded-lg shadow-md"
+                />
+              </div>
             </div>
             <a
               href="https://www.paypal.com/ncp/payment/XK86A59T5DCYC"
