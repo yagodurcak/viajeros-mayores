@@ -10,7 +10,7 @@ const supabaseAdmin = createClient(
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const WELCOME_GUIDE_FILE = 'guia-de-beneficios-aereos.pdf';
+const WELCOME_GUIDE_FILE = 'beneficios-equipaje-viajeros-mayores.pdf';
 const BUCKET = 'guides';
 const SIGNED_URL_EXPIRY_SEC = 24 * 60 * 60; // 24 horas
 
@@ -57,11 +57,11 @@ export async function POST(req: Request) {
             from,
             to: trimmedEmail,
             subject:
-              'Tu Guía de descuentos en vuelos 2026 (Viajeros Mayores) ✈️',
+              'Tu Guía Beneficios en equipaje para Viajeros Mayores 2026 ✈️',
             html: `
               <div style="font-family: Arial, sans-serif; line-height: 1.6;">
                 <h2>¡Bienvenido${safeName ? `, ${safeName}` : ''}!</h2>
-                <p>Gracias por suscribirte. Te enviamos de regalo la <strong>Guía de descuentos en vuelos para viajeros mayores 2026</strong>.</p>
+                <p>Gracias por suscribirte. Te enviamos de regalo la <strong>Guía Beneficios en equipaje para Viajeros Mayores 2026</strong>.</p>
                 <p>
                   <a href="${signed.signedUrl}" target="_blank" rel="noreferrer" style="display:inline-block; background:#E36E4A; color:#fff; padding:12px 24px; text-decoration:none; border-radius:8px; font-weight:bold;">
                     Descargar la guía (PDF)
