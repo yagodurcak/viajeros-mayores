@@ -76,7 +76,7 @@ export async function POST(req: Request) {
                   <p style="margin:0 0 12px 0;font-size:14px;color:#444;">
                     La <strong>Guía Maestra de ahorro, beneficios y derechos aéreos 2026</strong> te enseña cómo acceder a descuentos de hasta <strong>50%</strong>, asistencia especial en aeropuertos y todos los beneficios aéreos disponibles para viajeros mayores.
                   </p>
-                  <a href="https://www.paypal.com/ncp/payment/XK86A59T5DCYC" target="_blank" rel="noreferrer" style="display:inline-block;background:linear-gradient(90deg,#E36E4A,#c0392b);color:#fff;padding:12px 24px;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;">
+                  <a href="https://www.paypal.com/ncp/payment/XK86A59T5DCYC" target="_blank" rel="noreferrer" style="display:inline-block;background:#E36E4A;color:#fff;padding:12px 24px;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;">
                     Conseguila por solo USD 9 →
                   </a>
                 </div>
