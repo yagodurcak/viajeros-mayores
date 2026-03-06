@@ -70,6 +70,16 @@ export async function POST(req: Request) {
                 <p style="font-size:12px;color:#666;">
                   Este enlace es válido por 24 horas. Si no ves el correo en tu bandeja principal, marcá a hola@viajerosmayores.com como remitente seguro.
                 </p>
+                <hr style="border:none;border-top:1px solid #eee;margin:24px 0;" />
+                <div style="background:#fff7f4;border:1px solid #f5c6b0;border-radius:10px;padding:20px 24px;">
+                  <p style="margin:0 0 8px 0;font-size:15px;font-weight:bold;color:#c0392b;">✈️ ¿Querés ahorrar aún más en tu próximo viaje?</p>
+                  <p style="margin:0 0 12px 0;font-size:14px;color:#444;">
+                    La <strong>Guía Maestra de ahorro, beneficios y derechos aéreos 2026</strong> te enseña cómo acceder a descuentos de hasta <strong>50%</strong>, asistencia especial en aeropuertos y todos los beneficios aéreos disponibles para viajeros mayores.
+                  </p>
+                  <a href="https://www.paypal.com/ncp/payment/XK86A59T5DCYC" target="_blank" rel="noreferrer" style="display:inline-block;background:linear-gradient(90deg,#E36E4A,#c0392b);color:#fff;padding:12px 24px;text-decoration:none;border-radius:8px;font-weight:bold;font-size:14px;">
+                    Conseguila por solo USD 9 →
+                  </a>
+                </div>
                 <p>¡Nos vemos en el próximo newsletter!</p>
               </div>
             `,

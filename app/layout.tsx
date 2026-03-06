@@ -9,6 +9,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import { defaultMetadata } from '@/lib/seo-config';
 import { GoogleAnalytics } from '@/components/Analytics/GoogleAnalytics';
 import { LeadCaptureModal } from '@/components/LeadCaptureModal/LeadCaptureModal';
+import { GuideBanner } from '@/components/GuideBanner/GuideBanner';
 
 const alata = Alata({
   weight: '400',
@@ -131,6 +132,7 @@ export default async function RootLayout({
       </head>
       <body className={`${alata.variable} ${nunitoSans.variable}`}>
         {gaId && <GoogleAnalytics gaId={gaId} />}
+        <GuideBanner />
         <Header session={session} />
         {children}
         <LeadCaptureModal />
