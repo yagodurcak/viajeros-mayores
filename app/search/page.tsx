@@ -101,7 +101,7 @@ const SearchPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
+    <div className="min-h-screen bg-[#E2DDD8]">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#E36E4A] via-[#D45A36] to-[#C04A26] py-10 sm:py-12 md:py-16">
         {/* Background Pattern */}
@@ -173,7 +173,7 @@ const SearchPage = () => {
                     onFocus={() => setIsFocused(true)}
                     onBlur={() => setIsFocused(false)}
                     placeholder="Ej: París, Francia, Machu Picchu..."
-                    className="flex-1 bg-transparent text-sm sm:text-base text-gray-900 placeholder:text-gray-400 focus:outline-none md:text-lg"
+                    className="flex-1 bg-transparent text-sm sm:text-base text-gray-900 placeholder:text-gray-600 focus:outline-none md:text-lg"
                     disabled={isLoading}
                   />
 
@@ -249,7 +249,7 @@ const SearchPage = () => {
                           ? 'bg-green-50 text-green-800'
                           : isActive
                             ? 'bg-orange-50 text-orange-800'
-                            : 'bg-gray-50 text-gray-400'
+                            : 'bg-gray-100 text-gray-600'
                       }`}
                     >
                       {isDone ? (
@@ -263,7 +263,7 @@ const SearchPage = () => {
                           <span className="h-4 w-4 animate-spin rounded-full border-2 border-[#E36E4A] border-t-transparent" />
                         </span>
                       ) : (
-                        <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-gray-200 text-xs font-medium text-gray-500">
+                        <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-gray-300 text-xs font-medium text-gray-700">
                           {index + 1}
                         </span>
                       )}
@@ -296,7 +296,7 @@ const SearchPage = () => {
         {/* Results */}
         {result && !isLoading && (
           <div className="mt-12 rounded-xl bg-white p-8 shadow-lg">
-            <div className="mb-6 flex items-center gap-3 border-b border-gray-200 pb-4">
+            <div className="mb-6 flex items-center gap-3 border-b border-gray-300 pb-4">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-[#E36E4A] to-[#D45A36]">
                 <span className="text-xl">🤖</span>
               </div>
@@ -304,7 +304,7 @@ const SearchPage = () => {
                 <h3 className="text-xl font-semibold text-gray-800">
                   Información sobre {searchQuery}
                 </h3>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-gray-700">
                   Respuesta generada por IA
                 </p>
               </div>

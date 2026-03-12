@@ -17,8 +17,6 @@ const Header = ({ session: initialSession }: HeaderProps) => {
   const supabase = createClient();
   const [session, setSession] = useState<Session | null>(initialSession);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isToolsDropdownOpen, setIsToolsDropdownOpen] = useState(false);
-  const [isToolsMobileExpanded, setIsToolsMobileExpanded] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -40,26 +38,23 @@ const Header = ({ session: initialSession }: HeaderProps) => {
     };
   }, [supabase, router]);
 
-  // Cerrar dropdowns al hacer clic fuera
+  // Cerrar dropdown de usuario al hacer clic fuera
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
       if (isDropdownOpen && !target.closest('.dropdown-container')) {
         setIsDropdownOpen(false);
       }
-      if (isToolsDropdownOpen && !target.closest('.tools-dropdown-container')) {
-        setIsToolsDropdownOpen(false);
-      }
     };
 
-    if (isDropdownOpen || isToolsDropdownOpen) {
+    if (isDropdownOpen) {
       document.addEventListener('click', handleClickOutside);
     }
 
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
-  }, [isDropdownOpen, isToolsDropdownOpen]);
+  }, [isDropdownOpen]);
 
   // Cerrar menú móvil cuando cambia la ruta
   useEffect(() => {
@@ -73,16 +68,14 @@ const Header = ({ session: initialSession }: HeaderProps) => {
       // Home is active only on the exact home page
       isActive = pathname === '/';
     } else if (path === '/news') {
-      // News is active when path starts with /news
       isActive = pathname.startsWith('/news');
     } else if (path === '/blog') {
-      // Blog is active when path starts with /blog
       isActive = pathname.startsWith('/blog');
+    } else if (path === '/members') {
+      isActive = pathname.startsWith('/members');
     } else if (path === '/maps') {
-      // Maps is active when path starts with /maps
       isActive = pathname.startsWith('/maps');
     } else if (path === '/search') {
-      // Search is active when path starts with /search
       isActive = pathname.startsWith('/search');
     } else {
       // Other paths use exact match
@@ -129,7 +122,7 @@ const Header = ({ session: initialSession }: HeaderProps) => {
   };
 
   return (
-    <header className="bg-gray-50 text-gray-800 py-4 px-6 shadow-sm border-b border-gray-100">
+    <header className="bg-white text-gray-800 py-4 px-6 shadow-md border-b border-gray-300">
       <div className="mx-auto max-w-6xl flex items-center justify-between">
         <div
           className="flex items-center gap-3 cursor-pointer"
@@ -176,68 +169,29 @@ const Header = ({ session: initialSession }: HeaderProps) => {
         </button>
 
         <nav className="hidden md:flex gap-1 items-center">
-          <div
-            className="relative tools-dropdown-container"
-            onMouseEnter={() => setIsToolsDropdownOpen(true)}
-            onMouseLeave={() => setIsToolsDropdownOpen(false)}
-          >
-            <button
-              type="button"
-              className={
-                pathname.startsWith('/search') || pathname.startsWith('/maps')
-                  ? 'px-3 py-2 rounded-lg bg-[#E36E4A] text-white font-medium transition-colors'
-                  : 'px-3 py-2 rounded-lg hover:text-[#E36E4A] hover:bg-gray-100 transition-colors font-medium text-gray-700'
-              }
-              onClick={() => setIsToolsDropdownOpen(!isToolsDropdownOpen)}
-              aria-expanded={isToolsDropdownOpen}
-              aria-haspopup="true"
-            >
-              Herramientas
-              <svg
-                className={`inline-block w-4 h-4 ml-1 align-middle transition-transform ${isToolsDropdownOpen ? 'rotate-180' : ''}`}
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            {isToolsDropdownOpen && (
-              <div className="absolute left-0 mt-1 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50 animate-fade-in">
-                <button
-                  type="button"
-                  onClick={() => {
-                    router.push('/search');
-                    setIsToolsDropdownOpen(false);
-                  }}
-                  className={`w-full text-left px-4 py-2.5 text-sm transition-colors ${pathname.startsWith('/search') ? 'bg-[#E36E4A]/10 text-[#E36E4A] font-medium' : 'text-gray-700 hover:bg-gray-50'}`}
-                >
-                  Destinos con IA
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    router.push('/maps');
-                    setIsToolsDropdownOpen(false);
-                  }}
-                  className={`w-full text-left px-4 py-2.5 text-sm transition-colors ${pathname.startsWith('/maps') ? 'bg-[#E36E4A]/10 text-[#E36E4A] font-medium' : 'text-gray-700 hover:bg-gray-50'}`}
-                >
-                  Analizador de pendientes
-                </button>
-              </div>
-            )}
-          </div>
           <button
-            className={getNavButtonClass('/news')}
-            onClick={() => router.push('/news')}
+            className={getNavButtonClass('/')}
+            onClick={() => router.push('/')}
           >
-            Noticias
+            Comunidad
+          </button>
+          <button
+            className={getNavButtonClass('/members')}
+            onClick={() => router.push('/members')}
+          >
+            Miembros
           </button>
           <button
             className={getNavButtonClass('/blog')}
             onClick={() => router.push('/blog')}
           >
-            Blog
+            Artículos
+          </button>
+          <button
+            className={getNavButtonClass('/news')}
+            onClick={() => router.push('/news')}
+          >
+            Noticias
           </button>
           <button
             className={getNavButtonClass('/about-us')}
@@ -267,14 +221,14 @@ const Header = ({ session: initialSession }: HeaderProps) => {
 
                 {/* Dropdown Menu */}
                 {isDropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50 animate-fade-in">
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-300 py-2 z-50 animate-fade-in">
                     {/* User Info */}
-                    <div className="px-4 py-2 border-b border-gray-100">
+                    <div className="px-4 py-2 border-b border-gray-200">
                       <p className="text-sm font-semibold text-gray-800">
                         {getUserDisplayName()}
                       </p>
                       {session.user.email && (
-                        <p className="text-xs text-gray-500 truncate">
+                        <p className="text-xs text-gray-600 truncate">
                           {session.user.email}
                         </p>
                       )}
@@ -283,7 +237,7 @@ const Header = ({ session: initialSession }: HeaderProps) => {
                     {/* Menu Items */}
                     <button
                       onClick={handleEditProfile}
-                      className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors flex items-center gap-2"
+                      className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors flex items-center gap-2"
                     >
                       <svg
                         className="w-4 h-4"
@@ -350,81 +304,31 @@ const Header = ({ session: initialSession }: HeaderProps) => {
           <nav className="flex flex-col p-4 space-y-2">
             <button
               className={`${getNavButtonClass('/')} w-full text-left`}
-              onClick={() => {
-                router.push('/');
-                setIsMobileMenuOpen(false);
-              }}
+              onClick={() => { router.push('/'); setIsMobileMenuOpen(false); }}
             >
-              Inicio
+              Comunidad
             </button>
-            <div className="space-y-1">
-              <button
-                type="button"
-                className="w-full flex items-center justify-between px-3 py-2 rounded-lg hover:bg-gray-100 hover:text-[#E36E4A] transition-colors font-medium text-gray-700"
-                onClick={() => setIsToolsMobileExpanded(!isToolsMobileExpanded)}
-                aria-expanded={isToolsMobileExpanded}
-              >
-                Herramientas
-                <svg
-                  className={`w-4 h-4 transition-transform ${isToolsMobileExpanded ? 'rotate-180' : ''}`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              {isToolsMobileExpanded && (
-                <div className="pl-4 space-y-1 border-l-2 border-gray-200 ml-2">
-                  <button
-                    type="button"
-                    className={`w-full text-left px-3 py-2 rounded-lg text-sm ${pathname.startsWith('/search') ? 'bg-[#E36E4A]/10 text-[#E36E4A] font-medium' : 'text-gray-600 hover:bg-gray-50'}`}
-                    onClick={() => {
-                      router.push('/search');
-                      setIsMobileMenuOpen(false);
-                      setIsToolsMobileExpanded(false);
-                    }}
-                  >
-                    Destinos con IA
-                  </button>
-                  <button
-                    type="button"
-                    className={`w-full text-left px-3 py-2 rounded-lg text-sm ${pathname.startsWith('/maps') ? 'bg-[#E36E4A]/10 text-[#E36E4A] font-medium' : 'text-gray-600 hover:bg-gray-50'}`}
-                    onClick={() => {
-                      router.push('/maps');
-                      setIsMobileMenuOpen(false);
-                      setIsToolsMobileExpanded(false);
-                    }}
-                  >
-                    Analizador de pendientes
-                  </button>
-                </div>
-              )}
-            </div>
+            <button
+              className={`${getNavButtonClass('/members')} w-full text-left`}
+              onClick={() => { router.push('/members'); setIsMobileMenuOpen(false); }}
+            >
+              Miembros
+            </button>
+            <button
+              className={`${getNavButtonClass('/blog')} w-full text-left`}
+              onClick={() => { router.push('/blog'); setIsMobileMenuOpen(false); }}
+            >
+              Artículos
+            </button>
             <button
               className={`${getNavButtonClass('/news')} w-full text-left`}
-              onClick={() => {
-                router.push('/news');
-                setIsMobileMenuOpen(false);
-              }}
+              onClick={() => { router.push('/news'); setIsMobileMenuOpen(false); }}
             >
               Noticias
             </button>
             <button
-              className={`${getNavButtonClass('/blog')} w-full text-left`}
-              onClick={() => {
-                router.push('/blog');
-                setIsMobileMenuOpen(false);
-              }}
-            >
-              Blog
-            </button>
-            <button
               className={`${getNavButtonClass('/about-us')} w-full text-left`}
-              onClick={() => {
-                router.push('/about');
-                setIsMobileMenuOpen(false);
-              }}
+              onClick={() => { router.push('/about'); setIsMobileMenuOpen(false); }}
             >
               Nosotros
             </button>
@@ -447,7 +351,7 @@ const Header = ({ session: initialSession }: HeaderProps) => {
                       {getUserDisplayName()}
                     </p>
                     {session.user.email && (
-                      <p className="text-xs text-gray-500 truncate">
+                      <p className="text-xs text-gray-600 truncate">
                         {session.user.email}
                       </p>
                     )}
@@ -458,7 +362,7 @@ const Header = ({ session: initialSession }: HeaderProps) => {
                     handleEditProfile();
                     setIsMobileMenuOpen(false);
                   }}
-                  className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg transition-colors flex items-center gap-2"
+                  className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg transition-colors flex items-center gap-2"
                 >
                   <svg
                     className="w-4 h-4"

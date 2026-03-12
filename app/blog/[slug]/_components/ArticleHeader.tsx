@@ -30,13 +30,13 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({ post }) => {
         <time dateTime={post.createdAt}>{formatBlogDate(post.createdAt)}</time>
 
         {/* Separator */}
-        <span className="text-gray-400">•</span>
+        <span className="text-gray-600">•</span>
 
         {/* Read Time */}
         <span>{post.readTime} min de lectura</span>
 
         {/* Separator */}
-        <span className="text-gray-400">•</span>
+        <span className="text-gray-600">•</span>
 
         {/* Author with Avatar */}
         <div className="flex items-center gap-2">

@@ -53,7 +53,7 @@ export default function ProfileStats({
       {stats.map((stat) => (
         <div
           key={stat.label}
-          className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 flex items-center gap-4"
+          className="bg-white rounded-lg shadow-md border border-gray-300 p-6 flex items-center gap-4"
         >
           <div className="flex-shrink-0 w-12 h-12 bg-[#E36E4A]/10 rounded-full flex items-center justify-center text-[#E36E4A]">
             {stat.icon}

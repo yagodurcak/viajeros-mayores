@@ -72,16 +72,18 @@ export const useBlogArticles = ({
     });
   }, [debouncedSearchQuery, filters, posts, enableSearch]);
 
-  // Articulos recomendados
+  // Articulos recomendados — más recientes primero
   const featuredArticles = useMemo(() => {
-    return posts.filter((article) => article.featured);
+    return posts
+      .filter((article) => article.featured)
+      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
   }, [posts]);
 
-  // Regular articles (non-featured first, then featured)
+  // Todos los artículos — más recientes primero
   const regularArticles = useMemo(() => {
-    const nonFeatured = filteredArticles.filter((article) => !article.featured);
-    const featured = filteredArticles.filter((article) => article.featured);
-    return [...nonFeatured, ...featured];
+    return [...filteredArticles].sort(
+      (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
   }, [filteredArticles]);
 
   // Pagination

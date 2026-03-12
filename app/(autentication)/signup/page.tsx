@@ -103,7 +103,7 @@ export default function SignUpPage() {
 
   if (success) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+      <div className="min-h-screen flex items-center justify-center bg-[#E2DDD8] px-4">
         <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8 text-center">
           <div className="mb-4">
             <div className="mx-auto w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
@@ -128,7 +128,7 @@ export default function SignUpPage() {
           <p className="text-gray-600 mb-4">
             Por favor, revisa tu correo electrónico para verificar tu cuenta.
           </p>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-gray-700">
             Serás redirigido a la página de inicio de sesión...
           </p>
         </div>
@@ -137,7 +137,7 @@ export default function SignUpPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-[#E2DDD8] px-4">
       <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-[#E36E4A] mb-2">
@@ -217,7 +217,7 @@ export default function SignUpPage() {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-700 hover:text-gray-900 focus:outline-none"
               >
                 {showPassword ? (
                   <svg
@@ -279,7 +279,7 @@ export default function SignUpPage() {
               <button
                 type="button"
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-700 hover:text-gray-900 focus:outline-none"
               >
                 {showConfirmPassword ? (
                   <svg
@@ -335,7 +335,7 @@ export default function SignUpPage() {
               <div className="w-full border-t border-gray-300"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-white text-gray-500">
+              <span className="px-2 bg-white text-gray-700">
                 O continúa con
               </span>
             </div>
@@ -344,7 +344,7 @@ export default function SignUpPage() {
           <button
             onClick={handleGoogleSignUp}
             type="button"
-            className="mt-4 w-full flex items-center justify-center gap-3 py-3 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            className="mt-4 w-full flex items-center justify-center gap-3 py-3 px-4 border border-gray-300 rounded-lg hover:bg-[#E2DDD8] transition-colors"
           >
             <svg className="w-5 h-5" viewBox="0 0 24 24">
               <path

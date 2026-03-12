@@ -84,7 +84,7 @@ const CommentItem: React.FC<CommentItemProps> = ({
         {/* Author and Date */}
         <div className="flex items-center gap-2 mb-1">
           <h4 className="text-base font-bold text-gray-900">{authorName}</h4>
-          <span className="text-gray-500 text-xs">
+          <span className="text-gray-600 text-sm">
             {formatBlogDate(comment.created_at)}
           </span>
         </div>
@@ -217,7 +217,7 @@ const CommentItem: React.FC<CommentItemProps> = ({
         {replyingTo === comment.id && (
           <form
             onSubmit={handleSubmitReply}
-            className="mb-4 bg-gray-50 rounded-lg p-3"
+            className="mb-4 bg-gray-100 rounded-lg p-3"
           >
             <textarea
               value={replyText}
@@ -248,7 +248,7 @@ const CommentItem: React.FC<CommentItemProps> = ({
 
         {/* Replies */}
         {comment.replies && comment.replies.length > 0 && (
-          <div className="mt-4 space-y-4 pl-4 border-l-2 border-gray-200">
+          <div className="mt-4 space-y-4 pl-4 border-l-2 border-gray-300">
             {comment.replies.map((reply) => (
               <CommentItem
                 key={reply.id}
@@ -363,7 +363,7 @@ const NewsComments: React.FC<NewsCommentsProps> = ({ newsSlug }) => {
 
   if (loading) {
     return (
-      <div className="mt-10 pt-6 border-t border-gray-200">
+      <div className="mt-10 pt-6 border-t border-gray-300">
         <div className="flex items-center justify-center py-8">
           <div className="text-center">
             <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[#E36E4A]"></div>
@@ -375,7 +375,7 @@ const NewsComments: React.FC<NewsCommentsProps> = ({ newsSlug }) => {
   }
 
   return (
-    <div className="mt-10 pt-6 border-t border-gray-200">
+    <div className="mt-10 pt-6 border-t border-gray-300">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl font-bold text-gray-900 font-alata">
@@ -407,7 +407,7 @@ const NewsComments: React.FC<NewsCommentsProps> = ({ newsSlug }) => {
 
       {/* Comment Form */}
       {showCommentForm && (
-        <div className="mb-6 bg-gray-50 rounded-xl p-4">
+        <div className="mb-6 bg-gray-100 rounded-xl p-4">
           <h3 className="text-base font-semibold text-gray-900 mb-3">
             New comment
           </h3>
@@ -448,7 +448,7 @@ const NewsComments: React.FC<NewsCommentsProps> = ({ newsSlug }) => {
       <div className="space-y-6">
         {comments.length === 0 ? (
           <div className="text-center py-8">
-            <p className="text-gray-500">
+            <p className="text-gray-700">
               No comments yet. Be the first to comment!
             </p>
           </div>

@@ -14,7 +14,7 @@ const AboutPageClient = () => {
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 font-alata">
             Acerca de Viajeros Mayores
           </h1>
-          <p className="text-xl md:text-2xl text-white/95 max-w-3xl font-light leading-relaxed">
+          <p className="text-xl md:text-2xl text-white max-w-3xl font-normal leading-relaxed">
             Ayudando a viajeros mayores de 60 años a explorar el mundo con
             confianza
           </p>
@@ -150,7 +150,7 @@ const AboutPageClient = () => {
           <h2 className="text-4xl font-bold text-white mb-6 font-alata">
             ¿Listo para Comenzar tu Viaje?
           </h2>
-          <p className="text-xl text-white/95 mb-8 leading-relaxed">
+          <p className="text-xl text-white mb-8 leading-relaxed">
             Únete a miles de viajeros mayores de 60 años que confían en Viajeros
             Mayores para ayudarles a explorar el mundo con confianza y comodidad.
           </p>

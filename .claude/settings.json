@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /Users/mauriciodurcak/Codigo/viajeros-mayores/app/about* -name \"*.tsx\")",
+      "Bash(npm run type-check)",
+      "Bash(supabase --version)",
+      "Bash(psql --version)",
+      "Bash(ls /Users/mauriciodurcak/Codigo/viajeros-mayores/.env*)",
+      "Bash(brew --version)",
+      "Bash(npm --version)",
+      "Bash(node --version)",
+      "Bash(npx --version)",
+      "Read(//Users/mauriciodurcak/Codigo/viajeros-mayores/**)",
+      "Bash(npm run lint -- --dir app --dir components)",
+      "Bash(npx next lint)",
+      "Bash(npx eslint app/members/MembersClient.tsx app/api/members/route.ts app/api/members/heartbeat/route.ts)"
+    ],
+    "additionalDirectories": [
+      "/Users/mauriciodurcak/Codigo/viajeros-mayores/app/api/community/posts/[id]",
+      "/tmp"
+    ]
+  }
+}

@@ -21,7 +21,7 @@ export default function PublicProfile() {
 
   if (error || !profile) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-[#E2DDD8] flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
             Profile Not Found
@@ -35,7 +35,7 @@ export default function PublicProfile() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#E2DDD8]">
       <div className="max-w-6xl mx-auto px-6 py-8">
         <ProfileHeader profile={profile} />
 

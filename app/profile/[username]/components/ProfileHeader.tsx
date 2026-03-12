@@ -8,7 +8,7 @@ interface ProfileHeaderProps {
 
 export default function ProfileHeader({ profile }: ProfileHeaderProps) {
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 md:p-8">
+    <div className="bg-white rounded-lg shadow-md border border-gray-300 p-6 md:p-8">
       <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
         {/* Avatar */}
         <div className="flex-shrink-0">
@@ -31,7 +31,7 @@ export default function ProfileHeader({ profile }: ProfileHeaderProps) {
             <p className="mt-4 text-gray-700 max-w-2xl">{profile.bio}</p>
           )}
 
-          <div className="mt-4 flex items-center justify-center md:justify-start gap-2 text-sm text-gray-500">
+          <div className="mt-4 flex items-center justify-center md:justify-start gap-2 text-sm text-gray-700">
             <svg
               className="w-4 h-4"
               fill="none"

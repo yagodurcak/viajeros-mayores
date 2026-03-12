@@ -16,7 +16,7 @@ export default function LoadingSpinner({
 
   if (fullScreen) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-[#E2DDD8] flex items-center justify-center">
         {content}
       </div>
     );

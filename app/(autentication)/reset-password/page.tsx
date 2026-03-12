@@ -74,7 +74,7 @@ export default function ResetPasswordPage() {
 
   if (!isValidSession) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+      <div className="min-h-screen flex items-center justify-center bg-[#E2DDD8] px-4">
         <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8 text-center">
           <div className="mb-4">
             <div className="mx-auto w-16 h-16 bg-red-100 rounded-full flex items-center justify-center">
@@ -113,7 +113,7 @@ export default function ResetPasswordPage() {
 
   if (success) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+      <div className="min-h-screen flex items-center justify-center bg-[#E2DDD8] px-4">
         <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8 text-center">
           <div className="mb-4">
             <div className="mx-auto w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
@@ -138,7 +138,7 @@ export default function ResetPasswordPage() {
           <p className="text-gray-600 mb-4">
             Tu contraseña ha sido restablecida exitosamente.
           </p>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-gray-700">
             Serás redirigido a la página de inicio de sesión...
           </p>
         </div>
@@ -147,7 +147,7 @@ export default function ResetPasswordPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-[#E2DDD8] px-4">
       <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8">
         <div className="text-center mb-8">
           <div className="mx-auto w-16 h-16 bg-[#E36E4A] bg-opacity-10 rounded-full flex items-center justify-center mb-4">
@@ -199,7 +199,7 @@ export default function ResetPasswordPage() {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-700 hover:text-gray-900 focus:outline-none"
               >
                 {showPassword ? (
                   <svg
@@ -238,7 +238,7 @@ export default function ResetPasswordPage() {
                 )}
               </button>
             </div>
-            <p className="mt-1 text-sm text-gray-500">Mínimo 6 caracteres</p>
+            <p className="mt-1 text-sm text-gray-700">Mínimo 6 caracteres</p>
           </div>
 
           <div>
@@ -262,7 +262,7 @@ export default function ResetPasswordPage() {
               <button
                 type="button"
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-700 hover:text-gray-900 focus:outline-none"
               >
                 {showConfirmPassword ? (
                   <svg

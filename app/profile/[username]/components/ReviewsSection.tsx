@@ -13,7 +13,7 @@ export default function ReviewsSection({ reviews }: ReviewsSectionProps) {
           <svg
             key={index}
             className={`w-4 h-4 ${
-              index < rating ? 'text-yellow-400' : 'text-gray-300'
+              index < rating ? 'text-yellow-400' : 'text-gray-400'
             }`}
             fill="currentColor"
             viewBox="0 0 20 20"
@@ -27,12 +27,12 @@ export default function ReviewsSection({ reviews }: ReviewsSectionProps) {
 
   if (reviews.length === 0) {
     return (
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+      <div className="bg-white rounded-lg shadow-md border border-gray-300 p-8">
         <h2 className="text-2xl font-bold text-gray-900 mb-6">Reviews</h2>
         <div className="text-center py-12">
           <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <svg
-              className="w-8 h-8 text-gray-400"
+              className="w-8 h-8 text-gray-600"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -52,7 +52,7 @@ export default function ReviewsSection({ reviews }: ReviewsSectionProps) {
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+    <div className="bg-white rounded-lg shadow-md border border-gray-300 p-6">
       <h2 className="text-2xl font-bold text-gray-900 mb-6">
         Reviews ({reviews.length})
       </h2>
@@ -60,7 +60,7 @@ export default function ReviewsSection({ reviews }: ReviewsSectionProps) {
         {reviews.map((review) => (
           <div
             key={review.id}
-            className="border-b border-gray-200 last:border-b-0 pb-6 last:pb-0"
+            className="border-b border-gray-300 last:border-b-0 pb-6 last:pb-0"
           >
             <div className="flex items-start justify-between mb-2">
               <div>
@@ -70,7 +70,7 @@ export default function ReviewsSection({ reviews }: ReviewsSectionProps) {
               {renderStars(review.rating)}
             </div>
             <p className="text-gray-700 mb-2">{review.content}</p>
-            <p className="text-xs text-gray-500">
+            <p className="text-sm text-gray-700">
               {formatDate(review.created_at)}
             </p>
           </div>

@@ -25,7 +25,7 @@ export const NewsArticleClient = () => {
   // Loading state
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-[#E2DDD8]">
         <div className="max-w-6xl mx-auto px-6 py-12">
           <div className="animate-pulse">
             {/* Breadcrumb skeleton */}
@@ -59,7 +59,7 @@ export const NewsArticleClient = () => {
   // Error state
   if (error || !article) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-[#E2DDD8] flex items-center justify-center">
         <div className="text-center">
           <div className="text-red-500 text-6xl mb-4">📰</div>
           <h1 className="text-3xl font-bold text-gray-800 mb-4">
@@ -80,9 +80,9 @@ export const NewsArticleClient = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#E2DDD8]">
       {/* Breadcrumb */}
-      <div className="bg-gray-50">
+      <div className="bg-[#E2DDD8]">
         <div className="max-w-6xl mx-auto py-4 px-6">
           <NewsBreadcrumb category={article.category} title={article.title} />
         </div>

@@ -2,7 +2,7 @@ import MapComponent from '@/components/MapComponent/MapComponent';
 
 const MapsPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
+    <div className="min-h-screen bg-[#E2DDD8]">
       <div className="container mx-auto px-4 py-8">
         {/* Header Section */}
         <div className="mb-8">

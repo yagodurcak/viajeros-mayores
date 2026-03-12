@@ -10,7 +10,7 @@ const BlogPageClient = () => {
   // Show loading state
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-[#E2DDD8]">
         <div className="flex items-center justify-center py-20">
           <div className="text-center">
             <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-[#E36E4A]"></div>
@@ -24,7 +24,7 @@ const BlogPageClient = () => {
   // Show error state
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-[#E2DDD8]">
         <div className="flex items-center justify-center py-20">
           <div className="text-center">
             <div className="text-red-500 text-5xl mb-4">⚠️</div>
@@ -39,7 +39,7 @@ const BlogPageClient = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#E2DDD8]">
       <BlogSection
         posts={posts}
         categories={categories}

@@ -23,7 +23,7 @@ const BlogHero: React.FC<BlogHeroProps> = ({
         <h1 className="text-5xl font-bold mb-4 font-alata">
           Consejos para Viajar en la Tercera Edad
         </h1>
-        <p className="text-xl mb-8 font-light opacity-90">
+        <p className="text-xl mb-8 font-normal">
           Guías prácticas, destinos culturales y consejos para viajeros mayores
           de 60 años. Aprende a planificar tu viaje y disfruta de experiencias
           enriquecedoras.
@@ -37,7 +37,7 @@ const BlogHero: React.FC<BlogHeroProps> = ({
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
               placeholder="Buscar por título, autor, contenido..."
-              className="w-full px-6 py-4 pr-28 rounded-full text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white shadow-lg transition-all"
+              className="w-full px-6 py-4 pr-28 rounded-full text-gray-800 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-white shadow-lg transition-all"
               aria-label="Buscar artículos"
             />
 
@@ -45,7 +45,7 @@ const BlogHero: React.FC<BlogHeroProps> = ({
             {searchQuery && (
               <button
                 onClick={onClearSearch}
-                className="absolute right-16 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors p-2"
+                className="absolute right-16 top-1/2 -translate-y-1/2 text-gray-600 hover:text-gray-800 transition-colors p-2"
                 aria-label="Limpiar búsqueda"
               >
                 <svg

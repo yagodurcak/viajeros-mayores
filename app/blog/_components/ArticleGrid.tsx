@@ -11,9 +11,9 @@ interface ArticleGridProps {
 const ArticleGrid: React.FC<ArticleGridProps> = ({ articles }) => {
   if (articles.length === 0) {
     return (
-      <div className="py-16 px-6 bg-gray-50">
+      <div className="py-16 px-6 bg-[#E2DDD8]">
         <div className="max-w-6xl mx-auto text-center">
-          <div className="text-gray-400 mb-4">
+          <div className="text-gray-600 mb-4">
             <svg
               className="w-16 h-16 mx-auto"
               fill="none"
@@ -31,7 +31,7 @@ const ArticleGrid: React.FC<ArticleGridProps> = ({ articles }) => {
           <h3 className="text-xl font-semibold text-gray-600 mb-2">
             No articles found
           </h3>
-          <p className="text-gray-500">
+          <p className="text-gray-700">
             Try adjusting your filters or search terms
           </p>
         </div>
@@ -40,7 +40,7 @@ const ArticleGrid: React.FC<ArticleGridProps> = ({ articles }) => {
   }
 
   return (
-    <section className="py-12 px-6 bg-gray-50">
+    <section className="py-12 px-6 bg-[#E2DDD8]">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl font-bold text-gray-800 mb-8 font-alata">
           Todos los Articulos

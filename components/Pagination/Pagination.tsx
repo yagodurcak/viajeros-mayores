@@ -68,7 +68,7 @@ const Pagination: React.FC<PaginationProps> = ({
   const borderColor = primaryColor.replace('bg-', 'border-');
 
   return (
-    <div className={`py-12 px-6 bg-gray-50 ${className}`}>
+    <div className={`py-12 px-6 bg-[#E2DDD8] ${className}`}>
       <div className="max-w-6xl mx-auto">
         {/* Pagination with numbers */}
         <nav
@@ -81,7 +81,7 @@ const Pagination: React.FC<PaginationProps> = ({
             disabled={currentPage === 1}
             className={`px-4 py-2 rounded-lg font-medium transition-colors ${
               currentPage === 1
-                ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                ? 'bg-gray-300 text-gray-600 cursor-not-allowed'
                 : `bg-white text-gray-700 ${hoverColor} hover:text-white shadow-sm`
             }`}
             aria-label="Página anterior"
@@ -108,7 +108,7 @@ const Pagination: React.FC<PaginationProps> = ({
                 return (
                   <span
                     key={`ellipsis-${index}`}
-                    className="px-3 py-2 text-gray-400"
+                    className="px-3 py-2 text-gray-600"
                   >
                     ...
                   </span>
@@ -139,7 +139,7 @@ const Pagination: React.FC<PaginationProps> = ({
             disabled={currentPage === totalPages}
             className={`px-4 py-2 rounded-lg font-medium transition-colors ${
               currentPage === totalPages
-                ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                ? 'bg-gray-300 text-gray-600 cursor-not-allowed'
                 : `bg-white text-gray-700 ${hoverColor} hover:text-white shadow-sm`
             }`}
             aria-label="Página siguiente"

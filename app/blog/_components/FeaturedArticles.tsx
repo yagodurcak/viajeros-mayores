@@ -120,7 +120,7 @@ const FeaturedArticles: React.FC<FeaturedArticlesProps> = ({
                     </p>
 
                     {/* Meta info */}
-                    <div className="flex items-center gap-4 text-xs text-gray-300">
+                    <div className="flex items-center gap-4 text-sm text-white">
                       <span>{formatBlogDate(article.createdAt)}</span>
                       <span>•</span>
                       <span>{article.readTime} min de lectura</span>

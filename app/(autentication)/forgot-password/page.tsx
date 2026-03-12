@@ -44,7 +44,7 @@ export default function ForgotPasswordPage() {
 
   if (success) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+      <div className="min-h-screen flex items-center justify-center bg-[#E2DDD8] px-4">
         <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8 text-center">
           <div className="mb-4">
             <div className="mx-auto w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
@@ -83,7 +83,7 @@ export default function ForgotPasswordPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-[#E2DDD8] px-4">
       <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8">
         <div className="text-center mb-8">
           <div className="mx-auto w-16 h-16 bg-[#E36E4A] bg-opacity-10 rounded-full flex items-center justify-center mb-4">
@@ -132,7 +132,7 @@ export default function ForgotPasswordPage() {
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#E36E4A] focus:border-transparent outline-none transition-all"
               placeholder="tu@email.com"
             />
-            <p className="mt-2 text-sm text-gray-500">
+            <p className="mt-2 text-sm text-gray-700">
               Ingresa la dirección de correo electrónico asociada con tu cuenta
             </p>
           </div>

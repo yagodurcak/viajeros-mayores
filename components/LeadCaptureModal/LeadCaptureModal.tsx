@@ -84,7 +84,7 @@ export const LeadCaptureModal = () => {
               <button
                 type="button"
                 onClick={closeModal}
-                className="rounded-lg p-1 text-gray-400 transition hover:bg-gray-100 hover:text-gray-600"
+                className="rounded-lg p-1 text-gray-600 transition hover:bg-gray-100 hover:text-gray-900"
                 aria-label="Cerrar"
               >
                 <span className="text-2xl leading-none">&times;</span>
@@ -103,7 +103,7 @@ export const LeadCaptureModal = () => {
               <input
                 type="text"
                 autoComplete="name"
-                className="rounded-xl border border-gray-200 px-4 py-3 outline-none transition focus:border-[#E36E4A] focus:ring-2 focus:ring-[#E36E4A]/20"
+                className="rounded-xl border border-gray-300 px-4 py-3 outline-none transition focus:border-[#E36E4A] focus:ring-2 focus:ring-[#E36E4A]/20"
                 placeholder="Tu nombre (opcional)"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -112,7 +112,7 @@ export const LeadCaptureModal = () => {
                 type="email"
                 autoComplete="email"
                 required
-                className="rounded-xl border border-gray-200 px-4 py-3 outline-none transition focus:border-[#E36E4A] focus:ring-2 focus:ring-[#E36E4A]/20"
+                className="rounded-xl border border-gray-300 px-4 py-3 outline-none transition focus:border-[#E36E4A] focus:ring-2 focus:ring-[#E36E4A]/20"
                 placeholder="Tu email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -135,7 +135,7 @@ export const LeadCaptureModal = () => {
               <button
                 type="button"
                 onClick={closeModal}
-                className="text-sm text-gray-500 underline transition hover:text-gray-700"
+                className="text-sm text-gray-700 underline transition hover:text-gray-900"
               >
                 Ahora no, gracias
               </button>
@@ -153,7 +153,7 @@ export const LeadCaptureModal = () => {
               <button
                 type="button"
                 onClick={closeModal}
-                className="rounded-lg p-1 text-gray-400 transition hover:bg-gray-100 hover:text-gray-600"
+                className="rounded-lg p-1 text-gray-600 transition hover:bg-gray-100 hover:text-gray-900"
                 aria-label="Cerrar"
               >
                 <span className="text-2xl leading-none">&times;</span>

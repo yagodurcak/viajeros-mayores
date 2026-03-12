@@ -20,7 +20,7 @@ const BlogFilters: React.FC<BlogFiltersProps> = ({
   };
 
   return (
-    <section className="hidden md:block py-8 px-6 bg-gray-50">
+    <section className="hidden md:block py-8 px-6 bg-[#E2DDD8]">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-wrap justify-center gap-4">
           {/* "All" button */}
@@ -29,7 +29,7 @@ const BlogFilters: React.FC<BlogFiltersProps> = ({
             className={`px-6 py-3 rounded-lg font-medium transition-all cursor-pointer whitespace-nowrap ${
               (filters.category || 'all') === 'all'
                 ? 'bg-[#E36E4A] text-white shadow-lg'
-                : 'bg-white text-gray-700 border border-gray-200 hover:border-[#E36E4A] hover:text-[#E36E4A] shadow-sm'
+                : 'bg-white text-gray-700 border border-gray-300 hover:border-[#E36E4A] hover:text-[#E36E4A] shadow-md'
             }`}
           >
             Todas las Categorías
@@ -43,7 +43,7 @@ const BlogFilters: React.FC<BlogFiltersProps> = ({
               className={`px-6 py-3 rounded-lg font-medium transition-all cursor-pointer whitespace-nowrap ${
                 filters.category === cat
                   ? 'bg-[#E36E4A] text-white shadow-lg'
-                  : 'bg-white text-gray-700 border border-gray-200 hover:border-[#E36E4A] hover:text-[#E36E4A] shadow-sm'
+                  : 'bg-white text-gray-700 border border-gray-300 hover:border-[#E36E4A] hover:text-[#E36E4A] shadow-md'
               }`}
             >
               {getCategoryLabel(cat)}

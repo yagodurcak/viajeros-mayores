@@ -46,7 +46,7 @@ const NewsCard: React.FC<NewsCardProps> = ({ article }) => {
           </p>
 
           {/* Footer */}
-          <div className="flex items-center justify-between text-xs text-gray-500 pt-2">
+          <div className="flex items-center justify-between text-sm text-gray-600 pt-2">
             <div className="flex items-center gap-2">
               <Avatar name={article.author.name} size="xs" />
               <span className="font-medium text-gray-700">
