@@ -95,5 +95,16 @@ export async function POST(
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
+  // Update comments_count on the post
+  const { count: commentsCount } = await supabase
+    .from('community_post_comments')
+    .select('*', { count: 'exact', head: true })
+    .eq('post_id', postId);
+
+  await supabase
+    .from('community_posts')
+    .update({ comments_count: commentsCount ?? 0 })
+    .eq('id', postId);
+
   return NextResponse.json({ comment }, { status: 201 });
 }

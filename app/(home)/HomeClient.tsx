@@ -76,11 +76,17 @@ function avatarColor(userId: string): string {
 function CommentSection({
   postId,
   onCommentAdded,
+  onCountSync,
 }: {
   postId: string;
   onCommentAdded: () => void;
+  onCountSync: (count: number) => void;
 }) {
   const { comments, loading, addComment } = useCommunityComments(postId, true);
+
+  useEffect(() => {
+    if (!loading) onCountSync(comments.length);
+  }, [comments.length, loading, onCountSync]);
   const [text, setText] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [authError, setAuthError] = useState(false);
@@ -256,6 +262,7 @@ function CommunityPostCard({
   const [showComments, setShowComments] = useState(false);
   const [authError, setAuthError] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const [displayCommentCount, setDisplayCommentCount] = useState(post.comments_count);
   const isOwner = currentUserId === post.user_id;
 
   const cat = categoryMeta[post.category] ?? { label: post.category, color: 'bg-gray-100 text-gray-800' };
@@ -362,13 +369,13 @@ function CommunityPostCard({
                   ? 'bg-blue-50 text-blue-700 border-blue-200'
                   : 'text-gray-700 hover:bg-gray-100 hover:text-[#C4532F] border-transparent hover:border-gray-300'
               }`}
-              aria-label={`${post.comments_count} comentarios`}
+              aria-label={`${displayCommentCount} comentarios`}
               aria-expanded={showComments}
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
               </svg>
-              <span>{post.comments_count}</span>
+              <span>{displayCommentCount}</span>
             </button>
           </div>
 
@@ -413,7 +420,8 @@ function CommunityPostCard({
       {showComments && (
         <CommentSection
           postId={post.id}
-          onCommentAdded={() => onCommentAdded(post.id)}
+          onCommentAdded={() => { onCommentAdded(post.id); setDisplayCommentCount((n) => n + 1); }}
+          onCountSync={setDisplayCommentCount}
         />
       )}
     </article>
