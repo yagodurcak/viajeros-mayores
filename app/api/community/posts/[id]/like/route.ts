@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
+import { createAdminClient } from '@/lib/supabase/admin';
 
 function makeSupabase(cookieStore: Awaited<ReturnType<typeof cookies>>) {
   return createServerClient(
@@ -58,15 +59,16 @@ export async function POST(
       .insert({ post_id: postId, user_id: user.id });
   }
 
-  // Count real likes and update the denormalized column
-  const { count } = await supabase
+  // Count real likes and update the denormalized column using admin client (bypasses RLS)
+  const admin = createAdminClient();
+  const { count } = await admin
     .from('community_post_likes')
     .select('*', { count: 'exact', head: true })
     .eq('post_id', postId);
 
   const newCount = count ?? 0;
 
-  await supabase
+  await admin
     .from('community_posts')
     .update({ likes_count: newCount })
     .eq('id', postId);

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
+import { createAdminClient } from '@/lib/supabase/admin';
 
 function makeSupabase(cookieStore: Awaited<ReturnType<typeof cookies>>) {
   return createServerClient(
@@ -95,13 +96,14 @@ export async function POST(
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
-  // Update comments_count on the post
-  const { count: commentsCount } = await supabase
+  // Update comments_count on the post using admin client (bypasses RLS)
+  const admin = createAdminClient();
+  const { count: commentsCount } = await admin
     .from('community_post_comments')
     .select('*', { count: 'exact', head: true })
     .eq('post_id', postId);
 
-  await supabase
+  await admin
     .from('community_posts')
     .update({ comments_count: commentsCount ?? 0 })
     .eq('id', postId);
