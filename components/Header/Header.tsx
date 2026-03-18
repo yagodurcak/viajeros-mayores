@@ -77,6 +77,8 @@ const Header = ({ session: initialSession }: HeaderProps) => {
       isActive = pathname.startsWith('/maps');
     } else if (path === '/search') {
       isActive = pathname.startsWith('/search');
+    } else if (path === '/ofertas') {
+      isActive = pathname.startsWith('/ofertas');
     } else {
       // Other paths use exact match
       isActive = pathname === path;
@@ -192,6 +194,12 @@ const Header = ({ session: initialSession }: HeaderProps) => {
             onClick={() => router.push('/news')}
           >
             Noticias
+          </button>
+          <button
+            className={getNavButtonClass('/ofertas')}
+            onClick={() => router.push('/ofertas')}
+          >
+            Ofertas
           </button>
           <button
             className={getNavButtonClass('/about-us')}
@@ -325,6 +333,12 @@ const Header = ({ session: initialSession }: HeaderProps) => {
               onClick={() => { router.push('/news'); setIsMobileMenuOpen(false); }}
             >
               Noticias
+            </button>
+            <button
+              className={`${getNavButtonClass('/ofertas')} w-full text-left`}
+              onClick={() => { router.push('/ofertas'); setIsMobileMenuOpen(false); }}
+            >
+              Ofertas
             </button>
             <button
               className={`${getNavButtonClass('/about-us')} w-full text-left`}

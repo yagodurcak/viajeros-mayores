@@ -17,6 +17,7 @@ const navItems = [
   { icon: '👥', label: 'Miembros', href: '/members' },
   { icon: '✍️', label: 'Artículos', href: '/blog' },
   { icon: '📰', label: 'Noticias', href: '/news' },
+  { icon: '🏷️', label: 'Ofertas', href: '/ofertas' },
   { icon: 'ℹ️', label: 'Nosotros', href: '/about' },
 ];
 
