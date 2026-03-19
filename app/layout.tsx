@@ -9,6 +9,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import { defaultMetadata } from '@/lib/seo-config';
 import { GoogleAnalytics } from '@/components/Analytics/GoogleAnalytics';
 import { GuideBanner } from '@/components/GuideBanner/GuideBanner';
+import { SurveyModal } from '@/components/SurveyModal/SurveyModal';
 import { AuthGateModal } from '@/components/AuthGateModal/AuthGateModal';
 
 const alata = Alata({
@@ -135,6 +136,7 @@ export default async function RootLayout({
         <GuideBanner />
         <Header session={session} />
         {children}
+        <SurveyModal />
         <AuthGateModal />
         <SpeedInsights />
         <Footer />

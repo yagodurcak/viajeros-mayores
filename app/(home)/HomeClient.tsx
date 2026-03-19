@@ -17,7 +17,6 @@ const navItems = [
   { icon: '👥', label: 'Miembros', href: '/members' },
   { icon: '✍️', label: 'Artículos', href: '/blog' },
   { icon: '📰', label: 'Noticias', href: '/news' },
-  { icon: '🏷️', label: 'Ofertas', href: '/ofertas' },
   { icon: 'ℹ️', label: 'Nosotros', href: '/about' },
 ];
 
@@ -90,7 +89,6 @@ function CommentSection({
   }, [comments.length, loading, onCountSync]);
   const [text, setText] = useState('');
   const [submitting, setSubmitting] = useState(false);
-  const [authError, setAuthError] = useState(false);
   const [replyingTo, setReplyingTo] = useState<string | null>(null);
   const [replyText, setReplyText] = useState('');
   const [replySubmitting, setReplySubmitting] = useState(false);
@@ -113,9 +111,8 @@ function CommentSection({
     e.preventDefault();
     if (!text.trim()) return;
     setSubmitting(true);
-    setAuthError(false);
     const user = await getUser();
-    if (!user) { setAuthError(true); setSubmitting(false); return; }
+    if (!user) { window.dispatchEvent(new CustomEvent('show-auth-modal')); setSubmitting(false); return; }
     const ok = await addComment(text.trim());
     if (ok) { setText(''); onCommentAdded(); }
     setSubmitting(false);
@@ -126,7 +123,7 @@ function CommentSection({
     if (!replyText.trim()) return;
     setReplySubmitting(true);
     const user = await getUser();
-    if (!user) { setAuthError(true); setReplySubmitting(false); return; }
+    if (!user) { window.dispatchEvent(new CustomEvent('show-auth-modal')); setReplySubmitting(false); return; }
     const ok = await addComment(replyText.trim(), parentId);
     if (ok) { setReplyText(''); setReplyingTo(null); }
     setReplySubmitting(false);
@@ -218,14 +215,6 @@ function CommentSection({
         </div>
       )}
 
-      {authError && (
-        <p className="text-sm text-red-600 font-medium">
-          Debes{' '}
-          <Link href="/login" className="underline">iniciar sesión</Link>{' '}
-          para comentar.
-        </p>
-      )}
-
       <form onSubmit={handleSubmit} className="flex gap-2">
         <input
           value={text}
@@ -261,7 +250,6 @@ function CommunityPostCard({
   onDelete: (id: string) => void;
 }) {
   const [showComments, setShowComments] = useState(false);
-  const [authError, setAuthError] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [displayCommentCount, setDisplayCommentCount] = useState(post.comments_count);
   const isOwner = currentUserId === post.user_id;
@@ -275,10 +263,9 @@ function CommunityPostCard({
     const supabase = createClient();
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) {
-      setAuthError(true);
+      window.dispatchEvent(new CustomEvent('show-auth-modal'));
       return;
     }
-    setAuthError(false);
     onLike(post.id);
   };
 
@@ -287,11 +274,10 @@ function CommunityPostCard({
       const supabase = createClient();
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) {
-        setAuthError(true);
+        window.dispatchEvent(new CustomEvent('show-auth-modal'));
         return;
       }
     }
-    setAuthError(false);
     setShowComments((v) => !v);
   };
 
@@ -335,13 +321,6 @@ function CommunityPostCard({
           )}
           <p className="text-gray-700 text-base leading-relaxed line-clamp-4">{post.content}</p>
         </div>
-
-        {/* Auth error */}
-        {authError && (
-          <p className="mt-2 text-sm text-red-600 font-medium">
-            <Link href="/login" className="underline">Iniciá sesión</Link> para interactuar.
-          </p>
-        )}
 
         {/* Action row */}
         <div className="flex items-center justify-between mt-4 pt-4 border-t border-gray-200">
@@ -494,7 +473,6 @@ function PostCreationBox({ onPost }: { onPost: (post: CommunityPost) => void }) 
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('experiencias');
   const [submitting, setSubmitting] = useState(false);
-  const [authError, setAuthError] = useState(false);
   const [error, setError] = useState('');
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -504,12 +482,11 @@ function PostCreationBox({ onPost }: { onPost: (post: CommunityPost) => void }) 
 
     setSubmitting(true);
     setError('');
-    setAuthError(false);
 
     const supabase = createClient();
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) {
-      setAuthError(true);
+      window.dispatchEvent(new CustomEvent('show-auth-modal'));
       setSubmitting(false);
       return;
     }
@@ -602,11 +579,6 @@ function PostCreationBox({ onPost }: { onPost: (post: CommunityPost) => void }) 
       )}
 
       {/* Error messages */}
-      {authError && (
-        <p className="mt-3 text-sm text-red-600 font-medium">
-          <Link href="/login" className="underline">Iniciá sesión</Link> para publicar.
-        </p>
-      )}
       {error && <p className="mt-3 text-sm text-red-600 font-medium">{error}</p>}
 
       {!expanded && (

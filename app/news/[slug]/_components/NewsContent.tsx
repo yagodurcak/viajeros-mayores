@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
@@ -13,6 +11,7 @@ interface NewsContentProps {
   imageAlt: string;
   title: string;
   slug: string;
+  articleUrl: string;
 }
 
 const NewsContent: React.FC<NewsContentProps> = ({
@@ -20,12 +19,9 @@ const NewsContent: React.FC<NewsContentProps> = ({
   imageUrl,
   imageAlt,
   title,
-  slug,
+  slug: _slug,
+  articleUrl,
 }) => {
-  const articleUrl =
-    typeof window !== 'undefined'
-      ? window.location.href
-      : `https://yourdomain.com/news/${slug}`;
 
   return (
     <div className="prose max-w-none my-8">

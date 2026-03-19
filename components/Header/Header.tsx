@@ -196,12 +196,6 @@ const Header = ({ session: initialSession }: HeaderProps) => {
             Noticias
           </button>
           <button
-            className={getNavButtonClass('/ofertas')}
-            onClick={() => router.push('/ofertas')}
-          >
-            Ofertas
-          </button>
-          <button
             className={getNavButtonClass('/about-us')}
             onClick={() => router.push('/about')}
           >
@@ -333,12 +327,6 @@ const Header = ({ session: initialSession }: HeaderProps) => {
               onClick={() => { router.push('/news'); setIsMobileMenuOpen(false); }}
             >
               Noticias
-            </button>
-            <button
-              className={`${getNavButtonClass('/ofertas')} w-full text-left`}
-              onClick={() => { router.push('/ofertas'); setIsMobileMenuOpen(false); }}
-            >
-              Ofertas
             </button>
             <button
               className={`${getNavButtonClass('/about-us')} w-full text-left`}
