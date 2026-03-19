@@ -337,7 +337,7 @@ const ArticleComments: React.FC<ArticleCommentsProps> = ({ articleSlug }) => {
 
   const handleShowCommentForm = () => {
     if (!isAuthenticated) {
-      setErrorMessage('Debes iniciar sesión para comentar');
+      window.dispatchEvent(new CustomEvent('show-auth-modal'));
       return;
     }
     setShowCommentForm(true);

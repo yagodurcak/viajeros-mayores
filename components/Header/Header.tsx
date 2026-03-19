@@ -77,6 +77,8 @@ const Header = ({ session: initialSession }: HeaderProps) => {
       isActive = pathname.startsWith('/maps');
     } else if (path === '/search') {
       isActive = pathname.startsWith('/search');
+    } else if (path === '/ofertas') {
+      isActive = pathname.startsWith('/ofertas');
     } else {
       // Other paths use exact match
       isActive = pathname === path;

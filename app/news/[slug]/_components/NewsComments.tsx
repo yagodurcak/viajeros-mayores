@@ -334,7 +334,7 @@ const NewsComments: React.FC<NewsCommentsProps> = ({ newsSlug }) => {
 
   const handleShowCommentForm = () => {
     if (!isAuthenticated) {
-      setErrorMessage('You must be logged in to comment');
+      window.dispatchEvent(new CustomEvent('show-auth-modal'));
       return;
     }
     setShowCommentForm(true);

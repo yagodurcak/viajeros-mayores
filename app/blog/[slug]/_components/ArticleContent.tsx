@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
@@ -45,6 +43,7 @@ interface ArticleContentProps {
   imageAlt: string;
   title: string;
   slug: string;
+  articleUrl: string;
 }
 
 const ArticleContent: React.FC<ArticleContentProps> = ({
@@ -53,11 +52,8 @@ const ArticleContent: React.FC<ArticleContentProps> = ({
   imageAlt,
   title,
   slug,
+  articleUrl,
 }) => {
-  const articleUrl =
-    typeof window !== 'undefined'
-      ? window.location.href
-      : `${process.env.NEXT_PUBLIC_SITE_URL}/blog/${slug}`;
 
   return (
     <div

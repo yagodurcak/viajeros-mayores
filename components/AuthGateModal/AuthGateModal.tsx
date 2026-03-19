@@ -2,42 +2,18 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { createBrowserClient } from '@supabase/ssr';
-
-// Pages that don't require auth (auth flow pages)
-const PUBLIC_PATHS = ['/login', '/signup', '/forgot-password', '/reset-password'];
+import { X } from 'lucide-react';
 
 export const AuthGateModal = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
-  const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const supabase = createBrowserClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-    );
-
-    const checkSession = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      setIsAuthenticated(!!session);
-    };
-
-    checkSession();
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setIsAuthenticated(!!session);
-    });
-
-    return () => subscription.unsubscribe();
+    const handler = () => setIsOpen(true);
+    window.addEventListener('show-auth-modal', handler);
+    return () => window.removeEventListener('show-auth-modal', handler);
   }, []);
 
-  // Don't block auth pages
-  if (PUBLIC_PATHS.some((p) => pathname.startsWith(p))) return null;
-  // Still loading
-  if (isAuthenticated === null) return null;
-  // Authenticated — no gate
-  if (isAuthenticated) return null;
+  if (!isOpen) return null;
 
   return (
     <div
@@ -46,11 +22,23 @@ export const AuthGateModal = () => {
       aria-modal="true"
       aria-labelledby="auth-gate-title"
     >
-      {/* Blurred backdrop */}
-      <div className="absolute inset-0 backdrop-blur-md bg-black/40" />
+      {/* Backdrop */}
+      <div
+        className="absolute inset-0 backdrop-blur-md bg-black/40"
+        onClick={() => setIsOpen(false)}
+      />
 
       {/* Modal card */}
       <div className="relative w-full max-w-md rounded-3xl bg-white shadow-2xl overflow-hidden">
+        {/* Close button */}
+        <button
+          onClick={() => setIsOpen(false)}
+          aria-label="Cerrar"
+          className="absolute top-3 right-3 z-10 p-2 rounded-full bg-white/80 hover:bg-gray-100 transition-colors shadow"
+        >
+          <X className="w-4 h-4 text-gray-500" />
+        </button>
+
         {/* Header gradient */}
         <div className="bg-gradient-to-br from-[#E36E4A] via-[#D45A36] to-[#B8421E] px-8 py-8 text-center text-white">
           <div className="w-16 h-16 bg-white/25 rounded-2xl flex items-center justify-center mx-auto mb-4 text-4xl">
@@ -67,22 +55,24 @@ export const AuthGateModal = () => {
         {/* Body */}
         <div className="px-8 py-7 text-center">
           <p className="text-gray-800 text-lg font-semibold mb-1">
-            ¡Bienvenido/a!
+            ¡Únete a la comunidad!
           </p>
           <p className="text-gray-600 text-base leading-relaxed mb-7">
-            Para acceder a la comunidad y disfrutar de todos nuestros contenidos,
-            necesitás iniciar sesión o crear tu cuenta gratuita.
+            Para comentar, dar me gusta y publicar en el feed necesitás iniciar
+            sesión o crear tu cuenta gratuita.
           </p>
 
           <div className="flex flex-col gap-3">
             <Link
               href="/login"
+              onClick={() => setIsOpen(false)}
               className="block w-full py-4 bg-[#E36E4A] hover:bg-[#C4532F] text-white rounded-xl font-bold text-base transition-colors shadow-md min-h-[52px]"
             >
               Iniciar Sesión
             </Link>
             <Link
               href="/signup"
+              onClick={() => setIsOpen(false)}
               className="block w-full py-4 bg-white hover:bg-orange-50 text-[#C4532F] border-2 border-[#E36E4A] rounded-xl font-bold text-base transition-colors min-h-[52px]"
             >
               Crear Cuenta Gratis

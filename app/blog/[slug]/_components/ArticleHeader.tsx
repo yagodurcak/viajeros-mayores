@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import type { BlogArticle } from '@/types/blog';
 import { getCategoryLabel, formatBlogDate } from '@/lib/blog-utils';
