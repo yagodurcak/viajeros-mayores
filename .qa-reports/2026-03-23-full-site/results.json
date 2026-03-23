@@ -1,0 +1,190 @@
+[
+  {
+    "page": "Home",
+    "path": "/",
+    "status": 200,
+    "title": "Ofertas de Viaje para Mayores — Hoteles, Vuelos, Cruceros y ",
+    "loadTime": 2687,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "externalLinks": 16,
+    "missingRel": 4,
+    "smallButtons": 28,
+    "screenshot": "01-home-desktop.png",
+    "ok": true
+  },
+  {
+    "page": "Hoteles Recomendados",
+    "path": "/hoteles",
+    "status": 200,
+    "title": "Hoteles Recomendados para Viajeros Mayores — Verificados Per",
+    "loadTime": 2348,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "externalLinks": 161,
+    "missingRel": 4,
+    "smallButtons": 179,
+    "screenshot": "02-hoteles-desktop.png",
+    "ok": true
+  },
+  {
+    "page": "Vuelos",
+    "path": "/vuelos",
+    "status": 200,
+    "title": "Buscadores de Vuelos para Mayores — Los Que Recomendamos | V",
+    "loadTime": 1890,
+    "consoleErrors": [],
+    "externalLinks": 8,
+    "missingRel": 4,
+    "smallButtons": 24,
+    "screenshot": "03-vuelos-desktop.png",
+    "ok": true
+  },
+  {
+    "page": "Seguros",
+    "path": "/seguros",
+    "status": 200,
+    "title": "Seguros de Viaje para Mayores — Los Que Recomendamos | Viaje",
+    "loadTime": 1535,
+    "consoleErrors": [],
+    "externalLinks": 9,
+    "missingRel": 4,
+    "smallButtons": 24,
+    "screenshot": "04-seguros-desktop.png",
+    "ok": true
+  },
+  {
+    "page": "Excursiones",
+    "path": "/excursiones",
+    "status": 200,
+    "title": "Excursiones para Mayores — Actividades y Tours Recomendados ",
+    "loadTime": 1980,
+    "consoleErrors": [],
+    "externalLinks": 8,
+    "missingRel": 4,
+    "smallButtons": 24,
+    "screenshot": "05-excursiones-desktop.png",
+    "ok": true
+  },
+  {
+    "page": "Ofertas",
+    "path": "/ofertas",
+    "status": 200,
+    "title": "Ofertas de Viaje para Mayores — Hoteles, Vuelos, Cruceros y ",
+    "loadTime": 1835,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "externalLinks": 16,
+    "missingRel": 4,
+    "smallButtons": 28,
+    "screenshot": "06-ofertas-desktop.png",
+    "ok": true
+  },
+  {
+    "page": "Blog",
+    "path": "/blog",
+    "status": 200,
+    "title": "Consejos para Viajar en la Tercera Edad | Guías y Destinos |",
+    "loadTime": 2522,
+    "consoleErrors": [],
+    "externalLinks": 5,
+    "missingRel": 4,
+    "smallButtons": 31,
+    "screenshot": "07-blog-desktop.png",
+    "ok": true
+  },
+  {
+    "page": "Noticias",
+    "path": "/news",
+    "status": 200,
+    "title": "Noticias de Viajes para Mayores de 60 | Turismo Senior | Via",
+    "loadTime": 1849,
+    "consoleErrors": [],
+    "externalLinks": 5,
+    "missingRel": 4,
+    "smallButtons": 30,
+    "screenshot": "08-news-desktop.png",
+    "ok": true
+  },
+  {
+    "page": "Comunidad",
+    "path": "/comunidad",
+    "status": 200,
+    "title": "Comunidad de Viajeros Mayores — Experiencias, Consejos y Des",
+    "loadTime": 1498,
+    "consoleErrors": [],
+    "externalLinks": 5,
+    "missingRel": 4,
+    "smallButtons": 24,
+    "screenshot": "09-comunidad-desktop.png",
+    "ok": true
+  },
+  {
+    "page": "Sobre Nosotros",
+    "path": "/about",
+    "status": 200,
+    "title": "Acerca de Viajeros Mayores | Comunidad de Viajeros Mayores d",
+    "loadTime": 1592,
+    "consoleErrors": [],
+    "externalLinks": 5,
+    "missingRel": 4,
+    "smallButtons": 24,
+    "screenshot": "10-about-desktop.png",
+    "ok": true
+  },
+  {
+    "page": "Búsqueda IA",
+    "path": "/search",
+    "status": 200,
+    "title": "Destinos con IA - Búsqueda de destinos para mayores de 60 | ",
+    "loadTime": 2110,
+    "consoleErrors": [],
+    "externalLinks": 5,
+    "missingRel": 4,
+    "smallButtons": 28,
+    "screenshot": "11-search-desktop.png",
+    "ok": true
+  },
+  {
+    "page": "Miembros",
+    "path": "/members",
+    "status": 200,
+    "title": "Miembros | Viajeros Mayores",
+    "loadTime": 2348,
+    "consoleErrors": [],
+    "externalLinks": 5,
+    "missingRel": 4,
+    "smallButtons": 24,
+    "screenshot": "12-members-desktop.png",
+    "ok": true
+  },
+  {
+    "page": "Login",
+    "path": "/login",
+    "status": 200,
+    "title": "Viajeros Mayores: Viajes Culturales y Consejos para Mayores ",
+    "loadTime": 1749,
+    "consoleErrors": [],
+    "externalLinks": 5,
+    "missingRel": 4,
+    "smallButtons": 27,
+    "screenshot": "13-login-desktop.png",
+    "ok": true
+  },
+  {
+    "page": "Registro",
+    "path": "/signup",
+    "status": 200,
+    "title": "Viajeros Mayores: Viajes Culturales y Consejos para Mayores ",
+    "loadTime": 1502,
+    "consoleErrors": [],
+    "externalLinks": 5,
+    "missingRel": 4,
+    "smallButtons": 27,
+    "screenshot": "14-signup-desktop.png",
+    "ok": true
+  }
+]
