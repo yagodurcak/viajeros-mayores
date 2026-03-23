@@ -13,7 +13,7 @@ import { useHeartbeat } from './hooks/useHeartbeat';
 
 // ─── Nav items ────────────────────────────────────────────────────────────────
 const navItems = [
-  { icon: '🏠', label: 'Comunidad', href: '/', active: true },
+  { icon: '🏠', label: 'Comunidad', href: '/comunidad', active: true },
   { icon: '👥', label: 'Miembros', href: '/members' },
   { icon: '✍️', label: 'Artículos', href: '/blog' },
   { icon: '📰', label: 'Noticias', href: '/news' },

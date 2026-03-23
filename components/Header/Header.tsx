@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter, usePathname } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { Session } from '@supabase/supabase-js';
 import { createClient } from '@/lib/supabase/client';
 import Avatar from '@/components/Avatar/Avatar';
@@ -10,6 +10,20 @@ import Image from 'next/image';
 interface HeaderProps {
   session: Session | null;
 }
+
+const NAV_COMMUNITY = [
+  { href: '/', label: 'Ofertas', exact: true },
+  { href: '/comunidad', label: 'Comunidad', exact: false },
+  { href: '/blog', label: 'Artículos', exact: false },
+  { href: '/news', label: 'Noticias', exact: false },
+  { href: '/about', label: 'Nosotros', exact: false },
+];
+
+const NAV_SERVICES = [
+  { href: '/hoteles', label: 'Hoteles', icon: '🏨' },
+  { href: '/vuelos', label: 'Vuelos', icon: '✈️' },
+  { href: '/seguros', label: 'Seguros', icon: '🛡️' },
+];
 
 const Header = ({ session: initialSession }: HeaderProps) => {
   const router = useRouter();
@@ -20,7 +34,6 @@ const Header = ({ session: initialSession }: HeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    // Sincronizar el estado de la sesión cuando cambie
     setSession(initialSession);
   }, [initialSession]);
 
@@ -33,12 +46,9 @@ const Header = ({ session: initialSession }: HeaderProps) => {
         router.refresh();
       }
     });
-    return () => {
-      subscription.unsubscribe();
-    };
+    return () => subscription.unsubscribe();
   }, [supabase, router]);
 
-  // Cerrar dropdown de usuario al hacer clic fuera
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
@@ -46,48 +56,30 @@ const Header = ({ session: initialSession }: HeaderProps) => {
         setIsDropdownOpen(false);
       }
     };
-
-    if (isDropdownOpen) {
-      document.addEventListener('click', handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
+    if (isDropdownOpen) document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
   }, [isDropdownOpen]);
 
-  // Cerrar menú móvil cuando cambia la ruta
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [pathname]);
 
-  const getNavButtonClass = (path: string) => {
-    let isActive = false;
-
-    if (path === '/') {
-      // Home is active only on the exact home page
-      isActive = pathname === '/';
-    } else if (path === '/news') {
-      isActive = pathname.startsWith('/news');
-    } else if (path === '/blog') {
-      isActive = pathname.startsWith('/blog');
-    } else if (path === '/members') {
-      isActive = pathname.startsWith('/members');
-    } else if (path === '/maps') {
-      isActive = pathname.startsWith('/maps');
-    } else if (path === '/search') {
-      isActive = pathname.startsWith('/search');
-    } else if (path === '/ofertas') {
-      isActive = pathname.startsWith('/ofertas');
-    } else {
-      // Other paths use exact match
-      isActive = pathname === path;
-    }
-
-    return isActive
-      ? 'px-3 py-2 rounded-lg bg-[#E36E4A] text-white font-medium transition-colors'
-      : 'px-3 py-2 rounded-lg hover:text-[#E36E4A] hover:bg-gray-100 transition-colors font-medium text-gray-700';
+  const isCommunityActive = (href: string, exact: boolean) => {
+    if (exact) return pathname === href;
+    return pathname.startsWith(href);
   };
+
+  const isServiceActive = (href: string) => pathname.startsWith(href);
+
+  const communityNavClass = (href: string, exact: boolean) =>
+    isCommunityActive(href, exact)
+      ? 'px-3 py-2 rounded-lg bg-[#E36E4A] text-white font-semibold transition-colors text-sm'
+      : 'px-3 py-2 rounded-lg text-gray-700 hover:text-[#E36E4A] hover:bg-gray-100 transition-colors font-medium text-sm';
+
+  const serviceNavClass = (href: string) =>
+    isServiceActive(href)
+      ? 'flex items-center gap-1.5 px-4 py-2 rounded-full bg-white text-[#C4532F] font-bold text-sm transition-all min-h-[36px] whitespace-nowrap shadow-sm'
+      : 'flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/20 text-white border border-white/30 hover:bg-white/30 font-medium text-sm transition-all min-h-[36px] whitespace-nowrap';
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -100,118 +92,59 @@ const Header = ({ session: initialSession }: HeaderProps) => {
     router.push('/profile/edit');
   };
 
-  const _handleSignIn = () => {
-    router.push('/login');
-  };
-
-  const _handleSignUp = () => {
-    router.push('/signup');
-  };
-
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
-
-  // Obtener nombre para mostrar
   const getUserDisplayName = () => {
-    if (session?.user?.user_metadata?.full_name) {
-      return session.user.user_metadata.full_name;
-    }
-    if (session?.user?.email) {
-      return session.user.email.split('@')[0];
-    }
+    if (session?.user?.user_metadata?.full_name) return session.user.user_metadata.full_name;
+    if (session?.user?.email) return session.user.email.split('@')[0];
     return 'Usuario';
   };
 
   return (
-    <header className="bg-white text-gray-800 py-4 px-6 shadow-md border-b border-gray-300">
-      <div className="mx-auto max-w-6xl flex items-center justify-between">
-        <div
-          className="flex items-center gap-3 cursor-pointer"
-          onClick={() => router.push('/')}
-        >
-          <div className="relative w-52 h-14">
-            <Image
-              src="/images/logo.png"
-              alt="Viajeros Mayores Logo"
-              fill
-              className="object-contain"
-            />
-          </div>
-        </div>
+    <header className="bg-white shadow-sm border-b border-gray-200">
 
-        {/* Botón Hamburguesa - Solo visible en móvil */}
-        <button
-          className="md:hidden p-2 rounded-lg hover:bg-gray-200 transition-colors"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Menú"
-        >
-          <svg
-            className="w-6 h-6 text-gray-700"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            {isMobileMenuOpen ? (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            ) : (
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            )}
-          </svg>
-        </button>
+      {/* ── Barra 1: Comunidad ──────────────────────────────────────────── */}
+      <div className="bg-white border-b border-gray-100">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
 
-        <nav className="hidden md:flex gap-1 items-center">
+          {/* Logo */}
           <button
-            className={getNavButtonClass('/')}
             onClick={() => router.push('/')}
+            className="flex items-center flex-shrink-0"
+            aria-label="Ir al inicio"
           >
-            Comunidad
+            <div className="relative w-44 h-12">
+              <Image
+                src="/images/logo.png"
+                alt="Viajeros Mayores"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
           </button>
-          <button
-            className={getNavButtonClass('/members')}
-            onClick={() => router.push('/members')}
-          >
-            Miembros
-          </button>
-          <button
-            className={getNavButtonClass('/blog')}
-            onClick={() => router.push('/blog')}
-          >
-            Artículos
-          </button>
-          <button
-            className={getNavButtonClass('/news')}
-            onClick={() => router.push('/news')}
-          >
-            Noticias
-          </button>
-          <button
-            className={getNavButtonClass('/about-us')}
-            onClick={() => router.push('/about')}
-          >
-            Nosotros
-          </button>
-        </nav>
 
-        <div className="hidden md:flex items-center gap-4">
-          {session ? (
-            <div className="flex items-center gap-3">
-              {/* Avatar con Dropdown */}
-              <div className="relative dropdown-container">
-                {/* Avatar */}
-                <div
-                  onClick={toggleDropdown}
+          {/* Nav comunidad — desktop */}
+          <nav className="hidden md:flex items-center gap-1" aria-label="Navegación principal">
+            {NAV_COMMUNITY.map(({ href, label, exact }) => (
+              <button
+                key={href}
+                onClick={() => router.push(href)}
+                className={communityNavClass(href, exact)}
+              >
+                {label}
+              </button>
+            ))}
+          </nav>
+
+          {/* Derecha: Avatar + hamburguesa móvil */}
+          <div className="flex items-center gap-3">
+            {/* Avatar desktop */}
+            {session && (
+              <div className="relative dropdown-container hidden md:block">
+                <button
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                   className="cursor-pointer hover:opacity-90 transition-opacity"
+                  aria-label="Menú de usuario"
+                  aria-expanded={isDropdownOpen}
                 >
                   <Avatar
                     name={getUserDisplayName()}
@@ -219,209 +152,134 @@ const Header = ({ session: initialSession }: HeaderProps) => {
                     gradient
                     className="shadow-md hover:shadow-lg transition-shadow"
                   />
-                </div>
+                </button>
 
-                {/* Dropdown Menu */}
                 {isDropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-300 py-2 z-50 animate-fade-in">
-                    {/* User Info */}
-                    <div className="px-4 py-2 border-b border-gray-200">
-                      <p className="text-sm font-semibold text-gray-800">
-                        {getUserDisplayName()}
-                      </p>
+                  <div className="absolute right-0 mt-2 w-52 bg-white rounded-xl shadow-lg border border-gray-200 py-2 z-50">
+                    <div className="px-4 py-3 border-b border-gray-100">
+                      <p className="text-sm font-semibold text-gray-800">{getUserDisplayName()}</p>
                       {session.user.email && (
-                        <p className="text-xs text-gray-600 truncate">
-                          {session.user.email}
-                        </p>
+                        <p className="text-xs text-gray-500 truncate mt-0.5">{session.user.email}</p>
                       )}
                     </div>
-
-                    {/* Menu Items */}
                     <button
                       onClick={handleEditProfile}
-                      className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors flex items-center gap-2"
+                      className="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors flex items-center gap-2 min-h-[44px]"
                     >
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                        />
+                      <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                       </svg>
                       Editar Perfil
                     </button>
-
                     <button
                       onClick={handleLogout}
-                      className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors flex items-center gap-2"
+                      className="w-full text-left px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 transition-colors flex items-center gap-2 min-h-[44px]"
                     >
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-                        />
+                      <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                       </svg>
                       Cerrar Sesión
                     </button>
                   </div>
                 )}
               </div>
-            </div>
-          ) : null}
-          {/* Botones de auth desktop temporalmente ocultos:
-          <div className="flex items-center gap-3">
+            )}
+
+            {/* Hamburguesa — solo móvil */}
             <button
-              onClick={handleSignIn}
-              className="px-4 py-2 bg-[#E36E4A] text-white rounded-lg hover:bg-[#D45A36] transition-colors"
+              className="md:hidden min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label={isMobileMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
+              aria-expanded={isMobileMenuOpen}
             >
-              Iniciar Sesión
-            </button>
-            <button
-              onClick={handleSignUp}
-              className="px-4 py-2 border border-[#E36E4A] text-[#E36E4A] rounded-lg hover:bg-[#E36E4A] hover:text-white transition-colors"
-            >
-              Registrarse
+              <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {isMobileMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
             </button>
           </div>
-          */}
         </div>
       </div>
 
-      {/* Menú Móvil Desplegable */}
+      {/* ── Barra 2: Servicios de viaje — siempre visible ──────────────── */}
+      <div className="bg-gradient-to-r from-[#E36E4A] via-[#D45A36] to-[#B8421E]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="flex items-center justify-center gap-3 overflow-x-auto py-3 scrollbar-hide" role="navigation" aria-label="Mis recomendaciones">
+            <span className="text-xs font-semibold text-white uppercase tracking-widest whitespace-nowrap flex-shrink-0">
+              Mis recomendaciones en:
+            </span>
+            {NAV_SERVICES.map(({ href, label, icon }) => (
+              <button
+                key={href}
+                onClick={() => router.push(href)}
+                className={serviceNavClass(href)}
+                aria-current={isServiceActive(href) ? 'page' : undefined}
+              >
+                <span aria-hidden="true">{icon}</span>
+                {label}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ── Menú móvil desplegable ──────────────────────────────────────── */}
       {isMobileMenuOpen && (
-        <div className="md:hidden border-t border-gray-200 bg-white shadow-lg">
-          <nav className="flex flex-col p-4 space-y-2">
-            <button
-              className={`${getNavButtonClass('/')} w-full text-left`}
-              onClick={() => { router.push('/'); setIsMobileMenuOpen(false); }}
-            >
+        <div className="md:hidden bg-white border-t border-gray-100 shadow-lg">
+          <div className="px-4 py-4 space-y-1">
+
+            {/* Sección comunidad */}
+            <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 pb-1">
               Comunidad
-            </button>
-            <button
-              className={`${getNavButtonClass('/members')} w-full text-left`}
-              onClick={() => { router.push('/members'); setIsMobileMenuOpen(false); }}
-            >
-              Miembros
-            </button>
-            <button
-              className={`${getNavButtonClass('/blog')} w-full text-left`}
-              onClick={() => { router.push('/blog'); setIsMobileMenuOpen(false); }}
-            >
-              Artículos
-            </button>
-            <button
-              className={`${getNavButtonClass('/news')} w-full text-left`}
-              onClick={() => { router.push('/news'); setIsMobileMenuOpen(false); }}
-            >
-              Noticias
-            </button>
-            <button
-              className={`${getNavButtonClass('/about-us')} w-full text-left`}
-              onClick={() => { router.push('/about'); setIsMobileMenuOpen(false); }}
-            >
-              Nosotros
-            </button>
+            </p>
+            {NAV_COMMUNITY.map(({ href, label, exact }) => (
+              <button
+                key={href}
+                onClick={() => router.push(href)}
+                className={`${communityNavClass(href, exact)} w-full text-left min-h-[48px] text-base`}
+              >
+                {label}
+              </button>
+            ))}
 
-            {/* Separador */}
-            <div className="border-t border-gray-200 my-2"></div>
+            <div className="border-t border-gray-100 my-3" />
 
-            {/* Botones de Auth en móvil */}
-            {session ? (
-              <div className="flex flex-col space-y-2">
-                <div className="flex items-center gap-3 px-4 py-2">
-                  <Avatar
-                    name={getUserDisplayName()}
-                    size="sm"
-                    gradient
-                    className="shadow-md"
-                  />
+            {/* Usuario en móvil */}
+            {session && (
+              <>
+                <div className="flex items-center gap-3 px-3 py-2">
+                  <Avatar name={getUserDisplayName()} size="sm" gradient />
                   <div>
-                    <p className="text-sm font-semibold text-gray-800">
-                      {getUserDisplayName()}
-                    </p>
+                    <p className="text-sm font-semibold text-gray-800">{getUserDisplayName()}</p>
                     {session.user.email && (
-                      <p className="text-xs text-gray-600 truncate">
-                        {session.user.email}
-                      </p>
+                      <p className="text-xs text-gray-500 truncate">{session.user.email}</p>
                     )}
                   </div>
                 </div>
                 <button
-                  onClick={() => {
-                    handleEditProfile();
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg transition-colors flex items-center gap-2"
+                  onClick={() => { handleEditProfile(); setIsMobileMenuOpen(false); }}
+                  className="w-full text-left px-3 py-3 text-base text-gray-700 hover:bg-gray-50 rounded-lg transition-colors flex items-center gap-2 min-h-[48px]"
                 >
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                    />
+                  <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                   </svg>
                   Editar Perfil
                 </button>
                 <button
-                  onClick={() => {
-                    handleLogout();
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg transition-colors flex items-center gap-2"
+                  onClick={() => { handleLogout(); setIsMobileMenuOpen(false); }}
+                  className="w-full text-left px-3 py-3 text-base text-red-600 hover:bg-red-50 rounded-lg transition-colors flex items-center gap-2 min-h-[48px]"
                 >
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-                    />
+                  <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                   </svg>
                   Cerrar Sesión
                 </button>
-              </div>
-            ) : null}
-            {/* Botones de auth móvil temporalmente ocultos:
-            <div className="flex flex-col space-y-2">
-              <button
-                onClick={() => { handleSignIn(); setIsMobileMenuOpen(false); }}
-                className="w-full px-4 py-2 bg-[#E36E4A] text-white rounded-lg hover:bg-[#D45A36] transition-colors"
-              >
-                Iniciar Sesión
-              </button>
-              <button
-                onClick={() => { handleSignUp(); setIsMobileMenuOpen(false); }}
-                className="w-full px-4 py-2 border border-[#E36E4A] text-[#E36E4A] rounded-lg hover:bg-[#E36E4A] hover:text-white transition-colors"
-              >
-                Registrarse
-              </button>
-            </div>
-            */}
-          </nav>
+              </>
+            )}
+          </div>
         </div>
       )}
     </header>
