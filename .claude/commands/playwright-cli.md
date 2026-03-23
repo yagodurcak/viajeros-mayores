@@ -1,194 +1,218 @@
 ---
 name: playwright-cli
-description: "Testing automatizado con Playwright CLI. Navega la app, llena formularios, hace click, toma screenshots, y genera reportes. Activar cuando el usuario dice: testea esto, revisa que funcione, hay un bug, verificalo, checalo en el browser, o despues de implementar una feature para validar."
-allowed-tools: Read, Write, Edit, Bash, Grep, Glob
+description: "Tester QA automatizado para viajerosmayores.com. Usa Playwright para navegar el sitio, verificar que todo funcione, tomar screenshots, y generar reportes. Activar cuando el usuario dice: testea, revisa que funcione, hay un bug, verificalo, checalo en el browser, controla la web, QA, o despues de implementar una feature."
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Agent
 ---
 
-# Skill: QA Automatizado con Playwright CLI
+# QA Tester — viajerosmayores.com
 
 > Ejecutar QA: $ARGUMENTS
 
 ---
 
-## Por Que CLI en vez de MCP
+## Contexto del Proyecto
 
-Playwright MCP inyecta snapshots completos de pagina directamente en el context window. Esto consume muchos tokens y puede causar ruido para flujos conocidos.
+**viajerosmayores.com** es una app Next.js para viajeros mayores de 60 anos hispanohablantes. URL local: `http://localhost:3000`
 
-Playwright CLI en cambio:
-- Guarda datos de pagina a disco (archivos YAML/screenshots) en vez de llenar el contexto
-- Menos tokens consumidos, mayor precision para flujos definidos
-- Claude ya sabe usar shell commands, cero overhead de carga de herramientas
-- Los artefactos quedan en disco para revision posterior
+### Mapa de Rutas
 
-**Cuando usar MCP en vez de CLI**: Exploracion interactiva de paginas desconocidas o debugging visual en tiempo real. Para todo lo demas, CLI.
+| Ruta | Seccion | Que testear |
+|------|---------|-------------|
+| `/` | Home (comunidad) | Banner, nav lateral, feed de articulos, sidebar, testimonios, CTA |
+| `/blog` | Blog | Grid de articulos, filtros por categoria, paginacion |
+| `/blog/[slug]` | Articulo | Contenido, comentarios, compartir |
+| `/news` | Noticias | Grid de noticias, featured news |
+| `/news/[slug]` | Noticia | Contenido, comentarios |
+| `/hoteles` | Hoteles recomendados | Filtro por pais, cards de hotel, links a Booking.com |
+| `/vuelos` | Buscadores de vuelos | Cards de buscadores, links externos |
+| `/seguros` | Seguros de viaje | Cards de aseguradoras, links externos |
+| `/excursiones` | Excursiones | Cards de plataformas, links externos |
+| `/ofertas` | Ofertas | Cards de cruceros/hoteles/seguros, links a ofertas |
+| `/comunidad` | Comunidad | Feed, interacciones |
+| `/search` | Busqueda IA | Input, resultados de destinos |
+| `/maps` | Mapas | Google Maps, elevacion de rutas |
+| `/about` | Sobre nosotros | Contenido estatico |
+| `/login` | Login | Formulario, validacion |
+| `/signup` | Registro | Formulario, validacion |
+| `/members` | Miembros | Listado de perfiles |
+| `/profile/[username]` | Perfil | Info del usuario, badges, reviews |
 
----
+### Criterios UX para Mayores de 60
 
-## Prerequisitos
-
-Instalar Chromium si no esta instalado:
-
-```bash
-npx playwright install chromium
-```
-
----
-
-## Comandos Core de Playwright CLI
-
-```bash
-# Navegar a una pagina
-npx playwright navigate http://localhost:3000
-
-# Tomar screenshot
-npx playwright screenshot http://localhost:3000 --output screenshot.png
-
-# Click en un elemento
-npx playwright click "text=Sign In"
-
-# Llenar un campo de formulario
-npx playwright fill "#email" "test@example.com"
-
-# Obtener snapshot de pagina (accessibility tree como YAML)
-npx playwright snapshot http://localhost:3000
-```
+- Botones: `min-h-[44px]` minimo
+- Texto: `text-base` (16px) minimo para contenido principal
+- Contraste: alto, nunca gris claro sobre blanco
+- Links externos: deben abrir en nueva pestana (`target="_blank"`)
+- Formularios: inputs grandes, focus rings visibles
 
 ---
 
-## Flujo QA en 6 Fases
+## Metodo de Testing con Playwright
 
-### Fase 1: SETUP
+### Usar scripts Node.js para tests complejos
 
-Leer los requerimientos del test. Identificar que necesita testing.
-
-- Que feature o bug se esta verificando?
-- Cuales son los criterios de exito?
-- Que URL/rutas estan involucradas?
-- Se necesitan datos de prueba?
-
-Crear el directorio de artefactos:
+En vez de comandos sueltos de CLI, escribir scripts `.js` temporales que usen Playwright programaticamente:
 
 ```bash
-mkdir -p .qa-reports/[YYYY-MM-DD]-[nombre]/screenshots
+# Instalar si no esta
+npx playwright install chromium 2>/dev/null
+
+# Ejecutar un test script
+node /tmp/qa-test.js
 ```
 
-### Fase 2: PROVISION
+### Template de script de test
 
-Preparar datos de prueba si son necesarios.
+```javascript
+const { chromium } = require('playwright');
 
-- Crear usuario de prueba via Supabase MCP si aplica
-- Preparar datos en BD que el flujo necesite
-- Verificar que el servidor de desarrollo esta corriendo
+(async () => {
+  const browser = await chromium.launch({ headless: true });
+  const page = await browser.newPage({
+    viewport: { width: 1440, height: 900 },
+    userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36'
+  });
+
+  // --- TEST STEPS ---
+  await page.goto('http://localhost:3000');
+  await page.waitForLoadState('networkidle');
+  await page.screenshot({ path: '.qa-reports/FECHA/screenshots/01-home.png', fullPage: true });
+
+  // Verificar elementos
+  const title = await page.title();
+  console.log(`Title: ${title}`);
+
+  const links = await page.$$eval('a[target="_blank"]', els =>
+    els.map(el => ({ text: el.textContent?.trim(), href: el.href }))
+  );
+  console.log(`External links: ${links.length}`);
+
+  await browser.close();
+})();
+```
+
+### Tipos de verificacion
+
+1. **Renderizado**: La pagina carga sin errores, sin pantalla blanca
+2. **Links**: Todos los links externos tienen `target="_blank"` y `rel="noopener noreferrer"`
+3. **Responsive**: Verificar en 3 viewports: desktop (1440), tablet (768), mobile (375)
+4. **Interacciones**: Filtros funcionan, botones clickeables, formularios enviables
+5. **Consola**: No hay errores JS en la consola del browser
+6. **Performance**: Pagina carga en < 5 segundos
+7. **Accesibilidad**: Contraste, tamano de botones, aria-labels
+
+---
+
+## Flujo de QA
+
+### Paso 1: Verificar que el servidor esta corriendo
 
 ```bash
-# Verificar que la app esta corriendo
 curl -s -o /dev/null -w "%{http_code}" http://localhost:3000
 ```
 
-### Fase 3: NAVIGATE
+Si no responde 200, avisar al usuario que ejecute `npm run dev`.
 
-Abrir la app y navegar a las paginas relevantes.
-
-```bash
-# Screenshot inicial de la pagina
-npx playwright screenshot http://localhost:3000/[ruta] --output .qa-reports/[fecha]-[nombre]/screenshots/01-inicio.png
-```
-
-### Fase 4: TEST
-
-Ejecutar los pasos del test. Llenar formularios, hacer clicks, verificar resultados.
+### Paso 2: Crear directorio de artefactos
 
 ```bash
-# Ejemplo: test de login
-npx playwright screenshot http://localhost:3000/login --output .qa-reports/[fecha]-[nombre]/screenshots/02-login-page.png
-npx playwright fill "#email" "test@example.com"
-npx playwright fill "#password" "testpassword"
-npx playwright click "text=Sign In"
-npx playwright screenshot http://localhost:3000/dashboard --output .qa-reports/[fecha]-[nombre]/screenshots/03-after-login.png
+mkdir -p .qa-reports/$(date +%Y-%m-%d)-[nombre]/screenshots
 ```
 
-Tomar screenshot ANTES y DESPUES de cada accion critica.
+### Paso 3: Escribir y ejecutar el script de test
 
-### Fase 5: DOCUMENT
+Escribir un script `.js` en `/tmp/qa-[nombre].js` que:
+- Navegue a cada pagina relevante
+- Tome screenshots
+- Verifique elementos criticos (links, botones, formularios)
+- Capture errores de consola
+- Genere output en formato estructurado
 
-Guardar snapshots de pagina solo cuando se necesite inspeccionar estructura.
+### Paso 4: Analizar los screenshots
 
-```bash
-# Solo si necesitas ver la estructura del DOM
-npx playwright snapshot http://localhost:3000/[ruta] > .qa-reports/[fecha]-[nombre]/snapshot-[paso].yaml
-```
+Usar Read para ver los screenshots generados y verificar visualmente.
 
-**Principio sticky-notes**: NO volcar snapshots completos al contexto. Leer el archivo YAML solo cuando se necesite inspeccionar algo especifico. Resumen primero, detalles on-demand.
+### Paso 5: Generar reporte
 
-### Fase 6: REPORT
+Crear `.qa-reports/[fecha]-[nombre]/report.md`.
 
-Generar reporte markdown con hallazgos.
+---
+
+## Modos de QA
+
+### `/playwright-cli full-site`
+Test completo de todas las rutas. Navega cada pagina, toma screenshot, verifica:
+- Sin errores de consola
+- Titulo correcto
+- Links externos con target="_blank"
+- Responsive (desktop + mobile)
+
+### `/playwright-cli [ruta]`
+Test especifico de una seccion. Ejemplo: `/playwright-cli hoteles`
+
+### `/playwright-cli links`
+Verifica TODOS los links externos del sitio:
+- Que tengan target="_blank"
+- Que tengan rel="noopener noreferrer"
+- Que las URLs sean validas (formato correcto)
+- Que tengan tracking de Google Analytics (onClick con gtag)
+
+### `/playwright-cli responsive`
+Test de responsive en 3 viewports para las paginas principales.
+
+### `/playwright-cli a11y`
+Test de accesibilidad: tamano de botones, contraste, aria-labels, focus rings.
 
 ---
 
 ## Template del Reporte
 
-Crear el archivo `.qa-reports/[YYYY-MM-DD]-[nombre]/report.md`:
-
 ```markdown
-# QA Report: [Feature/Bug Name]
+# QA Report: [Nombre]
 
-**Date**: [YYYY-MM-DD]
-**Status**: PASSED | FAILED | PARTIALLY_FIXED
+**Fecha**: YYYY-MM-DD
+**Estado**: PASSED | FAILED | PARTIAL
+**Tester**: Claude QA Automatizado
 
-## Test Steps
-1. [Descripcion del paso] - Screenshot: `screenshots/01-nombre.png`
-2. [Descripcion del paso] - Screenshot: `screenshots/02-nombre.png`
-3. ...
+## Resumen
+- Paginas testeadas: X
+- Errores encontrados: X
+- Warnings: X
 
-## Findings
-- [Issue encontrado o confirmacion de que funciona]
-- [Comportamiento inesperado observado]
+## Resultados por Pagina
 
-## Screenshots
-- `screenshots/01-inicio.png` - Estado inicial
-- `screenshots/02-accion.png` - Despues de [accion]
-- ...
+### / (Home)
+- Estado: OK/FAIL
+- Screenshot: `screenshots/01-home.png`
+- Errores de consola: ninguno / [lista]
+- Links externos: X (todos con tracking)
 
-## Recommendations
-- [Fix sugerido o mejora]
-- [Siguiente paso]
-```
+### /hoteles
+- Estado: OK/FAIL
+- Screenshot: `screenshots/02-hoteles.png`
+- Filtros: funcionan / [problema]
+- Cards: X hoteles renderizados
+- Links Booking: todos con target="_blank" y GA tracking
 
----
+[... mas paginas ...]
 
-## Modos de Uso
+## Issues Encontrados
+1. [Severidad] [Descripcion] — Pagina: [ruta] — Screenshot: [archivo]
 
-| Comando | Que hace |
-|---------|----------|
-| `/qa verify [flujo]` | Verificar que un flujo funciona correctamente |
-| `/qa reproduce [bug]` | Intentar reproducir un bug reportado |
-| `/qa full [feature]` | QA completo de una feature (happy path + edge cases) |
-
----
-
-## Directorio de Output
-
-Todos los artefactos de QA se guardan en:
-
-```
-.qa-reports/
-  [YYYY-MM-DD]-[nombre]/
-    report.md
-    screenshots/
-      01-nombre.png
-      02-nombre.png
-      ...
-    snapshot-[paso].yaml  (solo si se necesito)
+## Recomendaciones
+- [Accion sugerida]
 ```
 
 ---
 
 ## Reglas
 
-- SIEMPRE crear el directorio de artefactos antes de empezar
-- SIEMPRE tomar screenshots en cada paso critico
-- NUNCA volcar snapshots YAML completos al contexto (leerlos on-demand)
-- SIEMPRE generar el reporte al final, incluso si todo paso
-- Si el servidor no esta corriendo, avisar al usuario en vez de fallar silenciosamente
-- Los screenshots se guardan en disco, NO se insertan inline en el reporte (solo paths)
+- SIEMPRE verificar que el servidor esta corriendo antes de testear
+- SIEMPRE crear directorio de artefactos antes de empezar
+- SIEMPRE tomar screenshots de cada pagina testeada (fullPage: true)
+- SIEMPRE capturar errores de consola del browser
+- SIEMPRE generar el reporte al final
+- NUNCA volcar snapshots YAML completos al contexto
+- Para Playwright programatico, usar `require('playwright')` — si falla, probar con la ruta completa del modulo desde node_modules
+- Si Playwright no esta instalado como modulo, usar `npx playwright screenshot` como fallback
+- Los screenshots se guardan en disco y se leen con Read para verificacion visual

@@ -4,6 +4,21 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { awinLink } from '@/lib/awin';
 
+// ─── Analytics ────────────────────────────────────────────────────────────────
+declare const gtag: (command: string, action: string, params: Record<string, unknown>) => void;
+
+function trackHotelClick(hotel: { nombre: string; ciudad: string; pais: string; bookingUrl: string }) {
+  if (typeof gtag === 'undefined') return;
+  gtag('event', 'hotel_click', {
+    hotel_name: hotel.nombre,
+    hotel_city: hotel.ciudad,
+    hotel_country: hotel.pais,
+    outbound_url: hotel.bookingUrl,
+    event_category: 'outbound_link',
+    event_label: `${hotel.nombre} - ${hotel.ciudad}`,
+  });
+}
+
 // ─── Types ────────────────────────────────────────────────────────────────────
 interface Hotel {
   id: string;
@@ -2503,6 +2518,7 @@ function HotelCard({ hotel }: { hotel: Hotel }) {
             href={awinLink(hotel.bookingUrl)}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackHotelClick(hotel)}
             aria-label={`Ver detalles de ${hotel.nombre}`}
             className="min-h-[44px] px-5 py-2.5 bg-[#E36E4A] hover:bg-[#C4532F] text-white rounded-xl font-bold text-sm transition-colors whitespace-nowrap"
           >
@@ -2708,6 +2724,12 @@ export default function HotelesClient() {
               href={awinLink('https://www.booking.com')}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => {
+                if (typeof gtag !== 'undefined') gtag('event', 'booking_search_click', {
+                  event_category: 'outbound_link',
+                  event_label: 'Buscar en Booking.com',
+                });
+              }}
               className="mt-4 flex items-center justify-center gap-2 w-full min-h-[48px] bg-[#003580] hover:bg-[#002a6e] text-white rounded-xl font-bold text-base transition-colors"
             >
               Buscar en Booking.com

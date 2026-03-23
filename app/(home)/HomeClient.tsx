@@ -453,6 +453,13 @@ function InviteButton() {
             href={`https://wa.me/?text=${whatsappText}`}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => {
+              const w = window as unknown as { gtag?: (cmd: string, action: string, params: Record<string, unknown>) => void };
+              if (w.gtag) w.gtag('event', 'whatsapp_share', {
+                event_category: 'outbound_link',
+                event_label: 'Compartir por WhatsApp',
+              });
+            }}
             className="flex items-center justify-center gap-2 w-full py-3 bg-[#25D366] hover:bg-[#1ebe5d] text-white rounded-xl font-bold text-sm transition-colors min-h-[48px]"
           >
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">

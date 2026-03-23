@@ -1,5 +1,18 @@
 'use client';
 
+// ─── Analytics ────────────────────────────────────────────────────────────────
+declare const gtag: (command: string, action: string, params: Record<string, unknown>) => void;
+
+function trackInsuranceClick(nombre: string, url: string) {
+  if (typeof gtag === 'undefined') return;
+  gtag('event', 'insurance_click', {
+    insurance_provider: nombre,
+    outbound_url: url,
+    event_category: 'outbound_link',
+    event_label: nombre,
+  });
+}
+
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const SEGUROS = [
   { id: 'assistcard', nombre: 'Assist Card', url: 'https://www.assistcard.com' },
@@ -90,6 +103,7 @@ export default function SegurosClient() {
                 href={s.url}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackInsuranceClick(s.nombre, s.url)}
                 className="bg-white rounded-2xl border-2 border-[#E36E4A]/20 shadow p-6 flex flex-col items-center justify-center gap-3 min-h-[120px] hover:bg-[#FFF5F0] hover:border-[#E36E4A] hover:shadow-lg transition-all group"
               >
                 <span className="font-alata font-bold text-gray-800 text-lg text-center leading-snug group-hover:text-[#E36E4A] transition-colors">

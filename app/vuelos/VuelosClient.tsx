@@ -1,5 +1,18 @@
 'use client';
 
+// ─── Analytics ────────────────────────────────────────────────────────────────
+declare const gtag: (command: string, action: string, params: Record<string, unknown>) => void;
+
+function trackFlightClick(buscador: string, url: string) {
+  if (typeof gtag === 'undefined') return;
+  gtag('event', 'flight_search_click', {
+    search_engine: buscador,
+    outbound_url: url,
+    event_category: 'outbound_link',
+    event_label: buscador,
+  });
+}
+
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const BUSCADORES = [
   {
@@ -159,6 +172,7 @@ export default function VuelosClient() {
                   href={b.url}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackFlightClick(b.nombre, b.url)}
                   className="mt-5 flex items-center justify-center gap-2 min-h-[48px] bg-[#E36E4A] hover:bg-[#C4532F] text-white font-bold rounded-xl text-base transition-colors"
                 >
                   {b.label}

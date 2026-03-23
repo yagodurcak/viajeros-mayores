@@ -4,6 +4,17 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
+declare const gtag: (command: string, action: string, params: Record<string, unknown>) => void;
+
+function trackFooterLink(label: string, url: string) {
+  if (typeof gtag === 'undefined') return;
+  gtag('event', 'footer_link_click', {
+    outbound_url: url,
+    event_category: 'outbound_link',
+    event_label: label,
+  });
+}
+
 const Footer: React.FC = () => {
   return (
     <footer className="bg-gray-100 py-12 px-6">
@@ -25,6 +36,7 @@ const Footer: React.FC = () => {
               <a
                 href="https://www.facebook.com/profile.php?id=61583470460802"
                 aria-label="Viajeros Mayores Facebook"
+                onClick={() => trackFooterLink('Facebook', 'https://www.facebook.com/profile.php?id=61583470460802')}
                 className="text-[#E36E4A] text-xl hover:text-[#E85A4F] transition-colors"
               >
                 <i className="fab fa-facebook" />
@@ -33,6 +45,7 @@ const Footer: React.FC = () => {
               <a
                 href="https://www.instagram.com/viajerosmayores2026"
                 aria-label="Viajeros Mayores Instagram"
+                onClick={() => trackFooterLink('Instagram', 'https://www.instagram.com/viajerosmayores2026')}
                 className="text-[#E36E4A] text-xl hover:text-[#E85A4F] transition-colors"
               >
                 <i className="fab fa-instagram" />
@@ -104,6 +117,7 @@ const Footer: React.FC = () => {
                 <Link
                   href="https://europa.eu/youreurope/citizens/travel/transport-disability/reduced-mobility/index_en.htm"
                   target="_blank"
+                  onClick={() => trackFooterLink('European Commission', 'https://europa.eu/youreurope/citizens/travel/transport-disability/reduced-mobility/index_en.htm')}
                   className="hover:text-[#E36E4A] transition-colors"
                 >
                   European Commission
@@ -113,6 +127,7 @@ const Footer: React.FC = () => {
                 <Link
                   href="https://www.untourism.int/accessibility"
                   target="_blank"
+                  onClick={() => trackFooterLink('UN Tourism', 'https://www.untourism.int/accessibility')}
                   className="hover:text-[#E36E4A] transition-colors"
                 >
                   UN Tourism – Accessible tourism
@@ -122,6 +137,7 @@ const Footer: React.FC = () => {
                 <Link
                   href="https://www.accessibletourism.org"
                   target="_blank"
+                  onClick={() => trackFooterLink('ENAT', 'https://www.accessibletourism.org')}
                   className="hover:text-[#E36E4A] transition-colors"
                 >
                   ENAT – Accessible Tourism
@@ -131,6 +147,7 @@ const Footer: React.FC = () => {
                 <Link
                   href="https://travel.state.gov/en/international-travel/planning/personal-needs/accessibility.html"
                   target="_blank"
+                  onClick={() => trackFooterLink('Travel.State.gov', 'https://travel.state.gov/en/international-travel/planning/personal-needs/accessibility.html')}
                   className="hover:text-[#E36E4A] transition-colors"
                 >
                   Accessibility Needs – Travel.State.gov

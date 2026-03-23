@@ -1,5 +1,18 @@
 'use client';
 
+// ─── Analytics ────────────────────────────────────────────────────────────────
+declare const gtag: (command: string, action: string, params: Record<string, unknown>) => void;
+
+function trackExcursionClick(plataforma: string, url: string) {
+  if (typeof gtag === 'undefined') return;
+  gtag('event', 'excursion_click', {
+    platform: plataforma,
+    outbound_url: url,
+    event_category: 'outbound_link',
+    event_label: plataforma,
+  });
+}
+
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const PLATAFORMAS = [
   {
@@ -234,6 +247,7 @@ export default function ExcursionesClient() {
                   href={p.url}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackExcursionClick(p.nombre, p.url)}
                   className="mt-5 flex items-center justify-center gap-2 min-h-[48px] bg-[#E36E4A] hover:bg-[#C4532F] text-white font-bold rounded-xl text-base transition-colors"
                 >
                   {p.label}
