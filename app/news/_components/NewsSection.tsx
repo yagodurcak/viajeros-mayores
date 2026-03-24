@@ -65,7 +65,11 @@ const NewsSection: React.FC<NewsSectionProps> = ({
     <>
       {/* News Hero with search */}
       {showHero && enableSearch && (
-        <section className="relative bg-gradient-to-r from-[#E36E4A] to-[#F4916F] text-white py-20 px-6">
+        <section className="relative overflow-hidden bg-gradient-to-br from-[#0f2240] via-[#1a3a6b] to-[#0d3060] text-white py-20 px-6">
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+            <div className="absolute -top-10 -left-10 w-64 h-64 rounded-full bg-white/5" />
+            <div className="absolute top-4 right-8 w-32 h-32 rounded-full bg-white/5" />
+          </div>
           <div className="relative z-10 max-w-6xl mx-auto text-center">
             <h1 className="text-5xl font-bold mb-4 font-alata">
               Noticias de Viajes para Mayores de 60

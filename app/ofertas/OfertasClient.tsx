@@ -440,32 +440,50 @@ export default function OfertasClient() {
     <div className="min-h-screen bg-[#F5F5F0]" style={{ fontFamily: 'var(--font-nunito-sans)' }}>
 
       {/* ── Hero ──────────────────────────────────────────────────────────── */}
-      <section className="bg-gradient-to-br from-[#E36E4A] via-[#D45A36] to-[#B8421E] px-4 pt-10 pb-10 text-center">
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full px-4 py-1.5 mb-5">
-          <span className="text-white text-sm" aria-hidden="true">✨</span>
-          <span className="text-white text-sm font-semibold">Ofertas Especiales</span>
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#0f2240] via-[#1a3a6b] to-[#0d3060] px-4 pt-12 pb-16 text-center">
+
+        {/* Decoración: círculos de fondo */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div className="absolute -top-10 -left-10 w-64 h-64 rounded-full bg-white/5" />
+          <div className="absolute top-4 right-8 w-32 h-32 rounded-full bg-white/5" />
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-24 rounded-full bg-white/5" />
         </div>
 
-        <h1 className="font-alata text-3xl sm:text-4xl font-bold text-white leading-tight">
-          Ofertas de {mesCap}
-        </h1>
-        <p className="mt-3 text-base text-white/85 max-w-lg mx-auto leading-relaxed">
-          Las mejores ofertas seleccionadas especialmente para vos. Cruceros, seguros, vuelos y paquetes verificados con descuentos reales de hasta 35%.
-        </p>
+        <div className="relative z-10">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 bg-[#E36E4A]/90 border border-[#E36E4A] rounded-full px-4 py-1.5 mb-6 shadow-sm">
+            <span className="text-white text-sm" aria-hidden="true">✨</span>
+            <span className="text-white text-sm font-semibold tracking-wide">Ofertas Especiales</span>
+          </div>
 
-        {/* Contadores */}
-        <div className="flex items-center justify-center gap-4 mt-6 flex-wrap">
-          {[
-            { icon: '🚢', label: `${cruceros.length} cruceros` },
-            { icon: '🛡️', label: `${seguros.length} seguros` },
-            { icon: '🏨', label: `${hoteles.length} hoteles` },
-          ].map(({ icon, label }) => (
-            <div key={label} className="flex items-center gap-1.5 bg-white/15 backdrop-blur-sm rounded-full px-4 py-2">
-              <span aria-hidden="true">{icon}</span>
-              <span className="text-white text-sm font-medium">{label}</span>
-            </div>
-          ))}
+          <h1 className="font-alata text-4xl sm:text-5xl font-bold text-white leading-tight">
+            Ofertas de{' '}
+            <span className="text-[#E36E4A]">{mesCap}</span>
+          </h1>
+          <p className="mt-4 text-base text-white/80 max-w-lg mx-auto leading-relaxed">
+            Las mejores ofertas seleccionadas especialmente para vos. Cruceros, seguros, vuelos y paquetes verificados con descuentos reales de hasta 35%.
+          </p>
+
+          {/* Contadores */}
+          <div className="flex items-center justify-center gap-3 mt-8 flex-wrap">
+            {[
+              { icon: '🚢', label: `${cruceros.length} cruceros` },
+              { icon: '🛡️', label: `${seguros.length} seguros` },
+              { icon: '🏨', label: `${hoteles.length} hoteles` },
+            ].map(({ icon, label }) => (
+              <div key={label} className="flex items-center gap-2 bg-white/10 border border-white/25 backdrop-blur-sm rounded-full px-5 py-2.5 min-h-[44px]">
+                <span aria-hidden="true" className="text-lg">{icon}</span>
+                <span className="text-white text-sm font-semibold">{label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Wave inferior */}
+        <div aria-hidden="true" className="absolute bottom-0 left-0 right-0">
+          <svg viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" className="w-full h-10">
+            <path d="M0 40 C360 0 1080 0 1440 40 L1440 40 L0 40 Z" fill="#F5F5F0"/>
+          </svg>
         </div>
       </section>
 
