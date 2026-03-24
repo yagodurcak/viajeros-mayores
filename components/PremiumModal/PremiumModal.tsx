@@ -34,8 +34,8 @@ export function PremiumModal() {
       setIsOpen(true);
     };
 
-    // Trigger after 20 seconds
-    const timer = setTimeout(trigger, 20000);
+    // Trigger after 30 seconds
+    const timer = setTimeout(trigger, 30000);
 
     // Trigger when user scrolls 40% of the page
     const onScroll = () => {

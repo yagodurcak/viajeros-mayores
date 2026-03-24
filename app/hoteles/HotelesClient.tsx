@@ -2560,24 +2560,35 @@ export default function HotelesClient() {
     <div className="min-h-screen bg-[#F5F5F0]" style={{ fontFamily: 'var(--font-nunito-sans)' }}>
 
       {/* ── Hero / Trust section ─────────────────────────────────────────── */}
-      <section className="bg-white pt-10 pb-8 px-4 text-center">
-        <div className="max-w-2xl mx-auto">
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#0f2240] via-[#1a3a6b] to-[#0d3060] pt-12 pb-16 px-4 text-center">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div className="absolute -top-10 -left-10 w-64 h-64 rounded-full bg-white/5" />
+          <div className="absolute top-4 right-8 w-32 h-32 rounded-full bg-white/5" />
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-24 rounded-full bg-white/5" />
+        </div>
+        <div className="relative z-10 max-w-2xl mx-auto">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-white border border-gray-200 rounded-full px-4 py-2 shadow-sm mb-5">
-            <span className="text-[#E36E4A]">
+          <div className="inline-flex items-center gap-2 bg-[#E36E4A]/90 border border-[#E36E4A] rounded-full px-4 py-1.5 shadow-sm mb-6">
+            <span className="text-white">
               <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
             </span>
-            <span className="text-sm font-medium text-gray-700">Hoteles seleccionados para viajeros mayores</span>
+            <span className="text-sm font-semibold text-white">Hoteles seleccionados para viajeros mayores</span>
           </div>
 
-          <h1 className="font-alata text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">
-            Hoteles Recomendados para Viajeros Mayores
+          <h1 className="font-alata text-3xl sm:text-4xl font-bold text-white leading-tight">
+            Hoteles Recomendados para{' '}
+            <span className="text-[#E36E4A]">Viajeros Mayores</span>
           </h1>
-          <p className="mt-3 text-base text-gray-500 leading-relaxed max-w-lg mx-auto">
+          <p className="mt-4 text-base text-white/80 leading-relaxed max-w-lg mx-auto">
             De acuerdo a investigaciones realizadas para viajeros mayores, seleccionamos hoteles que destacan por comodidad, accesibilidad y atención personalizada.
           </p>
+        </div>
+        <div aria-hidden="true" className="absolute bottom-0 left-0 right-0">
+          <svg viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" className="w-full h-10">
+            <path d="M0 40 C360 0 1080 0 1440 40 L1440 40 L0 40 Z" fill="#ffffff"/>
+          </svg>
         </div>
       </section>
 

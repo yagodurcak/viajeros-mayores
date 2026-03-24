@@ -8,16 +8,25 @@ const AboutPageClient = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative h-[30vh] min-h-[500px] bg-gradient-to-r from-[#E36E4A] to-[#F4916F]">
-        <div className="absolute inset-0 bg-black/20" />
-        <div className="relative h-full max-w-6xl mx-auto px-6 flex flex-col justify-center items-center text-center">
+      <section className="relative overflow-hidden h-[30vh] min-h-[500px] bg-gradient-to-br from-[#0f2240] via-[#1a3a6b] to-[#0d3060]">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          <div className="absolute -top-10 -left-10 w-64 h-64 rounded-full bg-white/5" />
+          <div className="absolute top-4 right-8 w-32 h-32 rounded-full bg-white/5" />
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-24 rounded-full bg-white/5" />
+        </div>
+        <div className="relative z-10 h-full max-w-6xl mx-auto px-6 flex flex-col justify-center items-center text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 font-alata">
             Acerca de Viajeros Mayores
           </h1>
-          <p className="text-xl md:text-2xl text-white max-w-3xl font-normal leading-relaxed">
+          <p className="text-xl md:text-2xl text-white/80 max-w-3xl font-normal leading-relaxed">
             Ayudando a viajeros mayores de 60 años a explorar el mundo con
             confianza
           </p>
+        </div>
+        <div aria-hidden="true" className="absolute bottom-0 left-0 right-0">
+          <svg viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" className="w-full h-10">
+            <path d="M0 40 C360 0 1080 0 1440 40 L1440 40 L0 40 Z" fill="#ffffff"/>
+          </svg>
         </div>
       </section>
 

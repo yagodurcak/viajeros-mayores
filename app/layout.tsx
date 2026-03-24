@@ -8,8 +8,8 @@ import { cookies } from 'next/headers';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { defaultMetadata } from '@/lib/seo-config';
 import { GoogleAnalytics } from '@/components/Analytics/GoogleAnalytics';
-import { GuideBanner } from '@/components/GuideBanner/GuideBanner';
 import { AuthGateModal } from '@/components/AuthGateModal/AuthGateModal';
+import { PremiumModal } from '@/components/PremiumModal/PremiumModal';
 
 const alata = Alata({
   weight: '400',
@@ -132,10 +132,10 @@ export default async function RootLayout({
       </head>
       <body className={`${alata.variable} ${nunitoSans.variable}`}>
         {gaId && <GoogleAnalytics gaId={gaId} />}
-        <GuideBanner />
         <Header session={session} />
         {children}
 <AuthGateModal />
+        <PremiumModal />
         <SpeedInsights />
         <Footer />
       </body>
