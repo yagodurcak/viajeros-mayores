@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -16,6 +16,14 @@ function trackOfferClick(oferta: Oferta) {
     offer_badge: oferta.badge,
     offer_price: oferta.precio,
     offer_currency: oferta.moneda,
+  });
+}
+
+function trackOfferView(tipo: TipoOferta) {
+  if (typeof gtag === 'undefined') return;
+  gtag('event', 'offer_view', {
+    offer_type: tipo,
+    section: `seccion_${tipo}`,
   });
 }
 
@@ -253,6 +261,12 @@ const TIPO_LABEL: Record<TipoOferta, string> = {
   hotel: 'HOTEL',
 };
 
+const CTA_LABELS: Record<TipoOferta, string> = {
+  crucero: 'VER DESCUENTO PARA MAYORES',
+  hotel: 'VER OFERTA ALL INCLUSIVE',
+  seguro: 'VER COBERTURA CON DESCUENTO',
+};
+
 function fmt(n: number) {
   return n.toLocaleString('es-ES');
 }
@@ -310,7 +324,14 @@ function OfertaCard({ oferta }: { oferta: Oferta }) {
           <p className="text-2xl font-bold text-[#E36E4A]">
             {oferta.moneda}{fmt(oferta.precio)}
           </p>
-          <p className="text-xs text-gray-400 mb-3">por persona</p>
+          <p className="text-xs text-gray-400 mb-2">por persona</p>
+          {/* Trust badge */}
+          <div className="flex items-center gap-1.5 mb-3">
+            <svg className="w-3.5 h-3.5 text-green-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+            </svg>
+            <span className="text-xs text-green-700 font-semibold">Verificado · Válido para mayores de 60</span>
+          </div>
           <a
             href={oferta.url}
             target="_blank"
@@ -318,7 +339,7 @@ function OfertaCard({ oferta }: { oferta: Oferta }) {
             onClick={() => trackOfferClick(oferta)}
             className="block w-full min-h-[44px] bg-[#E36E4A] hover:bg-[#C4532F] text-white text-sm font-bold rounded-xl text-center py-3 transition-colors"
           >
-            Ver oferta
+            {CTA_LABELS[oferta.tipo]}
           </a>
         </div>
       </div>
@@ -354,7 +375,14 @@ function SeguroCard({ oferta }: { oferta: Oferta }) {
           )}
           <p className="text-xs text-gray-500">Desde</p>
           <p className="text-2xl font-bold text-[#E36E4A]">{oferta.moneda}{fmt(oferta.precio)}</p>
-          <p className="text-xs text-gray-400 mb-3">por persona</p>
+          <p className="text-xs text-gray-400 mb-2">por persona</p>
+          {/* Trust badge */}
+          <div className="flex items-center gap-1.5 mb-3">
+            <svg className="w-3.5 h-3.5 text-green-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+            </svg>
+            <span className="text-xs text-green-700 font-semibold">Verificado · Válido para mayores de 60</span>
+          </div>
           <a
             href={oferta.url}
             target="_blank"
@@ -362,7 +390,7 @@ function SeguroCard({ oferta }: { oferta: Oferta }) {
             onClick={() => trackOfferClick(oferta)}
             className="block w-full min-h-[44px] bg-[#E36E4A] hover:bg-[#C4532F] text-white text-sm font-bold rounded-xl text-center py-3 transition-colors"
           >
-            Ver oferta
+            {CTA_LABELS[oferta.tipo]}
           </a>
         </div>
       </div>
@@ -421,7 +449,9 @@ function SectionHeader({ icon, title, subtitle }: { icon: React.ReactNode; title
       </div>
       <div>
         <h2 className="font-alata text-xl font-bold text-gray-900">{title}</h2>
-        <p className="text-sm text-gray-500 mt-0.5">{subtitle}</p>
+        <p className="inline-flex items-center mt-1.5 bg-[#FFF5F0] border border-[#E36E4A]/30 text-[#C4532F] text-sm font-semibold px-3 py-1 rounded-full">
+          {subtitle}
+        </p>
       </div>
     </div>
   );
@@ -435,6 +465,29 @@ export default function OfertasClient() {
 
   const mes = new Date().toLocaleString('es-ES', { month: 'long', year: 'numeric' });
   const mesCap = mes.charAt(0).toUpperCase() + mes.slice(1);
+
+  const crucerosRef = useRef<HTMLElement>(null);
+  const segurosRef = useRef<HTMLElement>(null);
+  const hotelesRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const tipo = entry.target.getAttribute('data-tipo') as TipoOferta;
+            if (tipo) trackOfferView(tipo);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+    if (crucerosRef.current) observer.observe(crucerosRef.current);
+    if (segurosRef.current) observer.observe(segurosRef.current);
+    if (hotelesRef.current) observer.observe(hotelesRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#F5F5F0]" style={{ fontFamily: 'var(--font-nunito-sans)' }}>
@@ -461,7 +514,7 @@ export default function OfertasClient() {
             <span className="text-[#E36E4A]">{mesCap}</span>
           </h1>
           <p className="mt-4 text-base text-white/80 max-w-lg mx-auto leading-relaxed">
-            Las mejores ofertas seleccionadas especialmente para vos. Cruceros, seguros, vuelos y paquetes verificados con descuentos reales de hasta 35%.
+            Las mejores ofertas seleccionadas especialmente para vos. Cruceros, seguros y hoteles verificados con descuentos de hasta 60% para viajeros mayores de 60 años.
           </p>
 
           {/* Contadores */}
@@ -490,45 +543,62 @@ export default function OfertasClient() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 space-y-12">
 
         {/* ── Cruceros ──────────────────────────────────────────────────────── */}
-        <section>
+        <section ref={crucerosRef} data-tipo="crucero">
           <SectionHeader
             icon={
               <svg className="w-5 h-5 text-[#E36E4A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
               </svg>
             }
-            title="Cruceros - Ofertas Especiales"
-            subtitle="Navegá por los mejores destinos con todo incluido"
+            title="🔥 Cruceros — Ofertas con Descuento Real"
+            subtitle="Hasta 40% de descuento — seleccionados para viajeros mayores de 60"
           />
           <Carousel ofertas={cruceros} />
         </section>
 
         {/* ── Seguros ───────────────────────────────────────────────────────── */}
-        <section>
+        <section ref={segurosRef} data-tipo="seguro">
           <SectionHeader
             icon={
               <svg className="w-5 h-5 text-[#E36E4A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
               </svg>
             }
-            title="Seguros de Viaje"
-            subtitle="Viajá tranquilo con las mejores coberturas para mayores"
+            title="🛡️ Seguros de Viaje con Descuento"
+            subtitle="Cobertura médica 24/7 desde USD 40 · cuotas sin interés para +60"
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {seguros.map((o) => <SeguroCard key={o.id} oferta={o} />)}
           </div>
         </section>
 
+        {/* ── Banner de confianza ────────────────────────────────────────────── */}
+        <div className="rounded-2xl bg-[#FFF5F0] border border-[#E36E4A]/20 px-6 py-5">
+          <p className="text-center text-sm font-semibold text-[#C4532F] mb-3">Por qué confiamos en estas ofertas</p>
+          <div className="flex flex-wrap justify-center gap-3">
+            {[
+              '✓ Ofertas verificadas mensualmente',
+              '✓ Precios actualizados a marzo 2026',
+              '✓ Selección exclusiva para +60 años',
+              '✓ Atención en español garantizada',
+            ].map((item) => (
+              <span key={item} className="text-xs font-semibold text-[#E36E4A] bg-white border border-[#E36E4A]/30 rounded-full px-4 py-2">
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+
         {/* ── Hoteles ────────────────────────────────────────────────────────── */}
-        <section>
+        <section ref={hotelesRef} data-tipo="hotel">
           <SectionHeader
             icon={
               <svg className="w-5 h-5 text-[#E36E4A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
               </svg>
             }
-            title="Hoteles Recomendados"
-            subtitle="Hoteles verificados con accesibilidad y atención para viajeros mayores"
+            title="🏨 Hoteles All Inclusive — Ofertas con Descuento"
+            subtitle="Hasta 50% OFF en resorts 5⭐ · pago en cuotas sin interés para +60"
           />
           <Carousel ofertas={hoteles} />
         </section>
