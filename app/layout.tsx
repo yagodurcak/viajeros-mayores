@@ -4,7 +4,7 @@ import './globals.css';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import { createServerClient } from '@supabase/ssr';
-import { cookies } from 'next/headers';
+import { cookies, headers } from 'next/headers';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { defaultMetadata } from '@/lib/seo-config';
 import { GoogleAnalytics } from '@/components/Analytics/GoogleAnalytics';
@@ -30,32 +30,35 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const cookieStore = await cookies();
+  const headersList = await headers();
+  const isMaintenanceMode = headersList.get('x-maintenance-mode') === '1';
 
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        getAll() {
-          return cookieStore.getAll();
+  let session = null;
+  if (!isMaintenanceMode) {
+    const cookieStore = await cookies();
+    const supabase = createServerClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+      {
+        cookies: {
+          getAll() {
+            return cookieStore.getAll();
+          },
+          setAll(cookiesToSet) {
+            try {
+              cookiesToSet.forEach(({ name, value, options }) =>
+                cookieStore.set(name, value, options)
+              );
+            } catch {
+              // Server Component cannot set cookies
+            }
+          },
         },
-        setAll(cookiesToSet) {
-          try {
-            cookiesToSet.forEach(({ name, value, options }) =>
-              cookieStore.set(name, value, options)
-            );
-          } catch {
-            // Server Component cannot set cookies
-          }
-        },
-      },
-    }
-  );
-
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
+      }
+    );
+    const { data } = await supabase.auth.getSession();
+    session = data.session;
+  }
 
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
   const baseUrl =
@@ -132,12 +135,12 @@ export default async function RootLayout({
       </head>
       <body className={`${alata.variable} ${nunitoSans.variable}`}>
         {gaId && <GoogleAnalytics gaId={gaId} />}
-        <Header session={session} />
+        {!isMaintenanceMode && <Header session={session} />}
         {children}
-<AuthGateModal />
-        <PremiumModal />
+        {!isMaintenanceMode && <AuthGateModal />}
+        {!isMaintenanceMode && <PremiumModal />}
         <SpeedInsights />
-        <Footer />
+        {!isMaintenanceMode && <Footer />}
       </body>
     </html>
   );
