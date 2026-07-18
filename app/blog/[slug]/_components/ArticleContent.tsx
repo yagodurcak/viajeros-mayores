@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { getOptimizedImageUrl } from '@/lib/utils';
@@ -58,7 +59,7 @@ const ArticleContent: React.FC<ArticleContentProps> = ({
   return (
     <div
       className="
-        article-content prose prose-lg max-w-none my-8
+        article-content prose prose-lg max-w-none
         prose-headings:font-alata
         prose-headings:text-gray-900
         prose-h1:text-4xl prose-h1:mt-8 prose-h1:mb-5
@@ -142,16 +143,25 @@ const ArticleContent: React.FC<ArticleContentProps> = ({
               {children}
             </blockquote>
           ),
-          a: ({ href, children }) => (
-            <a
-              href={href}
-              className="text-[#E36E4A] hover:underline"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {children}
-            </a>
-          ),
+          a: ({ href, children }) => {
+            if (href?.startsWith('/')) {
+              return (
+                <Link href={href} className="text-[#E36E4A] hover:underline">
+                  {children}
+                </Link>
+              );
+            }
+            return (
+              <a
+                href={href}
+                className="text-[#E36E4A] hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {children}
+              </a>
+            );
+          },
           img: ({ src, alt }) => (
             // eslint-disable-next-line @next/next/no-img-element
             <img

@@ -13,7 +13,6 @@ interface HeaderProps {
 
 const NAV_COMMUNITY = [
   { href: '/', label: 'Ofertas', exact: true },
-  { href: '/comunidad', label: 'Comunidad', exact: false },
   { href: '/blog', label: 'Artículos', exact: false },
   { href: '/news', label: 'Noticias', exact: false },
   { href: '/about', label: 'Nosotros', exact: false },

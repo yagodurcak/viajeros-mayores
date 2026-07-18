@@ -20,7 +20,7 @@ const BlogFilters: React.FC<BlogFiltersProps> = ({
   };
 
   return (
-    <section className="hidden md:block py-8 px-6 bg-[#E2DDD8]">
+    <section className="hidden md:block py-8 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-wrap justify-center gap-4">
           {/* "All" button */}

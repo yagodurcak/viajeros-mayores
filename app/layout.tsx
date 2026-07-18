@@ -9,7 +9,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import { defaultMetadata } from '@/lib/seo-config';
 import { GoogleAnalytics } from '@/components/Analytics/GoogleAnalytics';
 import { AuthGateModal } from '@/components/AuthGateModal/AuthGateModal';
-import { PremiumModal } from '@/components/PremiumModal/PremiumModal';
+
 
 const alata = Alata({
   weight: '400',
@@ -138,7 +138,7 @@ export default async function RootLayout({
         {!isMaintenanceMode && <Header session={session} />}
         {children}
         {!isMaintenanceMode && <AuthGateModal />}
-        {!isMaintenanceMode && <PremiumModal />}
+
         <SpeedInsights />
         {!isMaintenanceMode && <Footer />}
       </body>

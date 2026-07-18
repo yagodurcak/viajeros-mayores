@@ -11,7 +11,7 @@ interface ArticleGridProps {
 const ArticleGrid: React.FC<ArticleGridProps> = ({ articles }) => {
   if (articles.length === 0) {
     return (
-      <div className="py-16 px-6 bg-[#E2DDD8]">
+      <div className="py-16 px-6">
         <div className="max-w-6xl mx-auto text-center">
           <div className="text-gray-600 mb-4">
             <svg
@@ -40,7 +40,7 @@ const ArticleGrid: React.FC<ArticleGridProps> = ({ articles }) => {
   }
 
   return (
-    <section className="py-12 px-6 bg-[#E2DDD8]">
+    <section className="py-12 px-6">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl font-bold text-gray-800 mb-8 font-alata">
           Todos los Articulos

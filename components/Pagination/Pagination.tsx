@@ -68,7 +68,7 @@ const Pagination: React.FC<PaginationProps> = ({
   const borderColor = primaryColor.replace('bg-', 'border-');
 
   return (
-    <div className={`py-12 px-6 bg-[#E2DDD8] ${className}`}>
+    <div className={`py-12 px-6 ${className}`}>
       <div className="max-w-6xl mx-auto">
         {/* Pagination with numbers */}
         <nav

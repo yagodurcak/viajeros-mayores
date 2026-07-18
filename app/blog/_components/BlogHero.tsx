@@ -18,16 +18,12 @@ const BlogHero: React.FC<BlogHeroProps> = ({
   isSearching,
 }) => {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[#0f2240] via-[#1a3a6b] to-[#0d3060] text-white py-20 px-6">
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-10 -left-10 w-64 h-64 rounded-full bg-white/5" />
-        <div className="absolute top-4 right-8 w-32 h-32 rounded-full bg-white/5" />
-      </div>
-      <div className="relative z-10 max-w-6xl mx-auto text-center">
-        <h1 className="text-5xl font-bold mb-4 font-alata">
+    <section className="bg-white py-12 px-6 border-b border-gray-100">
+      <div className="max-w-6xl mx-auto text-center">
+        <h1 className="text-4xl font-bold mb-3 font-alata text-gray-900">
           Consejos para Viajar en la Tercera Edad
         </h1>
-        <p className="text-xl mb-8 font-normal">
+        <p className="text-lg text-gray-600 mb-8">
           Guías prácticas, destinos culturales y consejos para viajeros mayores
           de 60 años. Aprende a planificar tu viaje y disfruta de experiencias
           enriquecedoras.
@@ -41,7 +37,7 @@ const BlogHero: React.FC<BlogHeroProps> = ({
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
               placeholder="Buscar por título, autor, contenido..."
-              className="w-full px-6 py-4 pr-28 rounded-full text-gray-800 placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-white shadow-lg transition-all"
+              className="w-full px-6 py-4 pr-28 rounded-full text-gray-800 placeholder-gray-400 bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#E36E4A] focus:border-transparent shadow-sm transition-all"
               aria-label="Buscar artículos"
             />
 
@@ -113,7 +109,7 @@ const BlogHero: React.FC<BlogHeroProps> = ({
 
           {/* Results counter */}
           {searchQuery && !isSearching && resultsCount !== undefined && (
-            <div className="mt-4 text-sm opacity-90">
+            <div className="mt-4 text-sm text-gray-500">
               {resultsCount === 0 ? (
                 <p>
                   No se encontraron artículos para &ldquo;{searchQuery}&rdquo;
